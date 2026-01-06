@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --space-section: clamp(3.5rem, 6vw, 6rem);
+  --space-section-tight: clamp(2.5rem, 4vw, 4rem);
+  --radius-pill: 9999px;
+}
+
+@layer base {
+  body { @apply antialiased bg-white text-slate-900; line-height: 1.6; }
+}
+
+@layer utilities {
+  .section-spacing { padding-block: var(--space-section); }
+  .container-responsive { margin-inline: auto; width: min(100%, 72rem); padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
+}

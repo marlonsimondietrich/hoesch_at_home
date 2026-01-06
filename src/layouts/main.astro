@@ -1,0 +1,27 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  content: {
+    title: string;
+    description?: string;
+  };
+}
+
+const { content } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={Astro.currentLocale || 'de'}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={content.description || 'Vibeperform'} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{content.title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

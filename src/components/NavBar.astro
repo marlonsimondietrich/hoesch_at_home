@@ -1,0 +1,17 @@
+---
+interface Props {
+  links: { label: string; href: string }[];
+  homeHref: string;
+}
+
+const { links, homeHref } = Astro.props;
+---
+
+<nav class="flex items-center justify-between p-4 bg-white shadow-sm">
+  <a href={homeHref} class="text-xl font-bold">Vibeperform</a>
+  <ul class="flex gap-4">
+    {links.map((link) => (
+      <li><a href={link.href} class="text-slate-600 hover:text-slate-900">{link.label}</a></li>
+    ))}
+  </ul>
+</nav>
