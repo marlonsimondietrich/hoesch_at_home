@@ -1,5 +1,6 @@
 # My process for development
 
+In 'agent' mode:
 1. Create a prd .. (add create-prd.md)
 1.1. Refine PRD
 1.2. Read PRD
