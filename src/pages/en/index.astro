@@ -4,6 +4,8 @@ import HomePage from '../../components/HomePage.astro';
 import { homeContent } from '../../data/homeContent';
 ---
 
-<Layout content={{ title: 'Vibeperform' }}>
-  <HomePage content={homeContent} currentLocale="en" alternateLocaleHref="/" />
+<Layout content={{ title: 'Hoesch@Home' }}>
+  <section class="bg-gradient-to-br from-orange-50 via-amber-50/70 to-slate-50 text-slate-900">
+    <HomePage content={homeContent.en} currentLocale="en" alternateLocaleHref="/" />
+  </section>
 </Layout>

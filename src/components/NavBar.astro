@@ -2,16 +2,32 @@
 interface Props {
   links: { label: string; href: string }[];
   homeHref: string;
+  currentLocale: 'en' | 'de';
+  alternateLocaleHref: string;
 }
 
-const { links, homeHref } = Astro.props;
+const { links, homeHref, currentLocale, alternateLocaleHref } = Astro.props;
+
+const languageLabel = currentLocale === 'de' ? 'DE' : 'EN';
+const languageAria =
+  currentLocale === 'de' ? 'Switch to English' : 'Wechseln zu Deutsch';
 ---
 
-<nav class="flex items-center justify-between p-4 bg-white shadow-sm">
-  <a href={homeHref} class="text-xl font-bold">Vibeperform</a>
-  <ul class="flex gap-4">
-    {links.map((link) => (
-      <li><a href={link.href} class="text-slate-600 hover:text-slate-900">{link.label}</a></li>
-    ))}
-  </ul>
+<nav class="flex items-center justify-between p-4 bg-transparent shadow-none">
+  <a href={homeHref} class="text-xl font-bold">Hoesch@Home</a>
+  <div class="flex items-center gap-4">
+    <ul class="flex gap-4">
+      {links.map((link) => (
+        <li><a href={link.href} class="text-slate-600 hover:text-slate-900">{link.label}</a></li>
+      ))}
+    </ul>
+    <a
+      href={alternateLocaleHref}
+      class="inline-flex items-center justify-center rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-300 hover:text-slate-900 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+      aria-label={languageAria}
+      data-lang-toggle
+    >
+      {languageLabel}
+    </a>
+  </div>
 </nav>

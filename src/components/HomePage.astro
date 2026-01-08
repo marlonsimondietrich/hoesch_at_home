@@ -4,31 +4,29 @@ import Hero from './Hero.astro';
 import type { HomeContent } from '../data/homeContent';
 
 interface Props {
-  content: Record<'en' | 'de', HomeContent>;
+  content: HomeContent;
   currentLocale: 'en' | 'de';
   alternateLocaleHref: string;
 }
 
 const { content, currentLocale, alternateLocaleHref } = Astro.props;
 
-const localized = content[currentLocale];
 const homeHref = currentLocale === 'de' ? '/' : '/en/';
 
 const links = [
-  { label: localized.nav.home, href: homeHref },
-  { label: localized.nav.about, href: '#' },
-  { label: localized.nav.contact, href: '#' },
+  { label: content.nav.home, href: homeHref },
+  { label: content.nav.about, href: '#' },
+  { label: content.nav.contact, href: '#' },
 ];
 ---
 
-<NavBar links={links} homeHref={homeHref} />
+<NavBar
+  links={links}
+  homeHref={homeHref}
+  currentLocale={currentLocale}
+  alternateLocaleHref={alternateLocaleHref}
+/>
 
-<main class="container-responsive section-spacing">
-  <Hero contentByLocale={content} defaultLocale={currentLocale} />
-
-  <div class="mt-12 pt-8 border-t border-slate-200">
-    <a href={alternateLocaleHref} class="text-sm font-medium text-slate-500 hover:text-slate-900 underline underline-offset-4">
-      {currentLocale === 'de' ? 'Switch to English' : 'Wechseln zu Deutsch'}
-    </a>
-  </div>
+<main>
+  <Hero content={content} currentLocale={currentLocale} />
 </main>

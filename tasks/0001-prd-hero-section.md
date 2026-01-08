@@ -32,7 +32,7 @@
 - All textual elements require EN and DE strings; default render DE.
 
 ## 6. Functional Requirements
-1. Render responsively on mobile, tablet, and desktop; maintain readable typography (Georgia per brand guide).
+1. Render responsively on mobile, tablet, and desktop; maintain readable typography (Inter ExtraLight 200 per brand guide).
 2. Provide bilingual content: all visible text, alt text, aria labels available in EN and DE; DE loads by default.
 3. Include a local language toggle within the hero to switch content (headline, body, CTA labels, alt text) between EN and DE without page reload; must be keyboard/screen-reader accessible and persist focus after toggle.
 4. Primary CTA: booking-oriented (e.g., “Buchungsanfrage starten” / “Start booking inquiry”) linking to booking/inquiry destination (URL configurable).
@@ -51,7 +51,7 @@
 - No SEO schema or analytics wiring beyond basic attributes.
 
 ## 8. Design & UX Considerations
-- Typography: use Georgia stack as primary for headlines and body (per brand style). Keep sizes generous but calm; avoid all-caps; line-height roomy to reflect “quiet, lived-in” feel.
+- Typography: use Inter ExtraLight 200 as primary for headlines and body (per brand style). Keep sizes generous but calm; avoid all-caps; line-height roomy to reflect “quiet, lived-in” feel.
 - Layout: split layout with cozy texture/gradient behind text column; maintain breathing room. On mobile, stack with text above image; ensure padding keeps copy readable over texture.
 - Tone: invitational, not salesy; avoid luxury clichés. Emphasize authenticity and calm.
 - Buttons: primary has clear contrast and solid fill; secondary uses outline/ghost to stay subtle.
@@ -61,8 +61,8 @@
 - Suggested background direction (refine as needed): warm off-white base with muted clay/terracotta wash; subtle noise/texture acceptable if it preserves text contrast.
 - Optional microcopy examples (to be confirmed):
   - Eyebrow: DE “Zwischen Stadt und Alpen” / EN “Between city and Alps”
-  - Headline: DE “Ein geerdeter Rückzugsort in Oberbayern” / EN “A grounded retreat in Upper Bavaria”
-  - Body: DE 2–3 short lines describing calm, lived-in home; EN mirror tone.
+  - Headline: DE “Dein Zuhause in Oberbayern” / EN “Come stay awhile”
+  - Body: DE/EN 1–2 short lines describing calm, lived-in home; align with current hero copy.
   - Alt text: DE “Illustration eines bayerischen Landhauses in ruhiger Umgebung” / EN “Illustration of a Bavarian country home in a calm setting”
 
 ## 9. Technical Considerations

@@ -1,7 +1,7 @@
 ## Relevant Files
 
-- `src/components/HomePage.astro` - Main home layout; renders hero with locale-aware data and alternate locale link.
-- `src/components/Hero.astro` - Dedicated hero section with split layout, illustration, and hero-local language toggle.
+- `src/components/HomePage.astro` - Main home layout; renders hero with locale-aware data and passes locale toggle link to NavBar.
+- `src/components/Hero.astro` - Dedicated hero section with split layout and illustration for the current locale content.
 - `src/data/homeContent.ts` - EN/DE content source for hero/nav strings (eyebrow, headline, body, CTAs, alt, toggle labels).
 - `src/assets/hoeschathome-illustration.png` - Required hero illustration asset.
 - `src/styles/` (e.g., `global.css` or equivalents) - Styling tokens; add hero-specific styles or utility classes if needed.
@@ -13,7 +13,7 @@
 ### Notes
 
 - Unit tests (if added) should live alongside components (e.g., `Hero.test.tsx` if using a test runner).
-- Respect brand guide typography (Georgia) and tone; ensure DE is default render.
+- Respect brand guide typography (Inter ExtraLight 200) and tone; ensure DE is default render.
 
 ## Tasks
 
@@ -26,8 +26,8 @@
   - [x] 2.2 Integrate `hoeschathome-illustration.png` on visual side with safe area and responsive scaling; add width/height to prevent layout shift.
   - [x] 2.3 Add hero-local language toggle that swaps EN/DE strings client-side without page reload; ensure focus remains on toggle after switching.
   - [x] 2.4 Wire component into `HomePage.astro` (and `index.astro`/`en/index.astro`) with correct locale defaults (DE default, EN alternate link).
-- [x] 3.0 Apply brand-aligned styling (Georgia), warm textured background, and responsive behavior for EN/DE text length.
-  - [x] 3.1 Apply Georgia typography stack and spacious line-height; avoid all-caps; ensure text balance on desktop and stacked layout on mobile.
+- [x] 3.0 Apply brand-aligned styling (Inter ExtraLight 200), warm textured background, and responsive behavior for EN/DE text length.
+  - [x] 3.1 Apply Inter ExtraLight 200 typography stack and spacious line-height; avoid all-caps; ensure text balance on desktop and stacked layout on mobile.
   - [x] 3.2 Add warm off-white base with muted clay/terracotta wash or subtle noise texture behind text; verify contrast for readability.
   - [x] 3.3 Adjust spacing to allow DE text expansion without truncation; verify button sizing and wrapping in both locales.
 - [x] 4.0 Ensure accessibility, semantics, and performance (contrast, focus, prefers-reduced-motion, image sizing).
@@ -37,3 +37,7 @@
 - [x] 5.0 Wire analytics/metrics hooks for CTAs and toggle usage as outlined in PRD, and verify integration on homepage(s).
   - [x] 5.1 Add tracking hooks or data attributes for primary/secondary CTA clicks and toggle usage (by language).
   - [x] 5.2 Validate rendering and interactions on DE and EN pages; confirm alternate locale links and toggle behavior.
+- [x] 6.0 Move language toggle into navigation and reflect current locale in label.
+  - [x] 6.1 Update `NavBar.astro` to accept locale and alternate href, rendering a toggle link labeled with current locale (DE/EN) and accessible aria text.
+  - [x] 6.2 Remove hero-local language toggle and simplify `Hero.astro` to render current locale only.
+  - [x] 6.3 Update `HomePage.astro` and page entrypoints to pass localized content and alternate locale link into NavBar; ensure navigation spacing intact.

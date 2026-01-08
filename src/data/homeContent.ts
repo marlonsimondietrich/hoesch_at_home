@@ -2,6 +2,7 @@ interface HeroContent {
     eyebrow?: string;
     headline: string;
     body: string[];
+    features: string[];
     primaryCta: {
         label: string;
         href: string;
@@ -33,10 +34,14 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
     en: {
         hero: {
             eyebrow: "Between city and Alps",
-            headline: "A grounded retreat in Upper Bavaria",
+            headline: "Come stay awhile",
             body: [
-                "Arrive, breathe out — a quiet home with honest materials.",
-                "Plenty of space to slow down, close to forest and fields."
+                "For everyone who loves city, countryside, river, mountain, and lake."
+            ],
+            features: [
+                "Sleeps 8",
+                "Daily fresh eggs",
+                "Spacious garden"
             ],
             primaryCta: {
                 label: "Start booking inquiry",
@@ -49,7 +54,7 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
             alt: "Illustration of a Bavarian country home in a calm setting",
             toggleLabel: "Switch to German",
             toggleAriaLabel: "Switch language to German",
-            subheadline: "Arrive, breathe out — a quiet home with honest materials.",
+            subheadline: "For everyone who loves city, countryside, river, mountain, and lake.",
             cta: "Start booking inquiry"
         },
         nav: {
@@ -61,10 +66,14 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
     de: {
         hero: {
             eyebrow: "Zwischen Stadt und Alpen",
-            headline: "Ein geerdeter Rückzugsort in Oberbayern",
+            headline: "Dein Zuhause in Oberbayern",
             body: [
-                "Komm an, atme aus – ein stilles Zuhause mit ehrlichen Materialien.",
-                "Viel Raum zum Durchatmen, nah an Wald und Wiese, ohne Luxus-Klimbim."
+                "Für alle die Stadt, Land, Fluss, Berg und See mögen."
+            ],
+            features: [
+                "8 Personen",
+                "tägl. frische Eier",
+                "Großer Garten"
             ],
             primaryCta: {
                 label: "Buchungsanfrage senden",
@@ -77,7 +86,7 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
             alt: "Illustration eines bayerischen Landhauses in ruhiger Umgebung",
             toggleLabel: "Switch to English",
             toggleAriaLabel: "Sprache wechseln",
-            subheadline: "Komm an, atme aus – ein stilles Zuhause mit ehrlichen Materialien.",
+            subheadline: "Für alle die Stadt, Land, Fluss, Berg und See mögen.",
             cta: "Buchungsanfrage senden"
         },
         nav: {

@@ -27,11 +27,21 @@ The brand should always feel like an invitation, never a pitch.
 ## 2. Typography
 
 ### Primary Typeface
-**Georgia** (system serif)
+**Inter ExtraLight 200** (sans serif)
 
 - Used for all body text and headlines
-- Screen-optimized, familiar, literary
-- Conveys permanence and quiet confidence
+- Weight 200 keeps the feel airy and calm
+- Modern and clean without feeling cold
 
 ```css
-font-family: "Georgia", "Times New Roman", serif;
+font-family: "Inter", sans-serif;
+font-weight: 200;
+```
+
+---
+
+## 3. Color
+
+### Accent
+- **B85E3C** — use for primary CTAs, highlights, and interactive states
+- Keep sufficient contrast with white text for buttons; darken slightly on hover for depth
