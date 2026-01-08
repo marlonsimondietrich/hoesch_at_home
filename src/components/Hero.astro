@@ -1,0 +1,127 @@
+---
+import illustration from '../assets/hoeschathome-illustration.png';
+import type { HomeContent } from '../data/homeContent';
+
+interface Props {
+  contentByLocale: Record<'en' | 'de', HomeContent>;
+  defaultLocale: 'en' | 'de';
+}
+
+const { contentByLocale, defaultLocale } = Astro.props;
+const defaultContent = contentByLocale[defaultLocale];
+---
+
+<section
+  data-hero
+  data-locale={defaultLocale}
+  class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center"
+  style="font-family: 'Georgia', 'Times New Roman', serif;"
+>
+  <script type="application/json" id="hero-content" aria-hidden="true">
+    {JSON.stringify(contentByLocale)}
+  </script>
+
+  <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-orange-50 via-amber-50/70 to-slate-50 p-8 sm:p-10 shadow-sm">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.7),transparent_45%)] pointer-events-none"></div>
+    <div class="relative space-y-6 text-slate-900">
+      {Object.entries(contentByLocale).map(([locale, copy]) => (
+        <div data-copy-locale={locale} class={locale === defaultLocale ? 'space-y-6' : 'space-y-6 hidden'}>
+          {copy.hero.eyebrow && (
+            <p class="text-sm uppercase tracking-[0.2em] text-amber-700/80">
+              {copy.hero.eyebrow}
+            </p>
+          )}
+          <h1 class="text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-balance">
+            {copy.hero.headline}
+          </h1>
+          <div class="space-y-3 text-lg text-slate-700 text-pretty">
+            {copy.hero.body.map((line) => (
+              <p>{line}</p>
+            ))}
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+            <a
+              href={copy.hero.primaryCta.href}
+              class="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-slate-800 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+              data-hero-primary
+            >
+              {copy.hero.primaryCta.label}
+            </a>
+            <a
+              href={copy.hero.secondaryCta.href}
+              class="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:text-slate-900 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+              data-hero-secondary
+            >
+              {copy.hero.secondaryCta.label}
+            </a>
+          </div>
+          <div class="flex items-center gap-3 pt-2">
+            <button
+              type="button"
+              data-hero-toggle
+              class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+              aria-label={copy.hero.toggleAriaLabel}
+            >
+              {copy.hero.toggleLabel}
+            </button>
+            <span class="h-px flex-1 bg-slate-200" aria-hidden="true"></span>
+            <span class="text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+              {locale === 'de' ? 'DE' : 'EN'}
+            </span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="relative flex justify-center">
+    <div class="absolute -inset-6 rounded-3xl bg-gradient-to-br from-amber-100/80 via-white to-slate-50 blur-2xl" aria-hidden="true"></div>
+    <img
+      src={illustration.src}
+      width={illustration.width}
+      height={illustration.height}
+      alt={defaultContent.hero.alt}
+      class="relative max-h-[520px] w-full max-w-2xl rounded-2xl border border-slate-100 object-contain shadow-lg"
+      loading="eager"
+      data-hero-image
+    />
+  </div>
+</section>
+
+<script>
+  const hero = document.querySelector('[data-hero]');
+  const contentEl = document.getElementById('hero-content');
+
+  if (hero && contentEl?.textContent) {
+    const content = JSON.parse(contentEl.textContent);
+    const blocks = Array.from(hero.querySelectorAll('[data-copy-locale]'));
+    const toggle = hero.querySelector('[data-hero-toggle]');
+    const img = hero.querySelector('[data-hero-image]');
+
+    const applyLocale = (locale) => {
+      hero.dataset.locale = locale;
+      blocks.forEach((block) => {
+        const isMatch = block.dataset.copyLocale === locale;
+        block.classList.toggle('hidden', !isMatch);
+      });
+      if (img && content?.[locale]?.hero?.alt) {
+        img.setAttribute('alt', content[locale].hero.alt);
+      }
+      if (toggle && content?.[locale]?.hero?.toggleLabel) {
+        toggle.textContent = content[locale].hero.toggleLabel;
+        const aria = content[locale].hero.toggleAriaLabel || content[locale].hero.toggleLabel;
+        toggle.setAttribute('aria-label', aria);
+      }
+    };
+
+    applyLocale(hero.dataset.locale || 'de');
+
+    if (toggle) {
+      toggle.addEventListener('click', () => {
+        const next = hero.dataset.locale === 'de' ? 'en' : 'de';
+        applyLocale(next);
+        toggle.focus();
+      });
+    }
+  }
+</script>
