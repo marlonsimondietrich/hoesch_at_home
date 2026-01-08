@@ -1,4 +1,6 @@
 ---
+import logo from '../assets/logo.png';
+
 interface Props {
   links: { label: string; href: string }[];
   homeHref: string;
@@ -14,7 +16,10 @@ const languageAria =
 ---
 
 <nav class="flex items-center justify-between p-4 bg-transparent shadow-none">
-  <a href={homeHref} class="text-xl font-bold">Hoesch@Home</a>
+  <a href={homeHref} class="inline-flex items-center gap-2">
+    <img src={logo.src} alt="Hoesch@Home logo" class="h-20 w-auto" loading="eager" />
+    <span class="sr-only">Hoesch@Home</span>
+  </a>
   <div class="flex items-center gap-4">
     <ul class="flex gap-4">
       {links.map((link) => (
