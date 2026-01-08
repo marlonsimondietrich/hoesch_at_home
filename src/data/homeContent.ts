@@ -58,7 +58,7 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
             cta: "Start booking inquiry"
         },
         nav: {
-            home: "Home",
+            home: "Gallery",
             about: "About",
             contact: "Contact"
         }
@@ -90,7 +90,7 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
             cta: "Buchungsanfrage senden"
         },
         nav: {
-            home: "Startseite",
+            home: "Gallerie",
             about: "Über uns",
             contact: "Kontakt"
         }
