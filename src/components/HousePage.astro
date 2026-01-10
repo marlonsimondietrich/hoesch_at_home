@@ -1,0 +1,133 @@
+---
+import type { HouseContent } from '../data/houseContent';
+
+interface Props {
+  content: HouseContent;
+}
+
+const { content } = Astro.props;
+
+const icons: Record<HouseContent['facts'][number]['icon'], string> = {
+  bed: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v11h-1v3h-2v-3H6v3H4v-3H3V5Zm2 7h14V6H5v6Zm3.5-4A1.5 1.5 0 1 1 7 9.5 1.5 1.5 0 0 1 8.5 8Zm4.5 0h4a1 1 0 0 1 1 1v2H13V8Z"/></svg>`,
+  bath: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4a3 3 0 0 1 6 0v5h8v2h-1v3a5 5 0 0 1-4 4.9V21a1 1 0 0 1-2 0v-2h-4v2a1 1 0 0 1-2 0v-2.1A5 5 0 0 1 4 14V11H3V9h8V4a1 1 0 0 0-2 0v1H7Z"/></svg>`,
+  pet: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.5 11a2.5 2.5 0 1 1 2.5-2.5A2.5 2.5 0 0 1 5.5 11Zm4.5 9a4.5 4.5 0 0 1-4.5-4.5 4 4 0 0 1 8 0A4.5 4.5 0 0 1 10 20Zm5.5-9a2.5 2.5 0 1 1 2.5-2.5A2.5 2.5 0 0 1 15.5 11ZM3 12.5a2 2 0 1 1 2 2 2 2 0 0 1-2-2Zm16-2a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"/></svg>`,
+  people: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 12a4 4 0 1 1 3.995-4.2A3.75 3.75 0 0 0 11 8a3.99 3.99 0 0 1-4 4Zm7-2a4 4 0 1 1 7.995.2A3.75 3.75 0 0 0 22 10a3.99 3.99 0 0 1-8 0ZM2 18.4A4.4 4.4 0 0 1 6.4 14h1.2A4.4 4.4 0 0 1 12 18.4V20H2ZM13 20v-1.6a4.4 4.4 0 0 1 4.4-4.4h1.2A4.4 4.4 0 0 1 23 18.4V20Z"/></svg>`,
+  wifi: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 18a2 2 0 1 1-2 2 2 2 0 0 1 2-2Zm0-3a5 5 0 0 1 3.89 1.83l-1.52 1.3A3 3 0 0 0 12 16a3 3 0 0 0-2.37 1.13l-1.52-1.3A5 5 0 0 1 12 15Zm0-3.5a8.5 8.5 0 0 1 6.7 3.24l-1.52 1.3A6.5 6.5 0 0 0 12 12.5a6.5 6.5 0 0 0-5.18 2.54l-1.52-1.3A8.5 8.5 0 0 1 12 11.5Zm0-3.5a12 12 0 0 1 9.45 4.52l-1.52 1.3A10 10 0 0 0 12 10a10 10 0 0 0-7.93 3.82l-1.52-1.3A12 12 0 0 1 12 8Z"/></svg>`,
+  area: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h5v2H6v11h11v-3h2v5H4Zm6 10V9h7v5Zm-2-7V5h12v12h-2V9Z"/></svg>`,
+  home: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4.4 4 11v9h5v-5h6v5h5v-9l-8-6.6Zm0-2.4 10 8.2V21a1 1 0 0 1-1 1h-7v-5H10v5H3a1 1 0 0 1-1-1v-10.8Z"/></svg>`,
+};
+---
+
+<main class="container-responsive section-spacing space-y-8">
+  <header class="space-y-3">
+    <h1 class="text-3xl md:text-4xl font-bold leading-tight text-balance">
+      {content.title.de}
+    </h1>
+    <p class="text-lg text-slate-600 text-pretty">{content.title.en}</p>
+    <div class="flex flex-wrap items-center gap-3 text-sm text-slate-700">
+      <span class="inline-flex items-center gap-2 rounded-full bg-sky-100 text-sky-800 px-3 py-1 font-semibold">
+        <span>★ {content.rating.score}</span>
+        <span class="hidden sm:inline">· {content.rating.badge.de}</span>
+      </span>
+      <span class="flex items-center gap-2">
+        <span class="font-medium">{content.rating.badge.en}</span>
+        <span class="text-slate-400">•</span>
+        <span>{content.rating.reviews.de}</span>
+        <span class="text-slate-400">•</span>
+        <span>{content.rating.location.de}</span>
+      </span>
+    </div>
+  </header>
+
+  <section class="grid gap-4 lg:grid-cols-[2fr_1fr]">
+    <div class="relative overflow-hidden rounded-2xl bg-slate-100 shadow-sm">
+      <img src={content.gallery.hero.src} alt={`${content.gallery.hero.alt.de} / ${content.gallery.hero.alt.en}`} class="h-full w-full object-cover aspect-[4/3]" loading="lazy" />
+      <div class="highlight-card">
+        <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{content.highlight.label.de}</p>
+        <p class="mt-1 text-sm text-slate-900">{content.highlight.quote.de}</p>
+        <p class="mt-2 text-xs text-slate-500">{content.highlight.quote.en}</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+      {content.gallery.supporting.map((image, index) => (
+        <div class="overflow-hidden rounded-xl bg-slate-100 shadow-sm">
+          <img src={image.src} alt={`${image.alt.de} / ${image.alt.en}`} class="h-full w-full object-cover aspect-square" loading="lazy" />
+        </div>
+      ))}
+      <a href="#gallery" class="gallery-cta">
+        <span class="inline-flex items-center gap-2 text-sm font-semibold">
+          <span class="grid h-9 w-9 place-items-center rounded-full border border-slate-200 bg-white">▦</span>
+          <span>{content.gallery.ctaLabel.de} · {content.gallery.ctaLabel.en}</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="space-y-3">
+    <div class="flex flex-wrap gap-4 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
+      {content.facts.map((fact) => (
+        <div class="flex items-start gap-3 min-w-[150px]">
+          <span class="icon-chip" aria-hidden="true" set:html={icons[fact.icon]} />
+          <div>
+            <p class="text-sm font-semibold text-slate-900">{fact.label.de}: {fact.value.de}</p>
+            <p class="text-xs text-slate-500">{fact.label.en}: {fact.value.en}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p id="gallery" class="text-xs text-slate-500">{content.notes.de} / {content.notes.en}</p>
+  </section>
+</main>
+
+<style>
+  .highlight-card {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    max-width: min(18rem, 70%);
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 1rem;
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.12);
+  }
+
+  .gallery-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    border: 1px solid rgb(226 232 240);
+    background: white;
+    color: rgb(71 85 105);
+    box-shadow: 0 10px 40px rgba(15, 23, 42, 0.08);
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .gallery-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 48px rgba(15, 23, 42, 0.12);
+  }
+
+  .icon-chip {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.9rem;
+    border: 1px solid rgb(226 232 240);
+    background: rgb(248 250 252);
+    color: rgb(51 65 85);
+  }
+
+  @media (max-width: 1024px) {
+    .highlight-card {
+      position: absolute;
+      top: 0.75rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      max-width: none;
+    }
+  }
+</style>

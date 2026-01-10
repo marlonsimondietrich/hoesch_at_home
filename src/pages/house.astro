@@ -1,0 +1,19 @@
+---
+import Layout from '../layouts/main.astro';
+import NavBar from '../components/NavBar.astro';
+import HousePage from '../components/HousePage.astro';
+import { houseContent } from '../data/houseContent';
+import { homeContent } from '../data/homeContent';
+
+const nav = homeContent.de.nav;
+const links = [
+  { label: nav.home, href: '/' },
+  { label: nav.about, href: '#' },
+  { label: nav.contact, href: '#' },
+];
+---
+
+<Layout content={{ title: houseContent.title.de, description: houseContent.title.en }}>
+  <NavBar links={links} homeHref="/" />
+  <HousePage content={houseContent} />
+</Layout>
