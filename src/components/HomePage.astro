@@ -1,5 +1,6 @@
 ---
 import NavBar from './NavBar.astro';
+import HeroSparks from './HeroSparks.astro';
 import type { HomeContent } from '../data/homeContent';
 
 interface Props {
@@ -22,18 +23,21 @@ const links = [
 <NavBar links={links} homeHref={homeHref} />
 
 <main class="container-responsive section-spacing">
-  <div class="max-w-2xl">
-    <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-balance">
-      {content.hero.headline}
-    </h1>
-    <p class="text-xl text-slate-600 mb-8 max-w-lg text-pretty">
-      {content.hero.subheadline}
-    </p>
-    <button class="bg-slate-900 text-white px-8 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors">
-      {content.hero.cta}
-    </button>
-  </div>
-  
+  <section class="hero">
+    <HeroSparks class="hero__sparks" />
+    <div class="hero__content max-w-2xl">
+      <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-balance">
+        {content.hero.headline}
+      </h1>
+      <p class="text-xl text-slate-600 mb-8 max-w-lg text-pretty">
+        {content.hero.subheadline}
+      </p>
+      <button class="bg-slate-900 text-white px-8 py-3 rounded-full font-medium hover:bg-slate-800 transition-colors">
+        {content.hero.cta}
+      </button>
+    </div>
+  </section>
+
   <div class="mt-12 pt-8 border-t border-slate-200">
     <a href={alternateLocaleHref} class="text-sm font-medium text-slate-500 hover:text-slate-900 underline underline-offset-4">
       {currentLocale === 'de' ? 'Switch to English' : 'Wechseln zu Deutsch'}

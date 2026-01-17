@@ -1,0 +1,21 @@
+---
+const { class: className } = Astro.props;
+---
+
+<div class={`hero-sparks ${className ?? ''}`.trim()} data-hero-sparks>
+  <canvas class="hero-sparks__canvas" data-hero-sparks-canvas></canvas>
+</div>
+
+<script>
+  import initHeroSparks from '../scripts/heroSparks';
+
+  const root = document.querySelector<HTMLElement>('[data-hero-sparks]');
+
+  if (root) {
+    const cleanup = initHeroSparks(root);
+
+    if (cleanup) {
+      window.addEventListener('pagehide', cleanup, { once: true });
+    }
+  }
+</script>
