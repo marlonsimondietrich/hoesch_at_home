@@ -4,10 +4,9 @@ import type { HomeContent } from '../data/homeContent';
 
 interface Props {
   content: HomeContent;
-  currentLocale: 'en' | 'de';
 }
 
-const { content, currentLocale } = Astro.props;
+const { content } = Astro.props;
 ---
 
 <section
