@@ -1,0 +1,70 @@
+import {
+  Booking,
+  BookingErrorCode,
+  BookingSource,
+  BOOKING_SOURCES,
+  NewBooking,
+  compareDateStrings,
+  isDateString,
+} from "./types";
+
+const isValidSource = (value: unknown): value is BookingSource =>
+  typeof value === "string" && BOOKING_SOURCES.includes(value as BookingSource);
+
+export type ValidationResult =
+  | { ok: true; value: NewBooking }
+  | { ok: false; code: BookingErrorCode };
+
+export const validateBookingInput = (payload: unknown): ValidationResult => {
+  if (!payload || typeof payload !== "object") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  const data = payload as Record<string, unknown>;
+  const startDate = data.startDate;
+  const endDate = data.endDate;
+  const source = data.source;
+  const guestName = data.guestName;
+  const price = data.price;
+
+  if (!isDateString(startDate) || !isDateString(endDate)) {
+    return { ok: false, code: "ERR_INVALID_DATE" };
+  }
+
+  if (compareDateStrings(startDate, endDate) > 0) {
+    return { ok: false, code: "ERR_INVALID_RANGE" };
+  }
+
+  if (!isValidSource(source)) {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (guestName !== undefined && typeof guestName !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (typeof price !== "number" || Number.isNaN(price)) {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  return {
+    ok: true,
+    value: {
+      startDate,
+      endDate,
+      source,
+      guestName,
+      price,
+    },
+  };
+};
+
+export const hasOverlap = (incoming: NewBooking, existing: Booking[]): boolean => {
+  return existing.some((booking) => {
+    const startsBeforeOrOnEnd =
+      compareDateStrings(incoming.startDate, booking.endDate) <= 0;
+    const endsAfterOrOnStart =
+      compareDateStrings(incoming.endDate, booking.startDate) >= 0;
+    return startsBeforeOrOnEnd && endsAfterOrOnStart;
+  });
+};
