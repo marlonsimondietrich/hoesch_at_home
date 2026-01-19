@@ -3,7 +3,7 @@ import photo2 from '../../assets/photos/2.avif';
 import photo7 from '../../assets/photos/7.avif';
 import photo10 from '../../assets/photos/10.avif';
 import type { HomeContent } from '../../i18n';
-import galleryScrollScript from '../../scripts/galleryScroll.ts?url';
+import GalleryScroll from '../GalleryScroll';
 
 interface Props {
   id: string;
@@ -56,4 +56,4 @@ const headingId = `${id}-heading`;
   </div>
 </section>
 
-<script type="module" src={galleryScrollScript}></script>
+<GalleryScroll client:load />
