@@ -1,5 +1,9 @@
 export const isAuthorized = (request: Request): boolean => {
-  const token = process.env.BOOKING_API_TOKEN;
+  const token =
+    process.env.BOOKING_API_TOKEN ??
+    process.env.PUBLIC_BOOKING_API_TOKEN ??
+    (import.meta.env?.BOOKING_API_TOKEN as string | undefined) ??
+    (import.meta.env?.PUBLIC_BOOKING_API_TOKEN as string | undefined);
   if (!token) {
     return false;
   }

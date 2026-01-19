@@ -6,8 +6,12 @@ import { createBooking } from "../bookings/store";
 const BOOKINGS_COLLECTION = "bookings";
 
 const getDb = () => {
-  initFirebaseAdmin();
-  return getFirestore();
+  const app = initFirebaseAdmin();
+  const databaseId =
+    process.env.FIRESTORE_DATABASE_ID ??
+    (import.meta.env?.FIRESTORE_DATABASE_ID as string | undefined) ??
+    "(default)";
+  return getFirestore(app, databaseId);
 };
 
 export const deleteExternalBookings = async (): Promise<number> => {

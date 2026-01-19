@@ -19,6 +19,8 @@ export interface Booking {
   endDate: DateString;
   source: BookingSource;
   guestName?: string;
+  guestCount?: number;
+  notes?: string;
   price: number;
 }
 
@@ -27,6 +29,8 @@ export interface NewBooking {
   endDate: DateString;
   source: BookingSource;
   guestName?: string;
+  guestCount?: number;
+  notes?: string;
   price: number;
 }
 
@@ -66,5 +70,7 @@ export const serializeBooking = (booking: Booking): Booking => ({
   endDate: booking.endDate,
   source: booking.source,
   guestName: booking.guestName,
+  guestCount: booking.guestCount,
+  notes: booking.notes,
   price: booking.price,
 });

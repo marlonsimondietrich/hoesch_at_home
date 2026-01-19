@@ -1,4 +1,4 @@
-import * as ical from "node-ical";
+import ical from "node-ical";
 import { NewBooking, toDateString } from "../bookings/types";
 
 type IcalEvent = {

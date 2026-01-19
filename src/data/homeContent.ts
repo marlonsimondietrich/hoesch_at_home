@@ -25,9 +25,29 @@ interface NavContent {
     contact: string;
 }
 
+interface BookingContent {
+    heading: string;
+    description: string;
+    startDateLabel: string;
+    endDateLabel: string;
+    guestsLabel: string;
+    notesLabel: string;
+    notesPlaceholder: string;
+    checkAvailabilityLabel: string;
+    bookNowLabel: string;
+    availabilityAvailable: string;
+    availabilityUnavailable: string;
+    availabilityChecking: string;
+    availabilityError: string;
+    validationError: string;
+    bookingError: string;
+    successMessage: string;
+}
+
 interface ContentStrings {
     hero: HeroContent;
     nav: NavContent;
+    booking: BookingContent;
 }
 
 export const homeContent: Record<'en' | 'de', ContentStrings> = {
@@ -61,6 +81,24 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
             home: "Gallery",
             about: "About",
             contact: "Contact"
+        },
+        booking: {
+            heading: "Check availability",
+            description: "Select your dates and guests, then confirm availability before booking.",
+            startDateLabel: "Check-in date",
+            endDateLabel: "Check-out date",
+            guestsLabel: "Guests",
+            notesLabel: "Notes",
+            notesPlaceholder: "Optional notes for your stay",
+            checkAvailabilityLabel: "Check availability",
+            bookNowLabel: "Book now",
+            availabilityAvailable: "Your dates are available.",
+            availabilityUnavailable: "Those dates are not available. Please choose another range.",
+            availabilityChecking: "Checking availability...",
+            availabilityError: "Something went wrong while checking availability.",
+            validationError: "Please choose a valid date range and guest count.",
+            bookingError: "Something went wrong while submitting your booking.",
+            successMessage: "Booking request submitted."
         }
     },
     de: {
@@ -93,6 +131,24 @@ export const homeContent: Record<'en' | 'de', ContentStrings> = {
             home: "Gallerie",
             about: "Über uns",
             contact: "Kontakt"
+        },
+        booking: {
+            heading: "Verfügbarkeit prüfen",
+            description: "Bitte Zeitraum und Anzahl der Gäste wählen und Verfügbarkeit bestätigen.",
+            startDateLabel: "Anreise",
+            endDateLabel: "Abreise",
+            guestsLabel: "Gäste",
+            notesLabel: "Notizen",
+            notesPlaceholder: "Optionale Hinweise zur Buchung",
+            checkAvailabilityLabel: "Verfügbarkeit prüfen",
+            bookNowLabel: "Jetzt buchen",
+            availabilityAvailable: "Der gewünschte Zeitraum ist verfügbar.",
+            availabilityUnavailable: "Dieser Zeitraum ist nicht verfügbar. Bitte anderen Zeitraum wählen.",
+            availabilityChecking: "Verfügbarkeit wird geprüft...",
+            availabilityError: "Beim Prüfen der Verfügbarkeit ist ein Fehler aufgetreten.",
+            validationError: "Bitte einen gültigen Zeitraum und eine Gästeanzahl angeben.",
+            bookingError: "Beim Senden der Buchungsanfrage ist ein Fehler aufgetreten.",
+            successMessage: "Buchungsanfrage gesendet."
         }
     },
 };

@@ -25,6 +25,8 @@ export const validateBookingInput = (payload: unknown): ValidationResult => {
   const endDate = data.endDate;
   const source = data.source;
   const guestName = data.guestName;
+  const guestCount = data.guestCount;
+  const notes = data.notes;
   const price = data.price;
 
   if (!isDateString(startDate) || !isDateString(endDate)) {
@@ -43,6 +45,17 @@ export const validateBookingInput = (payload: unknown): ValidationResult => {
     return { ok: false, code: "ERR_BAD_REQUEST" };
   }
 
+  if (
+    guestCount !== undefined &&
+    (typeof guestCount !== "number" || Number.isNaN(guestCount))
+  ) {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (notes !== undefined && typeof notes !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
   if (typeof price !== "number" || Number.isNaN(price)) {
     return { ok: false, code: "ERR_BAD_REQUEST" };
   }
@@ -54,6 +67,8 @@ export const validateBookingInput = (payload: unknown): ValidationResult => {
       endDate,
       source,
       guestName,
+      guestCount,
+      notes,
       price,
     },
   };

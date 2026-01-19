@@ -7,8 +7,20 @@ const METADATA_COLLECTION = "metadata";
 const METADATA_DOC_ID = "bookings";
 
 const getDb = () => {
-  initFirebaseAdmin();
-  return getFirestore();
+  const app = initFirebaseAdmin();
+  const databaseId =
+    process.env.FIRESTORE_DATABASE_ID ??
+    (import.meta.env?.FIRESTORE_DATABASE_ID as string | undefined) ??
+    "(default)";
+  const db = getFirestore(app, databaseId);
+  if (process.env.DEBUG_FIRESTORE === "1") {
+    console.info("[firestore] Using database", {
+      projectId: app.options.projectId,
+      databaseId,
+      settings: (db as { _settings?: unknown })._settings,
+    });
+  }
+  return db;
 };
 
 export const listBookings = async (): Promise<Booking[]> => {
@@ -34,6 +46,8 @@ export const listBookings = async (): Promise<Booking[]> => {
         endDate,
         source: data.source,
         guestName: typeof data.guestName === "string" ? data.guestName : undefined,
+        guestCount: typeof data.guestCount === "number" ? data.guestCount : undefined,
+        notes: typeof data.notes === "string" ? data.notes : undefined,
         price: data.price,
       } as Booking;
     })
@@ -46,6 +60,8 @@ export const createBooking = async (booking: NewBooking): Promise<Booking> => {
     endDate: booking.endDate,
     source: booking.source,
     guestName: booking.guestName ?? null,
+    guestCount: booking.guestCount ?? null,
+    notes: booking.notes ?? null,
     price: booking.price,
   });
 
