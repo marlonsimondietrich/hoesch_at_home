@@ -4,15 +4,13 @@ import logo from '../assets/logo.png';
 interface Props {
   links: { label: string; href: string }[];
   homeHref: string;
-  currentLocale: 'en' | 'de';
   alternateLocaleHref: string;
+  languageToggleLabel: string;
+  languageToggleAria: string;
 }
 
-const { links, homeHref, currentLocale, alternateLocaleHref } = Astro.props;
-
-const languageLabel = currentLocale === 'de' ? 'DE' : 'EN';
-const languageAria =
-  currentLocale === 'de' ? 'Switch to English' : 'Wechseln zu Deutsch';
+const { links, homeHref, alternateLocaleHref, languageToggleLabel, languageToggleAria } =
+  Astro.props;
 ---
 
 <nav class="flex items-center justify-between p-4 bg-transparent shadow-none">
@@ -29,10 +27,10 @@ const languageAria =
     <a
       href={alternateLocaleHref}
       class="inline-flex items-center justify-center rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-300 hover:text-slate-900 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-      aria-label={languageAria}
+      aria-label={languageToggleAria}
       data-lang-toggle
     >
-      {languageLabel}
+      {languageToggleLabel}
     </a>
   </div>
 </nav>

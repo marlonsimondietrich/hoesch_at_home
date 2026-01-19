@@ -2,32 +2,35 @@
 import NavBar from './NavBar.astro';
 import Hero from './Hero.astro';
 import BookingWidget from '../features/bookings/ui/BookingWidget';
-import type { HomeContent } from '../data/homeContent';
+import type { HomeContent, Locale } from '../i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 import photo7 from '../assets/photos/7.avif';
 import photo10 from '../assets/photos/10.avif';
 
 interface Props {
   content: HomeContent;
-  currentLocale: 'en' | 'de';
+  currentLocale: Locale;
   alternateLocaleHref: string;
 }
 
 const { content, currentLocale, alternateLocaleHref } = Astro.props;
 
-const homeHref = currentLocale === 'de' ? '/' : '/en/';
+const homeHref = getRelativeLocaleUrl(currentLocale);
 
+const { navHome, navAbout, navContact } = content;
 const links = [
-  { label: content.nav.home, href: homeHref },
-  { label: content.nav.about, href: '#' },
-  { label: content.nav.contact, href: '#' },
+  { label: navHome, href: homeHref },
+  { label: navAbout, href: '#' },
+  { label: navContact, href: '#' },
 ];
 ---
 
 <NavBar
   links={links}
   homeHref={homeHref}
-  currentLocale={currentLocale}
   alternateLocaleHref={alternateLocaleHref}
+  languageToggleLabel={content.navLanguageToggleLabel}
+  languageToggleAria={content.navLanguageToggleAria}
 />
 
 <main>
@@ -44,5 +47,5 @@ const links = [
     style={`background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), url(${photo10.src}); background-size: cover; background-position: center bottom; background-repeat: no-repeat;`}
   ></section>
   <section aria-hidden="true" class="min-h-[40vh]" style="background-color: #ad5432;"></section>
-  <BookingWidget client:load content={content.booking} />
+  <BookingWidget client:load content={content} />
 </main>

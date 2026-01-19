@@ -1,0 +1,42 @@
+{
+  "metaTitle": "Hoesch@Home",
+  "metaDescription": "Hoesch@Home",
+  "navHome": "Gallery",
+  "navAbout": "About",
+  "navContact": "Contact",
+  "navLanguageToggleLabel": "EN",
+  "navLanguageToggleAria": "Switch to German",
+  "heroEyebrow": "Between city and Alps",
+  "heroHeadline": "Come stay awhile",
+  "heroBody": [
+    "For everyone who loves city, countryside, river, mountain, and lake."
+  ],
+  "heroFeatures": [
+    "Sleeps 8",
+    "Daily fresh eggs",
+    "Spacious garden"
+  ],
+  "heroPrimaryCtaLabel": "Start booking inquiry",
+  "heroPrimaryCtaHref": "#",
+  "heroSecondaryCtaLabel": "Learn more",
+  "heroSecondaryCtaHref": "#",
+  "heroAlt": "Illustration of a Bavarian country home in a calm setting",
+  "heroSubheadline": "For everyone who loves city, countryside, river, mountain, and lake.",
+  "heroCta": "Start booking inquiry",
+  "bookingHeading": "Check availability",
+  "bookingDescription": "Select your dates and guests, then confirm availability before booking.",
+  "bookingStartDateLabel": "Check-in date",
+  "bookingEndDateLabel": "Check-out date",
+  "bookingGuestsLabel": "Guests",
+  "bookingNotesLabel": "Notes",
+  "bookingNotesPlaceholder": "Optional notes for your stay",
+  "bookingCheckAvailabilityLabel": "Check availability",
+  "bookingBookNowLabel": "Book now",
+  "bookingAvailabilityAvailable": "Your dates are available.",
+  "bookingAvailabilityUnavailable": "Those dates are not available. Please choose another range.",
+  "bookingAvailabilityChecking": "Checking availability...",
+  "bookingAvailabilityError": "Something went wrong while checking availability.",
+  "bookingValidationError": "Please choose a valid date range and guest count.",
+  "bookingBookingError": "Something went wrong while submitting your booking.",
+  "bookingSuccessMessage": "Booking request submitted."
+}

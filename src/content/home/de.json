@@ -1,0 +1,42 @@
+{
+  "metaTitle": "Hoesch@Home",
+  "metaDescription": "Hoesch@Home",
+  "navHome": "Gallerie",
+  "navAbout": "Über uns",
+  "navContact": "Kontakt",
+  "navLanguageToggleLabel": "DE",
+  "navLanguageToggleAria": "Switch to English",
+  "heroEyebrow": "Zwischen Stadt und Alpen",
+  "heroHeadline": "Dein Zuhause in Oberbayern",
+  "heroBody": [
+    "Für alle die Stadt, Land, Fluss, Berg und See mögen."
+  ],
+  "heroFeatures": [
+    "8 Personen",
+    "tägl. frische Eier",
+    "Großer Garten"
+  ],
+  "heroPrimaryCtaLabel": "Buchungsanfrage senden",
+  "heroPrimaryCtaHref": "#",
+  "heroSecondaryCtaLabel": "Mehr erfahren",
+  "heroSecondaryCtaHref": "#",
+  "heroAlt": "Illustration eines bayerischen Landhauses in ruhiger Umgebung",
+  "heroSubheadline": "Für alle die Stadt, Land, Fluss, Berg und See mögen.",
+  "heroCta": "Buchungsanfrage senden",
+  "bookingHeading": "Verfügbarkeit prüfen",
+  "bookingDescription": "Bitte Zeitraum und Anzahl der Gäste wählen und Verfügbarkeit bestätigen.",
+  "bookingStartDateLabel": "Anreise",
+  "bookingEndDateLabel": "Abreise",
+  "bookingGuestsLabel": "Gäste",
+  "bookingNotesLabel": "Notizen",
+  "bookingNotesPlaceholder": "Optionale Hinweise zur Buchung",
+  "bookingCheckAvailabilityLabel": "Verfügbarkeit prüfen",
+  "bookingBookNowLabel": "Jetzt buchen",
+  "bookingAvailabilityAvailable": "Der gewünschte Zeitraum ist verfügbar.",
+  "bookingAvailabilityUnavailable": "Dieser Zeitraum ist nicht verfügbar. Bitte anderen Zeitraum wählen.",
+  "bookingAvailabilityChecking": "Verfügbarkeit wird geprüft...",
+  "bookingAvailabilityError": "Beim Prüfen der Verfügbarkeit ist ein Fehler aufgetreten.",
+  "bookingValidationError": "Bitte einen gültigen Zeitraum und eine Gästeanzahl angeben.",
+  "bookingBookingError": "Beim Senden der Buchungsanfrage ist ein Fehler aufgetreten.",
+  "bookingSuccessMessage": "Buchungsanfrage gesendet."
+}

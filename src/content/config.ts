@@ -1,0 +1,43 @@
+import { defineCollection, z } from 'astro:content';
+
+const home = defineCollection({
+  type: 'data',
+  schema: z.object({
+    metaTitle: z.string(),
+    metaDescription: z.string().optional(),
+    navHome: z.string(),
+    navAbout: z.string(),
+    navContact: z.string(),
+    navLanguageToggleLabel: z.string(),
+    navLanguageToggleAria: z.string(),
+    heroEyebrow: z.string().optional(),
+    heroHeadline: z.string(),
+    heroBody: z.array(z.string()),
+    heroFeatures: z.array(z.string()),
+    heroPrimaryCtaLabel: z.string(),
+    heroPrimaryCtaHref: z.string(),
+    heroSecondaryCtaLabel: z.string(),
+    heroSecondaryCtaHref: z.string(),
+    heroAlt: z.string(),
+    heroSubheadline: z.string().optional(),
+    heroCta: z.string().optional(),
+    bookingHeading: z.string(),
+    bookingDescription: z.string(),
+    bookingStartDateLabel: z.string(),
+    bookingEndDateLabel: z.string(),
+    bookingGuestsLabel: z.string(),
+    bookingNotesLabel: z.string(),
+    bookingNotesPlaceholder: z.string(),
+    bookingCheckAvailabilityLabel: z.string(),
+    bookingBookNowLabel: z.string(),
+    bookingAvailabilityAvailable: z.string(),
+    bookingAvailabilityUnavailable: z.string(),
+    bookingAvailabilityChecking: z.string(),
+    bookingAvailabilityError: z.string(),
+    bookingValidationError: z.string(),
+    bookingBookingError: z.string(),
+    bookingSuccessMessage: z.string(),
+  }),
+});
+
+export const collections = { home };

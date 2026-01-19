@@ -1,27 +1,29 @@
 import { useEffect, useMemo, useState } from "react";
 import type { BookingErrorCode } from "../types";
+import type { HomeContent } from "../../../i18n";
 import { compareDateStrings } from "../types";
 import { useAvailability } from "../hooks/useAvailability";
 import { useBooking } from "../hooks/useBooking";
 
-export type BookingWidgetContent = {
-  heading: string;
-  description: string;
-  startDateLabel: string;
-  endDateLabel: string;
-  guestsLabel: string;
-  notesLabel: string;
-  notesPlaceholder: string;
-  checkAvailabilityLabel: string;
-  bookNowLabel: string;
-  availabilityAvailable: string;
-  availabilityUnavailable: string;
-  availabilityChecking: string;
-  availabilityError: string;
-  validationError: string;
-  bookingError: string;
-  successMessage: string;
-};
+export type BookingWidgetContent = Pick<
+  HomeContent,
+  | "bookingHeading"
+  | "bookingDescription"
+  | "bookingStartDateLabel"
+  | "bookingEndDateLabel"
+  | "bookingGuestsLabel"
+  | "bookingNotesLabel"
+  | "bookingNotesPlaceholder"
+  | "bookingCheckAvailabilityLabel"
+  | "bookingBookNowLabel"
+  | "bookingAvailabilityAvailable"
+  | "bookingAvailabilityUnavailable"
+  | "bookingAvailabilityChecking"
+  | "bookingAvailabilityError"
+  | "bookingValidationError"
+  | "bookingBookingError"
+  | "bookingSuccessMessage"
+>;
 
 type BookingWidgetProps = {
   content: BookingWidgetContent;
@@ -49,6 +51,24 @@ const mapBookingError = (
 };
 
 export const BookingWidget = ({ content }: BookingWidgetProps) => {
+  const {
+    bookingHeading,
+    bookingDescription,
+    bookingStartDateLabel,
+    bookingEndDateLabel,
+    bookingGuestsLabel,
+    bookingNotesLabel,
+    bookingNotesPlaceholder,
+    bookingCheckAvailabilityLabel,
+    bookingBookNowLabel,
+    bookingAvailabilityAvailable,
+    bookingAvailabilityUnavailable,
+    bookingAvailabilityChecking,
+    bookingAvailabilityError,
+    bookingValidationError,
+    bookingBookingError,
+    bookingSuccessMessage,
+  } = content;
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [guestCount, setGuestCount] = useState("1");
@@ -73,18 +93,18 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
 
   const handleCheckAvailability = async () => {
     if (!canCheckAvailability) {
-      setFeedback(content.validationError);
+      setFeedback(bookingValidationError);
       return;
     }
 
     const result = await availability.checkAvailability(startDate, endDate);
     if (result.available) {
       setAvailabilityConfirmed(true);
-      setFeedback(content.availabilityAvailable);
+      setFeedback(bookingAvailabilityAvailable);
     } else if (availability.status === "error") {
-      setFeedback(content.availabilityError);
+      setFeedback(bookingAvailabilityError);
     } else {
-      setFeedback(content.availabilityUnavailable);
+      setFeedback(bookingAvailabilityUnavailable);
     }
   };
 
@@ -92,7 +112,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
     event.preventDefault();
 
     if (!availabilityConfirmed || !canCheckAvailability) {
-      setFeedback(content.validationError);
+      setFeedback(bookingValidationError);
       return;
     }
 
@@ -105,27 +125,31 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
 
     if (!result.ok) {
       setFeedback(
-        mapBookingError(booking.errorCode, content.bookingError, content.availabilityUnavailable)
+        mapBookingError(
+          booking.errorCode,
+          bookingBookingError,
+          bookingAvailabilityUnavailable
+        )
       );
       setAvailabilityConfirmed(false);
       return;
     }
 
-    setFeedback(content.successMessage);
+    setFeedback(bookingSuccessMessage);
   };
 
   return (
     <section className="mx-auto w-full max-w-3xl px-6 py-10">
       <div className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm">
         <header className="mb-6">
-          <h2 className="text-2xl font-semibold text-slate-900">{content.heading}</h2>
-          <p className="mt-2 text-sm text-slate-600">{content.description}</p>
+          <h2 className="text-2xl font-semibold text-slate-900">{bookingHeading}</h2>
+          <p className="mt-2 text-sm text-slate-600">{bookingDescription}</p>
         </header>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <label className="flex flex-col gap-1 text-sm text-slate-700">
-              {content.startDateLabel}
+              {bookingStartDateLabel}
               <input
                 type="date"
                 value={startDate}
@@ -135,7 +159,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
               />
             </label>
             <label className="flex flex-col gap-1 text-sm text-slate-700">
-              {content.endDateLabel}
+              {bookingEndDateLabel}
               <input
                 type="date"
                 value={endDate}
@@ -149,7 +173,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
 
           <div className="grid gap-4 md:grid-cols-2">
             <label className="flex flex-col gap-1 text-sm text-slate-700">
-              {content.guestsLabel}
+              {bookingGuestsLabel}
               <input
                 type="number"
                 min={1}
@@ -160,12 +184,12 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
               />
             </label>
             <label className="flex flex-col gap-1 text-sm text-slate-700">
-              {content.notesLabel}
+              {bookingNotesLabel}
               <textarea
                 value={notes}
                 onChange={(event) => setNotes(event.target.value)}
                 rows={3}
-                placeholder={content.notesPlaceholder}
+                placeholder={bookingNotesPlaceholder}
                 className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900"
               />
             </label>
@@ -179,15 +203,15 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
               className="rounded-full border border-slate-900 px-5 py-2 text-sm font-semibold text-slate-900 transition disabled:cursor-not-allowed disabled:border-slate-300 disabled:text-slate-400"
             >
               {availability.status === "loading"
-                ? content.availabilityChecking
-                : content.checkAvailabilityLabel}
+                ? bookingAvailabilityChecking
+                : bookingCheckAvailabilityLabel}
             </button>
             <button
               type="submit"
               disabled={!availabilityConfirmed || booking.status === "submitting"}
               className="rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:bg-slate-400"
             >
-              {content.bookNowLabel}
+              {bookingBookNowLabel}
             </button>
           </div>
 
