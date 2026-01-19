@@ -1,5 +1,6 @@
 ---
 import heroBg from '../assets/hero-bg.png';
+import heroIllustration from '../assets/hoeschathome-illustration.png';
 import type { HomeContent } from '../data/homeContent';
 
 interface Props {
@@ -28,7 +29,7 @@ const { content } = Astro.props;
       ))}
     </div>
     <img
-      src="/src/assets/hoeschathome-illustration.png"
+      src={heroIllustration.src}
       alt={content.hero.alt}
       class="relative max-h-[360px] w-full max-w-2xl object-contain"
       loading="eager"
