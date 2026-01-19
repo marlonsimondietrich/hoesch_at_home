@@ -1,0 +1,46 @@
+---
+import photo2 from '../../assets/photos/2.avif';
+import photo7 from '../../assets/photos/7.avif';
+import photo10 from '../../assets/photos/10.avif';
+import type { HomeContent } from '../../i18n';
+
+interface Props {
+  id: string;
+  content: HomeContent;
+}
+
+const { id, content } = Astro.props;
+const headingId = `${id}-heading`;
+---
+
+<section id={id} class="section-spacing" aria-labelledby={headingId}>
+  <div class="container-responsive space-y-10">
+    <div class="max-w-3xl space-y-4">
+      <p class="section-eyebrow">{content.sectionGalleryLabel}</p>
+      <h2 id={headingId} class="section-title">{content.sectionGalleryHeading}</h2>
+      <p class="section-body">{content.sectionGalleryBody}</p>
+    </div>
+    <div class="grid gap-4 md:grid-cols-[1.3fr_0.7fr]">
+      <figure
+        class="media-tile media-tile--tall"
+        style={`--media-image: url(${photo7.src});`}
+      >
+        <figcaption class="media-caption">{content.sectionGalleryCaptionOne}</figcaption>
+      </figure>
+      <div class="grid gap-4">
+        <figure
+          class="media-tile media-tile--short"
+          style={`--media-image: url(${photo10.src});`}
+        >
+          <figcaption class="media-caption">{content.sectionGalleryCaptionTwo}</figcaption>
+        </figure>
+        <figure
+          class="media-tile media-tile--short"
+          style={`--media-image: url(${photo2.src});`}
+        >
+          <figcaption class="media-caption">{content.sectionGalleryCaptionThree}</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,11 +1,10 @@
 ---
 import NavBar from './NavBar.astro';
 import Hero from './Hero.astro';
-import BookingWidget from '../features/bookings/ui/BookingWidget';
 import type { HomeContent, Locale } from '../i18n';
 import { getRelativeLocaleUrl } from 'astro:i18n';
-import photo7 from '../assets/photos/7.avif';
-import photo10 from '../assets/photos/10.avif';
+import { getHomeSections } from './sections/homeSections';
+import DecorativeBlocks from './sections/DecorativeBlocks.astro';
 
 interface Props {
   content: HomeContent;
@@ -17,12 +16,11 @@ const { content, currentLocale, alternateLocaleHref } = Astro.props;
 
 const homeHref = getRelativeLocaleUrl(currentLocale);
 
-const { navHome, navAbout, navContact } = content;
-const links = [
-  { label: navHome, href: homeHref },
-  { label: navAbout, href: '#' },
-  { label: navContact, href: '#' },
-];
+const sections = getHomeSections(content);
+const links = sections.map((section) => ({
+  label: section.label,
+  href: `${homeHref}#${section.id}`,
+}));
 ---
 
 <NavBar
@@ -35,17 +33,8 @@ const links = [
 
 <main>
   <Hero content={content} currentLocale={currentLocale} />
-  <section
-    aria-hidden="true"
-    class="min-h-[90vh]"
-    style={`background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), url(${photo7.src}); background-size: cover; background-position: center bottom; background-repeat: no-repeat;`}
-  ></section>
-  <section aria-hidden="true" class="min-h-[40vh]" style="background-color: #c77a5b;"></section>
-  <section
-    aria-hidden="true"
-    class="min-h-[60vh]"
-    style={`background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), url(${photo10.src}); background-size: cover; background-position: center bottom; background-repeat: no-repeat;`}
-  ></section>
-  <section aria-hidden="true" class="min-h-[40vh]" style="background-color: #ad5432;"></section>
-  <BookingWidget client:load content={content} />
+  <DecorativeBlocks />
+  {sections.map(({ id, Component }) => (
+    <Component id={id} content={content} />
+  ))}
 </main>

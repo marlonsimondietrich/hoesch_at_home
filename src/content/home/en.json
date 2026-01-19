@@ -1,11 +1,25 @@
 {
   "metaTitle": "Hoesch@Home",
   "metaDescription": "Hoesch@Home",
-  "navHome": "Gallery",
-  "navAbout": "About",
-  "navContact": "Contact",
   "navLanguageToggleLabel": "EN",
   "navLanguageToggleAria": "Switch to German",
+  "sectionGalleryLabel": "Gallery",
+  "sectionGalleryHeading": "Moments around Hoesch@Home",
+  "sectionGalleryBody": "Warm interiors, open landscapes, and a garden that fills the air with birdsong and fresh herbs.",
+  "sectionGalleryCaptionOne": "Sunlight pouring into the main living room.",
+  "sectionGalleryCaptionTwo": "Outdoor dining shaded by old fruit trees.",
+  "sectionGalleryCaptionThree": "A quiet corner for reading and tea.",
+  "sectionAmenitiesLabel": "Amenities",
+  "sectionAmenitiesHeading": "Everything you need to settle in",
+  "sectionAmenitiesBody": "Thoughtful details for long weekends, family gatherings, or a calm base between city trips and lakeside walks.",
+  "sectionAmenitiesList": [
+    "Fully equipped kitchen",
+    "Garden and outdoor seating",
+    "Fast Wi-Fi and workspace",
+    "Private parking on site"
+  ],
+  "sectionAmenitiesHighlight": "Fresh eggs and garden herbs at breakfast.",
+  "sectionBookingLabel": "Booking",
   "heroEyebrow": "Between city and Alps",
   "heroHeadline": "Come stay awhile",
   "heroBody": [

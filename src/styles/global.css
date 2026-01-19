@@ -20,3 +20,99 @@
   .section-spacing { padding-block: var(--space-section); }
   .container-responsive { margin-inline: auto; width: min(100%, 72rem); padding-inline: clamp(1.25rem, 4vw, 2.5rem); }
 }
+
+@layer components {
+  .section-eyebrow {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: rgba(180, 83, 9, 0.8);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: clamp(2rem, 3vw, 2.6rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: #0f172a;
+  }
+
+  .section-body {
+    font-size: 1.1rem;
+    color: #475569;
+  }
+
+  .media-tile {
+    background-image: linear-gradient(rgba(173, 84, 50, 0.18), rgba(173, 84, 50, 0.18)), var(--media-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: flex-end;
+    min-height: 16rem;
+    overflow: hidden;
+  }
+
+  .media-tile--tall {
+    min-height: clamp(18rem, 38vw, 30rem);
+  }
+
+  .media-tile--short {
+    min-height: clamp(12rem, 22vw, 18rem);
+  }
+
+  .media-tile--panel {
+    min-height: clamp(18rem, 32vw, 26rem);
+  }
+
+  .media-caption {
+    background: rgba(15, 23, 42, 0.65);
+    color: #f8fafc;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: 100%;
+  }
+
+  .amenities-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: #b45309;
+    box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.15);
+  }
+
+  .decorative-blocks {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .decorative-block {
+    width: 100%;
+  }
+
+  .decorative-block--tall {
+    min-height: 90vh;
+  }
+
+  .decorative-block--medium {
+    min-height: 60vh;
+  }
+
+  .decorative-block--short {
+    min-height: 40vh;
+  }
+
+  .decorative-block--photo {
+    background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), var(--decor-image);
+    background-size: cover;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+  }
+
+  .decorative-block--solid {
+    background-color: var(--decor-color);
+  }
+}
