@@ -2,10 +2,11 @@
 import heroBg from '../assets/hero-bg.png';
 import heroIllustration from '../assets/hoeschathome-illustration.png';
 import BookingWidget from '../features/bookings/ui/BookingWidget';
-import type { HomeContent } from '../i18n';
+import type { HomeContent, Locale } from '../i18n';
 
 interface Props {
   content: HomeContent;
+  currentLocale: Locale;
 }
 
 const { content } = Astro.props;
