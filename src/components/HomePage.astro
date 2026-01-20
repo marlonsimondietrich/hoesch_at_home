@@ -1,40 +1,20 @@
 ---
-import NavBar from './NavBar.astro';
 import Hero from './Hero.astro';
 import type { HomeContent, Locale } from '../i18n';
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getHomeSections } from './sections/homeSections';
 import DecorativeBlocks from './sections/DecorativeBlocks.astro';
 
 interface Props {
   content: HomeContent;
   currentLocale: Locale;
-  alternateLocaleHref: string;
 }
 
-const { content, currentLocale, alternateLocaleHref } = Astro.props;
-
-const homeHref = getRelativeLocaleUrl(currentLocale);
+const { content, currentLocale } = Astro.props;
 
 const sections = getHomeSections(content);
-const links = sections.map((section) => ({
-  label: section.label,
-  href: `${homeHref}#${section.id}`,
-}));
 ---
-
-<NavBar
-  links={links}
-  homeHref={homeHref}
-  alternateLocaleHref={alternateLocaleHref}
-  languageToggleLabel={content.navLanguageToggleLabel}
-  languageToggleAria={content.navLanguageToggleAria}
-/>
-
-<main>
-  <Hero content={content} currentLocale={currentLocale} />
-  <DecorativeBlocks />
-  {sections.map(({ id, Component }) => (
-    <Component id={id} content={content} />
-  ))}
-</main>
+<Hero content={content} currentLocale={currentLocale} />
+<DecorativeBlocks />
+{sections.map(({ id, Component }) => (
+  <Component id={id} content={content} />
+))}

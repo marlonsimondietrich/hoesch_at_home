@@ -1,6 +1,25 @@
 ---
 import Layout from "../../layouts/main.astro";
+import NavBar from "../../components/NavBar.astro";
 import { BigCalendar } from "../../features/bookings/ui/BigCalendar";
+import { defaultLocale, getStrings, type Locale } from "../../i18n";
+import { getPathByLocale, getRelativeLocaleUrl } from "astro:i18n";
+import { getHomeSections } from "../../components/sections/homeSections";
+import { getNavLinks } from "../../lib/navigation";
+
+const currentLocale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const localePath = getPathByLocale(currentLocale);
+const pathWithoutLocale =
+  Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), "") || "/";
+const pathParam =
+  pathWithoutLocale === "/" ? undefined : pathWithoutLocale.replace(/^\/+/, "");
+const alternateLocale: Locale = currentLocale === "de" ? "en" : "de";
+const alternateLocaleHref = getRelativeLocaleUrl(alternateLocale, pathParam);
+const content = getStrings(currentLocale).home;
+const homeHref = getRelativeLocaleUrl(currentLocale);
+const calendarHref = getRelativeLocaleUrl(currentLocale, "calendar");
+const sections = getHomeSections(content);
+const links = getNavLinks(sections, homeHref, calendarHref);
 ---
 
 <Layout
@@ -11,15 +30,14 @@ import { BigCalendar } from "../../features/bookings/ui/BigCalendar";
 >
   <section class="min-h-screen bg-[#fff9ee] py-10">
     <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
-      <header class="space-y-3">
+      <NavBar
+        links={links}
+        homeHref={homeHref}
+        alternateLocaleHref={alternateLocaleHref}
+        languageToggleLabel={content.navLanguageToggleLabel}
+        languageToggleAria={content.navLanguageToggleAria}
+      />
         <p class="section-eyebrow">Availability</p>
-        <h1 class="section-title text-[2.8rem] leading-[1.05] md:text-[3.4rem]">
-          Calendar
-        </h1>
-        <p class="section-body max-w-2xl">
-          Blocked dates from the database and external calendars are disabled.
-        </p>
-      </header>
       <BigCalendar client:load />
     </div>
   </section>
