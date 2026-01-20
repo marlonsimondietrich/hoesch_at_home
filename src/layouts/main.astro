@@ -8,11 +8,12 @@ interface Props {
     title: string;
     description?: string;
   };
+  currentLocale?: Locale;
 }
 
-const { content } = Astro.props;
+const { content, currentLocale: currentLocaleProp } = Astro.props;
 
-const currentLocale = (Astro.currentLocale ?? defaultLocale) as Locale;
+const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
 const localePath = getPathByLocale(currentLocale);
 const pathWithoutLocale =
   Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), '') || '/';
