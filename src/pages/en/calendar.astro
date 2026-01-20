@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/main.astro";
+import { BigCalendar } from "../../features/bookings/ui/BigCalendar";
+---
+
+<Layout
+  content={{
+    title: "Calendar",
+    description: "Overview of blocked bookings.",
+  }}
+>
+  <section class="min-h-screen bg-[#fff9ee] py-10">
+    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
+      <header class="space-y-3">
+        <p class="section-eyebrow">Availability</p>
+        <h1 class="section-title text-[2.8rem] leading-[1.05] md:text-[3.4rem]">
+          Calendar
+        </h1>
+        <p class="section-body max-w-2xl">
+          Blocked dates from the database and external calendars are disabled.
+        </p>
+      </header>
+      <BigCalendar client:load />
+    </div>
+  </section>
+</Layout>
