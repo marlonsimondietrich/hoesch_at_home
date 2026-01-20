@@ -1,13 +1,24 @@
 ---
 import heroBg from '../assets/hero-bg.png';
-import type { HomeContent } from '../data/homeContent';
+import heroIllustration from '../assets/hoeschathome-illustration.png';
+import type { HomeContent } from '../i18n';
 
 interface Props {
   content: HomeContent;
-  currentLocale: 'en' | 'de';
 }
 
-const { content, currentLocale } = Astro.props;
+const { content } = Astro.props;
+const {
+  heroEyebrow,
+  heroHeadline,
+  heroBody,
+  heroFeatures,
+  heroPrimaryCtaLabel,
+  heroPrimaryCtaHref,
+  heroSecondaryCtaLabel,
+  heroSecondaryCtaHref,
+  heroAlt,
+} = content;
 ---
 
 <section
@@ -15,28 +26,28 @@ const { content, currentLocale } = Astro.props;
   style={`background-image: url(${heroBg.src}); background-size: 100% auto; background-position: center top; background-repeat: no-repeat; background-color: #f8f5f2; min-height: 70vh;`}
 >
   <div class="flex flex-col items-center text-center gap-8">
-    {content.hero.eyebrow && (
+    {heroEyebrow && (
       <p class="text-sm uppercase tracking-[0.2em] text-amber-700/80">
-        {content.hero.eyebrow}
+        {heroEyebrow}
       </p>
     )}
     <h1 class="text-4xl sm:text-5xl font-semibold leading-tight tracking-tight text-balance">
-      {content.hero.headline}
+      {heroHeadline}
     </h1>
     <div class="space-y-3 text-lg text-slate-700 text-pretty max-w-3xl">
-      {content.hero.body.map((line) => (
+      {heroBody.map((line) => (
         <p>{line}</p>
       ))}
     </div>
     <img
-      src="/src/assets/hoeschathome-illustration.png"
-      alt={content.hero.alt}
+      src={heroIllustration.src}
+      alt={heroAlt}
       class="relative max-h-[360px] w-full max-w-2xl object-contain"
       loading="eager"
       data-hero-illustration
     />
     <div class="flex flex-wrap justify-center gap-3 pt-2 max-w-3xl">
-      {content.hero.features.map((item) => (
+      {heroFeatures.map((item) => (
         <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
           {item}
         </span>
@@ -44,18 +55,18 @@ const { content, currentLocale } = Astro.props;
     </div>
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
       <a
-        href={content.hero.primaryCta.href}
+        href={heroPrimaryCtaHref}
         class="inline-flex items-center justify-center rounded-full bg-[#B85E3C] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#a34f32] focus:outline-none focus-visible:ring focus-visible:ring-[#B85E3C] focus-visible:ring-offset-2"
         data-hero-primary
       >
-        {content.hero.primaryCta.label}
+        {heroPrimaryCtaLabel}
       </a>
       <a
-        href={content.hero.secondaryCta.href}
+        href={heroSecondaryCtaHref}
         class="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:text-slate-900 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
         data-hero-secondary
       >
-        {content.hero.secondaryCta.label}
+        {heroSecondaryCtaLabel}
       </a>
     </div>
   </div>
