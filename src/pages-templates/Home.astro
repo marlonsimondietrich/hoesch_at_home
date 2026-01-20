@@ -1,13 +1,18 @@
 ---
-import Layout from '../../layouts/main.astro';
-import HomePage from '../../components/HomePage.astro';
-import NavBar from '../../components/NavBar.astro';
-import { defaultLocale, getStrings, type Locale } from '../../i18n';
+import Layout from '../layouts/main.astro';
+import HomePage from '../components/HomePage.astro';
+import NavBar from '../components/NavBar.astro';
+import { defaultLocale, getStrings, type Locale } from '../i18n';
 import { getPathByLocale, getRelativeLocaleUrl } from 'astro:i18n';
-import { getHomeSections } from '../../components/sections/homeSections';
-import { getNavLinks } from '../../lib/navigation';
+import { getHomeSections } from '../components/sections/homeSections';
+import { getNavLinks } from '../lib/navigation';
 
-const currentLocale = (Astro.currentLocale ?? defaultLocale) as Locale;
+interface Props {
+  currentLocale?: Locale;
+}
+
+const { currentLocale: currentLocaleProp } = Astro.props;
+const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
 const localePath = getPathByLocale(currentLocale);
 const pathWithoutLocale =
   Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), '') || '/';
@@ -27,8 +32,9 @@ const links = getNavLinks(sections, homeHref, calendarHref);
     title: content.metaTitle,
     description: content.metaDescription,
   }}
+  currentLocale={currentLocale}
 >
-  <section class="bg-gradient-to-br from-orange-50 via-amber-50/70 to-slate-50 text-slate-90">
+  <section class="bg-gradient-to-br from-orange-50 via-amber-50/70 to-slate-50 text-slate-900 lg:px-12">
     <NavBar
       links={links}
       homeHref={homeHref}
