@@ -22,22 +22,20 @@ const {
 ---
 
 <section
-  class="relative overflow-hidden text-slate-900 px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24"
+  class="relative overflow-hidden px-4 pb-16 text-slate-900 sm:px-6 sm:pb-24 lg:px-8"
   style={`background-image: url(${heroBg.src}); background-size: 100% auto; background-position: center top; background-repeat: no-repeat; background-color: #f8f5f2; min-height: 70vh;`}
 >
-  <div class="flex flex-col items-center text-center gap-8">
-    {heroEyebrow && (
-      <p class="text-sm uppercase tracking-[0.2em] text-amber-700/80">
-        {heroEyebrow}
-      </p>
-    )}
-    <h1 class="text-4xl sm:text-5xl font-semibold leading-tight tracking-tight text-balance">
+  <div class="flex flex-col items-center gap-8 text-center">
+    {
+      heroEyebrow && (
+        <p class="text-sm tracking-[0.2em] text-amber-700/80 uppercase">{heroEyebrow}</p>
+      )
+    }
+    <h1 class="text-4xl leading-tight font-semibold tracking-tight text-balance sm:text-5xl">
       {heroHeadline}
     </h1>
-    <div class="space-y-3 text-lg text-slate-700 text-pretty max-w-3xl">
-      {heroBody.map((line) => (
-        <p>{line}</p>
-      ))}
+    <div class="max-w-3xl space-y-3 text-lg text-pretty text-slate-700">
+      {heroBody.map((line) => <p>{line}</p>)}
     </div>
     <img
       src={heroIllustration.src}
@@ -46,14 +44,16 @@ const {
       loading="eager"
       data-hero-illustration
     />
-    <div class="flex flex-wrap justify-center gap-3 pt-2 max-w-3xl">
-      {heroFeatures.map((item) => (
-        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
-          {item}
-        </span>
-      ))}
+    <div class="flex max-w-3xl flex-wrap justify-center gap-3 pt-2">
+      {
+        heroFeatures.map((item) => (
+          <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
+            {item}
+          </span>
+        ))
+      }
     </div>
-    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+    <div class="flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
       <a
         href={heroPrimaryCtaHref}
         class="inline-flex items-center justify-center rounded-full bg-[#B85E3C] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#a34f32] focus:outline-none focus-visible:ring focus-visible:ring-[#B85E3C] focus-visible:ring-offset-2"
@@ -70,4 +70,38 @@ const {
       </a>
     </div>
   </div>
+  <!-- <section class="hero">
+
+    <svg
+      class="scene"
+      viewBox="0 0 1440 600"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+    >
+      <rect id="background-in-the-scene" width="1440" height="600" fill="#fbf6ea"></rect>
+
+      <circle id="sun-in-the-scene" cx="140" cy="90" r="55" fill="#e2a24c"></circle>
+
+      <path id="backpeak1-in-the-scene"
+        d="M980,420 C1040,260 1120,180 1220,180 C1340,180 1420,260 1470,420 L1470,600 L980,600 Z"
+        fill="#a95235"></path>
+      <path id="backpeak2-in-the-scene"
+        d="M780,450 C860,280 960,210 1080,210 C1210,210 1320,300 1400,460 L1400,600 L780,600 Z"
+        fill="#b25a3b"></path>
+
+      <path id="midhill-in-the-scene"
+        d="M0,430 C200,340 420,390 620,410 C820,430 980,370 1140,300 C1280,240 1400,250 1440,280 L1440,600 L0,600 Z"
+        fill="#c77b5d"></path>
+
+      <path id="greenhill-in-the-scene"
+        d="M760,520 C900,450 1040,360 1210,320 C1320,295 1400,300 1440,330 L1440,600 L760,600 Z"
+        fill="#506a4f"></path>
+
+      <path id="snowforeground-in-the-scene"
+        d="M0,540 C260,500 560,490 820,510 C1100,530 1290,570 1440,590 L1440,600 L0,600 Z"
+        fill="#fffaf0"></path>
+    </svg>
+
+    <img class="foreground-image" src={heroIllustration.src} alt="Foreground" />
+  </section> -->
 </section>
