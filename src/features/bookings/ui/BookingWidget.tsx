@@ -141,13 +141,6 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
   return (
     <section className="mx-auto w-full max-w-3xl px-6 py-10">
       <div className="rounded-3xl border border-[#ead8cd] bg-[#f8f5f2]/90 p-6 shadow-[0_20px_60px_-45px_rgba(88,42,24,0.6)]">
-        <header className="mb-6">
-          <h2 className="text-2xl font-semibold tracking-tight text-slate-900 text-balance">
-            {bookingHeading}
-          </h2>
-          <p className="mt-2 text-sm text-slate-700 text-pretty">{bookingDescription}</p>
-        </header>
-
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <label className="flex flex-col gap-1 text-sm text-slate-700">

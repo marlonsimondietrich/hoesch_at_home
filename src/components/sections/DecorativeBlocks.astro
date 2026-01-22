@@ -11,7 +11,11 @@ const { content } = Astro.props;
 const headingId = 'amenities-heading';
 ---
 
-<section id="amenities" class="decorative-blocks" aria-labelledby={headingId}>
+<section
+  id="amenities"
+  class="decorative-blocks relative z-0 -mt-24 sm:-mt-28 lg:-mt-32"
+  aria-labelledby={headingId}
+>
   <figure
     class="decorative-block decorative-block--photo decorative-block--tall relative"
     style={`--decor-image: url(${photo7.src});`}

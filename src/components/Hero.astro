@@ -19,41 +19,45 @@ const {
 ---
 
 <section
-  class="relative overflow-visible text-slate-900 px-4 sm:px-6 lg:px-8 pb-32 sm:pb-40 lg:pb-48"
+  class="relative overflow-visible text-slate-900 px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-32 sm:pb-40 lg:pb-48"
   style={`background-image: url(${heroBg.src}); background-size: 100% auto; background-position: center top; background-repeat: no-repeat; background-color: #f8f5f2; min-height: 70vh;`}
 >
-  <div class="mx-auto flex w-full max-w-6xl flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
-    <div class="flex flex-col items-start text-left gap-8 max-w-3xl">
+  <div class="mx-auto w-full max-w-6xl">
+    <div class="flex flex-col items-start text-left gap-5 max-w-3xl">
       {heroEyebrow && (
         <p class="text-sm uppercase tracking-[0.2em] text-amber-700/80">
           {heroEyebrow}
         </p>
       )}
-      <h1 class="text-4xl sm:text-5xl font-semibold leading-tight tracking-tight text-balance">
+      <h1 class="text-4xl sm:text-5xl font-semibold leading-tight tracking-tight">
         {heroHeadline}
       </h1>
-      <div class="space-y-3 text-lg text-slate-700 text-pretty">
+      <div class="space-y-3 text-lg text-slate-700">
         {heroBody.map((line) => (
           <p>{line}</p>
         ))}
       </div>
-      <img
-        src={heroIllustration.src}
-        alt={heroAlt}
-        class="relative max-h-[360px] w-full max-w-2xl object-contain self-start"
-        loading="eager"
-        data-hero-illustration
-      />
-      <div class="flex flex-wrap justify-start gap-3 pt-2">
-        {heroFeatures.map((item) => (
-          <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
-            {item}
-          </span>
-        ))}
-      </div>
     </div>
-    <div class="w-full max-w-lg lg:ml-auto translate-y-16 sm:translate-y-24 lg:translate-y-32">
-      <BookingWidget client:load content={content} />
+    <div class="mt-12 flex w-full flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+      <div class="flex flex-col items-start gap-8 max-w-3xl">
+        <img
+          src={heroIllustration.src}
+          alt={heroAlt}
+          class="relative max-h-[360px] w-full max-w-2xl object-contain self-start"
+          loading="eager"
+          data-hero-illustration
+        />
+        <div class="flex flex-wrap justify-start gap-3">
+          {heroFeatures.map((item) => (
+            <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div class="relative z-20 w-full max-w-lg lg:ml-auto translate-y-16 sm:translate-y-24 lg:translate-y-32">
+        <BookingWidget client:load content={content} />
+      </div>
     </div>
   </div>
 </section>
