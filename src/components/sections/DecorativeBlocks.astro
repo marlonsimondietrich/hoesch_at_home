@@ -1,11 +1,58 @@
 ---
+import type { HomeContent } from '../../i18n';
 import photo7 from '../../assets/photos/7.avif';
 import photo10 from '../../assets/photos/10.avif';
+
+interface Props {
+  content: HomeContent;
+}
+
+const { content } = Astro.props;
+const headingId = 'amenities-heading';
 ---
 
-<div aria-hidden="true" class="decorative-blocks">
-  <figure class="decorative-block decorative-block--photo decorative-block--tall" style={`--decor-image: url(${photo7.src});`}></figure>
-  <div class="decorative-block decorative-block--solid decorative-block--short" style="--decor-color: #c77a5b;"></div>
-  <figure class="decorative-block decorative-block--photo decorative-block--medium" style={`--decor-image: url(${photo10.src});`}></figure>
-  <div class="decorative-block decorative-block--solid decorative-block--short" style="--decor-color: #ad5432;"></div>
-</div>
+<section id="amenities" class="decorative-blocks" aria-labelledby={headingId}>
+  <figure
+    class="decorative-block decorative-block--photo decorative-block--tall relative"
+    style={`--decor-image: url(${photo7.src});`}
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24"></div>
+    </div>
+  </figure>
+  <div
+    class="decorative-block decorative-block--solid decorative-block--short relative"
+    style="--decor-color: #c77a5b;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div class="space-y-5">
+            <p class="section-eyebrow">{content.sectionAmenitiesLabel}</p>
+            <h2 id={headingId} class="section-title">{content.sectionAmenitiesHeading}</h2>
+            <p class="section-body">{content.sectionAmenitiesBody}</p>
+            <ul class="grid gap-3 text-base text-slate-700 sm:grid-cols-2">
+              {content.sectionAmenitiesList.map((item) => (
+                <li class="inline-flex items-center gap-2">
+                  <span class="amenities-dot" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="lg:justify-self-end lg:max-w-xl"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <figure
+    class="decorative-block decorative-block--photo decorative-block--medium"
+    style={`--decor-image: url(${photo10.src});`}
+    aria-hidden="true"
+  ></figure>
+  <div
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #ad5432;"
+    aria-hidden="true"
+  ></div>
+</section>

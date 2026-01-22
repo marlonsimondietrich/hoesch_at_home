@@ -1,5 +1,5 @@
 ---
-import photo5 from '../../assets/photos/5.avif';
+import BookingWidget from '../../features/bookings/ui/BookingWidget';
 import type { HomeContent } from '../../i18n';
 
 interface Props {
@@ -26,8 +26,8 @@ const headingId = `${id}-heading`;
         ))}
       </ul>
     </div>
-    <figure class="media-tile media-tile--panel" style={`--media-image: url(${photo5.src});`}>
-      <figcaption class="media-caption">{content.sectionAmenitiesHighlight}</figcaption>
-    </figure>
+    <div class="lg:justify-self-end lg:max-w-xl">
+      <BookingWidget client:load content={content} />
+    </div>
   </div>
 </section>

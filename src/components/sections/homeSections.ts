@@ -1,9 +1,6 @@
 import type { HomeContent } from '../../i18n';
 import GallerySection from './GallerySection.astro';
-import AmenitiesSection from './AmenitiesSection.astro';
-import BookingSection from './BookingSection.astro';
-
-type SectionLabelKey = 'sectionGalleryLabel' | 'sectionAmenitiesLabel' | 'sectionBookingLabel';
+type SectionLabelKey = 'sectionGalleryLabel';
 
 type SectionComponent = typeof GallerySection;
 
@@ -22,16 +19,6 @@ const baseSections: SectionDefinition[] = [
     id: 'gallery',
     contentKey: 'sectionGalleryLabel',
     Component: GallerySection,
-  },
-  {
-    id: 'amenities',
-    contentKey: 'sectionAmenitiesLabel',
-    Component: AmenitiesSection,
-  },
-  {
-    id: 'booking',
-    contentKey: 'sectionBookingLabel',
-    Component: BookingSection,
   },
 ];
 

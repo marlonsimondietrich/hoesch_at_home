@@ -33,7 +33,7 @@ const links = sections.map((section) => ({
 
 <main>
   <Hero content={content} currentLocale={currentLocale} />
-  <DecorativeBlocks />
+  <DecorativeBlocks content={content} />
   {sections.map(({ id, Component }) => (
     <Component id={id} content={content} />
   ))}
