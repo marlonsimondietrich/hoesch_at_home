@@ -2,6 +2,7 @@
 import type { HomeContent } from '../../i18n';
 import photo7 from '../../assets/photos/7.avif';
 import photo10 from '../../assets/photos/10.avif';
+import piano from '../../assets/photos/piano.png';
 
 interface Props {
   content: HomeContent;
@@ -32,10 +33,10 @@ const headingId = 'amenities-heading';
       <div class="container-responsive py-16 lg:py-24">
         <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div class="space-y-5">
-            <p class="section-eyebrow">{content.sectionAmenitiesLabel}</p>
-            <h2 id={headingId} class="section-title">{content.sectionAmenitiesHeading}</h2>
-            <p class="section-body">{content.sectionAmenitiesBody}</p>
-            <ul class="grid gap-3 text-base text-slate-700 sm:grid-cols-2">
+            <p class="section-eyebrow text-[#fff9ec]">{content.sectionAmenitiesLabel}</p>
+            <h2 id={headingId} class="section-title text-[#fff9ec]">{content.sectionAmenitiesHeading}</h2>
+            <p class="section-body text-[#fff9ec]">{content.sectionAmenitiesBody}</p>
+            <ul class="grid gap-3 text-base text-[#fff9ec] sm:grid-cols-2">
               {content.sectionAmenitiesList.map((item) => (
                 <li class="inline-flex items-center gap-2">
                   <span class="amenities-dot" aria-hidden="true"></span>
@@ -44,7 +45,18 @@ const headingId = 'amenities-heading';
               ))}
             </ul>
           </div>
-          <div class="lg:justify-self-end lg:max-w-xl"></div>
+          <div class="lg:justify-self-end lg:max-w-xl">
+            <figure class="image-overlay overflow-hidden rounded-3xl bg-white/10 p-3 shadow-xl">
+              <img
+                src={piano.src}
+                width={piano.width}
+                height={piano.height}
+                alt="Piano in der Ausstattung"
+                loading="lazy"
+                class="h-full w-full rounded-2xl object-cover"
+              />
+            </figure>
+          </div>
         </div>
       </div>
     </div>

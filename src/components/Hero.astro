@@ -40,13 +40,15 @@ const {
     </div>
     <div class="mt-12 flex w-full flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
       <div class="flex flex-col items-start gap-8 max-w-3xl">
-        <img
-          src={heroIllustration.src}
-          alt={heroAlt}
-          class="relative max-h-[360px] w-full max-w-2xl object-contain self-start"
-          loading="eager"
-          data-hero-illustration
-        />
+        <div class="relative max-h-[360px] w-full max-w-2xl self-start">
+          <img
+            src={heroIllustration.src}
+            alt={heroAlt}
+            class="hero-illustration relative h-full w-full object-contain"
+            loading="eager"
+            data-hero-illustration
+          />
+        </div>
         <div class="flex flex-wrap justify-start gap-3">
           {heroFeatures.map((item) => (
             <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
