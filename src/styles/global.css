@@ -137,6 +137,24 @@
     background-color: var(--decor-color);
   }
 
+  .decorative-block--line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .decorative-block--line::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--decor-line);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120% auto;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .decorative-block--photo,
   .decorative-block--solid {
     color: #fffffc;
