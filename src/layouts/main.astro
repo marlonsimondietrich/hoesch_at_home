@@ -2,7 +2,7 @@
 import '../styles/global.css';
 import Footer from '../components/Footer.astro';
 import { defaultLocale, locales, type Locale } from '../i18n';
-import { getAbsoluteLocaleUrl, getPathByLocale } from 'astro:i18n';
+import { getAbsoluteLocaleUrl } from 'astro:i18n';
 
 interface Props {
   content: {
@@ -15,9 +15,8 @@ interface Props {
 const { content, currentLocale: currentLocaleProp } = Astro.props;
 
 const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
-const localePath = getPathByLocale(currentLocale);
-const pathWithoutLocale =
-  Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), '') || '/';
+const localePattern = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
+const pathWithoutLocale = Astro.url.pathname.replace(localePattern, '') || '/';
 const pathParam =
   pathWithoutLocale === '/' ? undefined : pathWithoutLocale.replace(/^\/+/, '');
 const canonicalUrl = getAbsoluteLocaleUrl(currentLocale, pathParam);

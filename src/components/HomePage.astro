@@ -3,6 +3,7 @@ import Hero from './Hero.astro';
 import type { HomeContent, Locale } from '../i18n';
 import { getHomeSections } from './sections/homeSections';
 import DecorativeBlocks from './sections/DecorativeBlocks.astro';
+import OptionalSection from './sections/OptionalSection.astro';
 
 export interface Props {
   content: HomeContent;
@@ -14,7 +15,8 @@ const { content, currentLocale } = Astro.props;
 const sections = getHomeSections(content);
 ---
 <Hero content={content} currentLocale={currentLocale} />
-<DecorativeBlocks content={content} />
+<DecorativeBlocks content={content} currentLocale={currentLocale} />
 {sections.map(({ id, Component }) => (
   <Component id={id} content={content} />
 ))}
+<OptionalSection content={content} />

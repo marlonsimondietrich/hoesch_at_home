@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/main.astro';
+import NavBar from '../components/NavBar.astro';
+import { defaultLocale, getStrings, locales, type Locale } from '../i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getHomeSections } from '../components/sections/homeSections';
+import { getNavLinks } from '../lib/navigation';
+
+interface Props {
+  currentLocale?: Locale;
+}
+
+const { currentLocale: currentLocaleProp } = Astro.props;
+const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
+const localePattern = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
+const pathWithoutLocale = Astro.url.pathname.replace(localePattern, '') || '/';
+const pathParam =
+  pathWithoutLocale === '/' ? undefined : pathWithoutLocale.replace(/^\/+/, '');
+const alternateLocale: Locale = currentLocale === 'de' ? 'en' : 'de';
+const alternateLocaleHref = getRelativeLocaleUrl(alternateLocale, pathParam);
+const homeContent = getStrings(currentLocale).home;
+const homeHref = getRelativeLocaleUrl(currentLocale);
+const calendarHref = getRelativeLocaleUrl(currentLocale, 'calendar');
+const galleryHref = getRelativeLocaleUrl(currentLocale, 'galerie');
+const sections = getHomeSections(homeContent);
+const sectionLinks = getNavLinks(sections, homeHref, calendarHref);
+const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ...sectionLinks];
+
+const photoEntries = Object.entries(
+  import.meta.glob('../assets/photos/*.{avif,jpg,jpeg,png,webp}', { eager: true })
+);
+type ImageModule = { src: string; width: number; height: number };
+const photos = photoEntries
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  .map(([path, module], index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const resolved = ((module as any)?.default ?? module) as ImageModule;
+    return {
+      image: resolved,
+      alt: `Hoesch@Home Foto ${index + 1}`,
+    };
+  });
+---
+
+<Layout
+  content={{
+    title: `${homeContent.sectionGalleryLabel} | ${homeContent.metaTitle}`,
+    description: homeContent.metaDescription,
+  }}
+  currentLocale={currentLocale}
+>
+  <section class="min-h-screen bg-[#fff9ee] text-slate-900">
+    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
+      <NavBar
+        links={links}
+        homeHref={homeHref}
+        calendarHref={calendarHref}
+        alternateLocaleHref={alternateLocaleHref}
+        bookNowLabel={homeContent.navBookNowLabel}
+        languageToggleLabel={homeContent.navLanguageToggleLabel}
+        languageToggleAria={homeContent.navLanguageToggleAria}
+      />
+      <div class="max-w-3xl space-y-4">
+        <p class="section-eyebrow">{homeContent.sectionGalleryLabel}</p>
+        <h1 class="section-title">{homeContent.sectionGalleryHeading}</h1>
+        <p class="section-body">{homeContent.sectionGalleryBody}</p>
+      </div>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {photos.map((photo) => (
+          <figure class="overflow-hidden rounded-3xl bg-white shadow-lg">
+            <img
+              src={photo.image.src}
+              width={photo.image.width}
+              height={photo.image.height}
+              alt={photo.alt}
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -2,8 +2,8 @@
 import Layout from "../layouts/main.astro";
 import NavBar from "../components/NavBar.astro";
 import { BigCalendar } from "../features/bookings/ui/BigCalendar";
-import { defaultLocale, getStrings, type Locale } from "../i18n";
-import { getPathByLocale, getRelativeLocaleUrl } from "astro:i18n";
+import { defaultLocale, getStrings, locales, type Locale } from "../i18n";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import { getHomeSections } from "../components/sections/homeSections";
 import { getNavLinks } from "../lib/navigation";
 
@@ -13,9 +13,8 @@ interface Props {
 
 const { currentLocale: currentLocaleProp } = Astro.props;
 const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
-const localePath = getPathByLocale(currentLocale);
-const pathWithoutLocale =
-  Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), "") || "/";
+const localePattern = new RegExp(`^/(${locales.join("|")})(?=/|$)`);
+const pathWithoutLocale = Astro.url.pathname.replace(localePattern, "") || "/";
 const pathParam =
   pathWithoutLocale === "/" ? undefined : pathWithoutLocale.replace(/^\/+/, "");
 const alternateLocale: Locale = currentLocale === "de" ? "en" : "de";
@@ -24,8 +23,10 @@ const homeContent = getStrings(currentLocale).home;
 const calendarContent = getStrings(currentLocale).calendar;
 const homeHref = getRelativeLocaleUrl(currentLocale);
 const calendarHref = getRelativeLocaleUrl(currentLocale, "calendar");
+const galleryHref = getRelativeLocaleUrl(currentLocale, "galerie");
 const sections = getHomeSections(homeContent);
-const links = getNavLinks(sections, homeHref, calendarHref);
+const sectionLinks = getNavLinks(sections, homeHref, calendarHref);
+const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ...sectionLinks];
 ---
 
 <Layout

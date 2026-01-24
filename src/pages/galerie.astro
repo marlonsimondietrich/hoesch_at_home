@@ -1,0 +1,8 @@
+---
+import { defaultLocale, type Locale } from '../i18n';
+import GalleryTemplate from '../pages-templates/Gallery.astro';
+
+const currentLocale = (Astro.currentLocale ?? defaultLocale) as Locale;
+---
+
+<GalleryTemplate currentLocale={currentLocale} />
