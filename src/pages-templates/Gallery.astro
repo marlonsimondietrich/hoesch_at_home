@@ -61,11 +61,7 @@ const photos = photoEntries
         languageToggleLabel={homeContent.navLanguageToggleLabel}
         languageToggleAria={homeContent.navLanguageToggleAria}
       />
-      <div class="max-w-3xl space-y-4">
-        <p class="section-eyebrow">{homeContent.sectionGalleryLabel}</p>
-        <h1 class="section-title">{homeContent.sectionGalleryHeading}</h1>
-        <p class="section-body">{homeContent.sectionGalleryBody}</p>
-      </div>
+      <p class="section-eyebrow">{homeContent.sectionGalleryLabel}</p>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((photo) => (
           <figure class="overflow-hidden rounded-3xl bg-white shadow-lg">
