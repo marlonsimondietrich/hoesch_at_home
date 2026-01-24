@@ -1,5 +1,19 @@
-<footer class="mt-auto border-t border-white/10 bg-[#556e56] py-10 text-slate-100">
-  <div class="container-responsive space-y-6 text-center text-sm">
+---
+import curveDivider from '../assets/decorative-elements/curve-divider.svg';
+---
+
+<footer class="mt-auto bg-[#556e56] text-slate-100">
+  <div class="-mb-px w-full bg-[#fffcf0] leading-none">
+    <img
+      src={curveDivider.src}
+      alt=""
+      aria-hidden="true"
+      class="block h-auto w-full"
+      loading="lazy"
+    />
+  </div>
+  <div class="-mt-px py-10">
+    <div class="container-responsive space-y-6 text-center text-sm">
     <div class="space-y-3">
       <p class="text-base font-semibold text-slate-50">Wo Stadt, Natur und Ruhe sich treffen.</p>
       <p class="text-slate-100">
@@ -14,7 +28,14 @@
     </div>
 
     <div class="flex flex-col items-center justify-center gap-3 text-slate-100 sm:flex-row sm:gap-6">
-      <span class="text-sm font-medium tracking-wide text-white">Airbnb-Rating: ★★★★★ (5 Sterne)</span>
+      <a
+        class="text-sm font-medium tracking-wide text-white underline-offset-4 transition hover:text-white/90 hover:underline"
+        href="https://www.airbnb.de/rooms/16773840?check_in=2026-02-01&check_out=2026-02-06&guests=1&adults=1&s=67&unique_share_id=84ccea7c-8061-4b87-89c9-d5229225240d"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Airbnb-Rating: ★★★★★ (5 Sterne)
+      </a>
       <span class="hidden h-4 w-px bg-white/30 sm:block" aria-hidden="true"></span>
       <div class="flex items-center gap-4 text-sm font-semibold text-slate-50">
         <span>Impressum</span>
@@ -25,5 +46,6 @@
     <p class="text-xs text-slate-200">
       &copy; {new Date().getFullYear()} Hoesch@Home. Alle Rechte vorbehalten.
     </p>
+    </div>
   </div>
 </footer>
