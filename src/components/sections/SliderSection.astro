@@ -1,5 +1,6 @@
 ---
 import SliderCarousel from '../SliderCarousel';
+import chickButton from '../../assets/decorative-elements/chick-button.png';
 
 interface Props {
   id?: string;
@@ -34,7 +35,8 @@ const photos = photoEntries
       alt: photo.alt,
     }))}
   />
-  <button class="slider-chicken-button" type="button">
-    <span>Mehr Bilder</span>
+  <button class="slider-chick-button" type="button" aria-label="Mehr Bilder">
+    <img src={chickButton.src} alt="" loading="lazy" />
+    <span>Mehr sehen</span>
   </button>
 </figure>
