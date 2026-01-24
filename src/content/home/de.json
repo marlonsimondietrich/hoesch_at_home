@@ -41,7 +41,7 @@
   ],
   "sectionOptionalLabel": "Optionales",
   "sectionOptionalHeading": "Gut zu wissen",
-  "sectionOptionalBody": "Hier findest du alle wichtigen Infos auf einen Blick.",
+  "sectionOptionalBody": "",
   "sectionOptionalHighlights": [
     "Kostenlose Parkplätze an der Straße",
     "Stufenloser Innenbereich (Außenbereich mit Stufen)",
@@ -58,11 +58,10 @@
     "Hausgemachte Produkte wie frische Eier und Marmelade",
     "Hühner auf dem Grundstück – echtes Landleben"
   ],
-  "sectionRetreatHeading": "Dein Rückzugsort im Grünen",
-  "sectionRetreatBody": "Dein großzügiger Rückzugsort im Grünen – ideal zum Abschalten, Zusammensein und Durchatmen mit bis zu 8 Personen.",
+  "sectionRetreatHeading": "Zuhause im Grünen",
+  "sectionRetreatBody": "Ideal zum Abschalten, Zusammensein und Durchatmen.",
   "sectionRetreatHighlights": [
-    "120 m² Ferienhaus",
-    "Platz für bis zu 8 Personen",
+    "Bis zu 8 Gäste",
     "3 Schlafzimmer, 2 Bäder",
     "Wohnbereich mit Schlafcouch",
     "Voll ausgestattete Küche"
@@ -74,9 +73,9 @@
     "Für alle, die Stadt, Land, Fluss, Berg und See mögen."
   ],
   "heroFeatures": [
-    "8 Gäste",
-    "Frische Eier",
-    "Goßer Garten"
+    "Bis zu 8 Gäste",
+    "3 Schlafzimmer, 2 Bäder",
+    "Wohnbereich mit Schlafcouch"
   ],
   "heroPrimaryCtaLabel": "Buchungsanfrage senden",
   "heroPrimaryCtaHref": "#",

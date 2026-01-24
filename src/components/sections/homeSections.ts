@@ -16,7 +16,7 @@ export type HomeSection = SectionDefinition & {
 
 const baseSections: SectionDefinition[] = [
   {
-    id: 'gallery',
+    id: 'section-gallery',
     contentKey: 'sectionGalleryLabel',
     Component: GallerySection,
   },

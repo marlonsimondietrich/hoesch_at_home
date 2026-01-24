@@ -1,8 +1,8 @@
 ---
 import type { HomeContent } from '../../i18n';
-import photo7 from '../../assets/photos/7.avif';
 import chicken from '../../assets/photos/chicken.png';
 import piano from '../../assets/photos/piano.png';
+import vorderseite from '../../assets/photos/vorderseite.avif';
 
 interface Props {
   content: HomeContent;
@@ -10,6 +10,16 @@ interface Props {
 
 const { content } = Astro.props;
 const headingId = 'amenities-heading';
+const photoEntries = Object.entries(
+  import.meta.glob('../../assets/slider/*.{avif,jpg,jpeg,png,webp}', { eager: true })
+);
+const photos = photoEntries
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+  .map(([path, module], index) => ({
+    path,
+    image: (module as { default?: { src: string; width: number; height: number } }).default ?? module,
+    alt: `Hoesch@Home Foto ${index + 1}`,
+  }));
 ---
 
 <section
@@ -17,30 +27,77 @@ const headingId = 'amenities-heading';
   class="decorative-blocks relative z-0 -mt-24 sm:-mt-28 lg:-mt-32"
   aria-labelledby={headingId}
 >
-  <figure
-    class="decorative-block decorative-block--photo decorative-block--tall relative"
-    style={`--decor-image: url(${photo7.src});`}
-  >
-    <div class="relative z-10">
-      <div class="container-responsive py-16 lg:py-24">
-        <div class="max-w-2xl rounded-3xl border border-[#cfe0d3]/50 bg-[#556E56]/92 p-6 text-[#fffffc] shadow-[0_18px_50px_rgba(40,60,44,0.45)] backdrop-blur-sm sm:p-8">
-          <div class="space-y-4">
-            <h2 class="section-title">{content.sectionRetreatHeading}</h2>
-            <p class="section-body">{content.sectionRetreatBody}</p>
-            <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
-              {content.sectionRetreatHighlights.map((item) => (
-                <li class="flex items-start gap-2">
-                  <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+  <figure id="section-slider" class="decorative-block decorative-block--tall relative">
+    <div id="home-photos-carousel" class="relative h-full w-full" data-carousel="slide">
+      <div class="relative h-full overflow-hidden">
+        {photos.map((photo, index) => (
+          <div
+            class="hidden h-full duration-700 ease-in-out"
+            data-carousel-item={index === 0 ? 'active' : undefined}
+          >
+            <img
+              src={photo.image.src}
+              width={photo.image.width}
+              height={photo.image.height}
+              alt={photo.alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              class="h-full w-full object-cover"
+            />
           </div>
-        </div>
+        ))}
       </div>
+      <div class="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3">
+        {photos.map((_, index) => (
+          <button
+            type="button"
+            class="h-3 w-3 rounded-full bg-white/70"
+            aria-label={`Slide ${index + 1}`}
+            data-carousel-slide-to={index}
+          ></button>
+        ))}
+      </div>
+      <button
+        type="button"
+        class="group absolute left-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+        data-carousel-prev
+        aria-label="Previous slide"
+      >
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/40 text-slate-900 shadow-lg transition group-hover:bg-white/70">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 6 10"
+          >
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+          </svg>
+          <span class="sr-only">Previous</span>
+        </span>
+      </button>
+      <button
+        type="button"
+        class="group absolute right-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+        data-carousel-next
+        aria-label="Next slide"
+      >
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/40 text-slate-900 shadow-lg transition group-hover:bg-white/70">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 6 10"
+          >
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+          </svg>
+          <span class="sr-only">Next</span>
+        </span>
+      </button>
     </div>
   </figure>
   <div
+    id="section-amenities"
     class="decorative-block decorative-block--solid decorative-block--short relative"
     style="--decor-color: #c77a5b;"
   >
@@ -77,6 +134,7 @@ const headingId = 'amenities-heading';
     </div>
   </div>
   <div
+    id="section-outdoor"
     class="decorative-block decorative-block--solid decorative-block--short"
     style="--decor-color: #ad5432;"
     aria-hidden="true"
@@ -114,6 +172,7 @@ const headingId = 'amenities-heading';
     </div>
   </div>
   <div
+    id="section-environment"
     class="decorative-block decorative-block--solid decorative-block--short decorative-block--light"
     style="--decor-color: #fffcf0;"
   >
@@ -136,6 +195,7 @@ const headingId = 'amenities-heading';
     </div>
   </div>
   <div
+    id="section-optional"
     class="decorative-block decorative-block--solid decorative-block--short"
     style="--decor-color: #556E56;"
   >
@@ -158,8 +218,9 @@ const headingId = 'amenities-heading';
     </div>
   </div>
   <div
-    class="decorative-block decorative-block--solid decorative-block--short"
-    style="--decor-color: #556E56;"
+    id="section-philosophy"
+    class="decorative-block decorative-block--photo decorative-block--short"
+    style={`--decor-image: url(${vorderseite.src}); --decor-overlay: rgba(173, 84, 50, 0.80);`}
   >
     <div class="relative z-10">
       <div class="container-responsive py-16 lg:py-24">

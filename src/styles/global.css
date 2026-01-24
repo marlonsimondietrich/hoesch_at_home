@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
 
 :root {
   --space-section: clamp(3.5rem, 6vw, 6rem);
@@ -125,7 +127,7 @@
   }
 
   .decorative-block--photo {
-    background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), var(--decor-image);
+    background-image: linear-gradient(var(--decor-overlay, rgba(173, 84, 50, 0.2)), var(--decor-overlay, rgba(173, 84, 50, 0.2))), var(--decor-image);
     background-size: cover;
     background-position: center 80%;
     background-repeat: no-repeat;
