@@ -57,6 +57,29 @@ const headingId = 'amenities-heading';
     </div>
   </div>
   <div
+    id="section-environment"
+    class="decorative-block decorative-block--solid decorative-block--short decorative-block--light"
+    style="--decor-color: #fffcf0;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow">{content.sectionEnvironmentLabel}</p>
+          <h2 class="section-title">{content.sectionEnvironmentHeading}</h2>
+          <p class="section-body">{content.sectionEnvironmentBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionEnvironmentHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
     id="section-outdoor"
     class="decorative-block decorative-block--solid decorative-block--short"
     style="--decor-color: #ad5432;"
@@ -90,29 +113,6 @@ const headingId = 'amenities-heading';
               ))}
             </ul>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    id="section-environment"
-    class="decorative-block decorative-block--solid decorative-block--short decorative-block--light"
-    style="--decor-color: #fffcf0;"
-  >
-    <div class="relative z-10">
-      <div class="container-responsive py-16 lg:py-24">
-        <div class="space-y-5">
-          <p class="section-eyebrow">{content.sectionEnvironmentLabel}</p>
-          <h2 class="section-title">{content.sectionEnvironmentHeading}</h2>
-          <p class="section-body">{content.sectionEnvironmentBody}</p>
-          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
-            {content.sectionEnvironmentHighlights.map((item) => (
-              <li class="flex items-start gap-2">
-                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </div>
