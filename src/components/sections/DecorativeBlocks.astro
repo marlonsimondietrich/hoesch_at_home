@@ -1,0 +1,166 @@
+---
+import type { HomeContent } from '../../i18n';
+import chicken from '../../assets/photos/chicken.png';
+import piano from '../../assets/photos/piano.png';
+import vorderseite from '../../assets/photos/vorderseite.avif';
+import SliderSection from './SliderSection.astro';
+
+interface Props {
+  content: HomeContent;
+}
+
+const { content } = Astro.props;
+const headingId = 'amenities-heading';
+---
+
+<section
+  id="amenities"
+  class="decorative-blocks relative z-0 -mt-24 sm:-mt-28 lg:-mt-32"
+  aria-labelledby={headingId}
+>
+  <SliderSection />
+  <div
+    id="section-amenities"
+    class="decorative-block decorative-block--solid decorative-block--short relative"
+    style="--decor-color: #c77a5b;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div class="space-y-5">
+            <p class="section-eyebrow text-[#fff9ec]">{content.sectionAmenitiesLabel}</p>
+            <h2 id={headingId} class="section-title text-[#fff9ec]">{content.sectionAmenitiesHeading}</h2>
+            <p class="section-body text-[#fff9ec]">{content.sectionAmenitiesBody}</p>
+            <ul class="grid gap-3 text-base text-[#fff9ec] sm:grid-cols-2">
+              {content.sectionAmenitiesList.map((item) => (
+                <li class="inline-flex items-center gap-2">
+                  <span class="amenities-dot bg-current" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="lg:justify-self-end lg:max-w-xl">
+            <figure class="image-overlay ml-auto w-[80%] overflow-hidden rounded-3xl bg-white/10 p-3 shadow-xl">
+              <img
+                src={piano.src}
+                width={piano.width}
+                height={piano.height}
+                alt="Piano in der Ausstattung"
+                loading="lazy"
+                class="h-full w-full rounded-2xl object-cover"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-outdoor"
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #ad5432;"
+    aria-hidden="true"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div class="flex justify-start">
+            <figure class="image-overlay w-[80%] overflow-hidden rounded-3xl bg-white/10 p-3 shadow-xl">
+              <img
+                src={chicken.src}
+                width={chicken.width}
+                height={chicken.height}
+                alt=""
+                loading="lazy"
+                class="h-full w-full rounded-2xl object-cover"
+              />
+            </figure>
+          </div>
+          <div class="space-y-5">
+            <p class="section-eyebrow text-[#fff9ec]">{content.sectionOutdoorLabel}</p>
+            <h2 class="section-title text-[#fff9ec]">{content.sectionOutdoorHeading}</h2>
+            <p class="section-body text-[#fff9ec]">{content.sectionOutdoorBody}</p>
+            <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+              {content.sectionOutdoorHighlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-environment"
+    class="decorative-block decorative-block--solid decorative-block--short decorative-block--light"
+    style="--decor-color: #fffcf0;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow">{content.sectionEnvironmentLabel}</p>
+          <h2 class="section-title">{content.sectionEnvironmentHeading}</h2>
+          <p class="section-body">{content.sectionEnvironmentBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionEnvironmentHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-optional"
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #556E56;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow text-[#fff9ec]">{content.sectionOptionalLabel}</p>
+          <h2 class="section-title text-[#fff9ec]">{content.sectionOptionalHeading}</h2>
+          <p class="section-body text-[#fff9ec]">{content.sectionOptionalBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionOptionalHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-philosophy"
+    class="decorative-block decorative-block--photo decorative-block--short"
+    style={`--decor-image: url(${vorderseite.src}); --decor-overlay: rgba(173, 84, 50, 0.80);`}
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow text-[#fff9ec]">{content.sectionPhilosophyLabel}</p>
+          <h2 class="section-title text-[#fff9ec]">{content.sectionPhilosophyHeading}</h2>
+          <p class="section-body text-[#fff9ec]">{content.sectionPhilosophyBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionPhilosophyHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,15 @@
+dist
+node_modules
+.astro
+.DS_Store
+.git
+.gitignore
+npm-debug.log
+*.log
+coverage
+playwright-report
+test-results
+.env
+.env.*
+.idea
+gen-*.json

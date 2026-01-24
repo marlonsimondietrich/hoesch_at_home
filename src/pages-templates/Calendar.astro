@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/main.astro";
+import NavBar from "../components/NavBar.astro";
+import { BigCalendar } from "../features/bookings/ui/BigCalendar";
+import { defaultLocale, getStrings, type Locale } from "../i18n";
+import { getPathByLocale, getRelativeLocaleUrl } from "astro:i18n";
+import { getHomeSections } from "../components/sections/homeSections";
+import { getNavLinks } from "../lib/navigation";
+
+interface Props {
+  currentLocale?: Locale;
+}
+
+const { currentLocale: currentLocaleProp } = Astro.props;
+const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
+const localePath = getPathByLocale(currentLocale);
+const pathWithoutLocale =
+  Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), "") || "/";
+const pathParam =
+  pathWithoutLocale === "/" ? undefined : pathWithoutLocale.replace(/^\/+/, "");
+const alternateLocale: Locale = currentLocale === "de" ? "en" : "de";
+const alternateLocaleHref = getRelativeLocaleUrl(alternateLocale, pathParam);
+const homeContent = getStrings(currentLocale).home;
+const calendarContent = getStrings(currentLocale).calendar;
+const homeHref = getRelativeLocaleUrl(currentLocale);
+const calendarHref = getRelativeLocaleUrl(currentLocale, "calendar");
+const sections = getHomeSections(homeContent);
+const links = getNavLinks(sections, homeHref, calendarHref);
+---
+
+<Layout
+  content={{
+    title: calendarContent.metaTitle,
+    description: calendarContent.metaDescription,
+  }}
+  currentLocale={currentLocale}
+>
+  <section class="min-h-screen bg-[#fff9ee]">
+    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
+      <NavBar
+        links={links}
+        homeHref={homeHref}
+        calendarHref={calendarHref}
+        alternateLocaleHref={alternateLocaleHref}
+        bookNowLabel={homeContent.navBookNowLabel}
+        languageToggleLabel={homeContent.navLanguageToggleLabel}
+        languageToggleAria={homeContent.navLanguageToggleAria}
+      />
+      <p class="section-eyebrow">{calendarContent.eyebrow}</p>
+      <BigCalendar client:load />
+    </div>
+  </section>
+</Layout>

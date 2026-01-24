@@ -1,56 +1,203 @@
-# Rule: Generating a Product Requirements Document (PRD)
+# Rule: Generating a Product Requirements Document (PRD) for Static Website Elements
 
 ## Goal
 
-To guide an AI assistant in creating a detailed Product Requirements Document (PRD) in Markdown format, based on an initial user prompt. The PRD should be clear, actionable, and suitable for a junior developer to understand and implement the feature.
+To guide an AI assistant in creating a detailed Product Requirements Document (PRD) **specifically for static website elements**, written in Markdown format, based on an initial user prompt.
+
+A PRD under this rule may describe **a single website element, section, subpage, homepage, or a standalone one-pager**. It should *not* assume ownership of an entire multi-page website unless explicitly stated.
+
+The PRD must be clear, concrete, and actionable, enabling a **junior front-end or web developer** to implement the specified element using static technologies such as HTML, CSS, and JavaScript (with optional static site generators or build tools).
+
+All PRDs generated under this rule **must explicitly account for multilingual support in English and German**.
+
+---
+
+## Scope Definition
+
+For the purposes of this rule, a PRD may apply to:
+
+- A single UI section (e.g., hero section, pricing table, FAQ)
+- A reusable website component (e.g., header, footer, testimonial carousel)
+- A single page (e.g., homepage, landing page, legal page)
+- A complete one-page static website
+
+The PRD **must not automatically expand scope** to include unrelated pages, global navigation systems, or full-site architecture unless explicitly requested by the user.
+
+---
+
+## Multilingual Requirement (Mandatory)
+
+Every website element described in a PRD **must support both English (EN) and German (DE)**.
+
+This includes, but is not limited to:
+
+- All visible text content (headings, body text, labels, CTAs)
+- Accessibility text (ARIA labels, alt text, screen reader copy)
+- Form labels, placeholders, validation messages, and success/error states
+- Static UI microcopy (e.g., buttons, tooltips, helper text)
+
+The PRD must:
+- Explicitly state that English and German versions are required
+- Avoid hardcoding language-specific strings without a language mechanism
+- Assume that translations will be provided or approved by the product owner
+
+The PRD **does not** need to specify translation tooling or libraries unless the user explicitly asks for it.
+
+---
 
 ## Process
 
-1.  **Receive Initial Prompt:** The user provides a brief description or request for a new feature or functionality.
-2.  **Ask Clarifying Questions:** Before writing the PRD, the AI *must* ask clarifying questions to gather sufficient detail. The goal is to understand the "what" and "why" of the feature, not necessarily the "how" (which the developer will figure out). Make sure to provide options in letter/number lists so I can respond easily with my selections.
-3.  **Generate PRD:** Based on the initial prompt and the user's answers to the clarifying questions, generate a PRD using the structure outlined below.
-4.  **Save PRD:** Save the generated document as `[n]-prd-[feature-name].md` inside the `/tasks` directory. (Where `n` is a zero-padded 4-digit sequence starting from 0001, e.g., `0001-prd-user-authentication.md`, `0002-prd-dashboard.md`, etc.)
+1. **Receive Initial Prompt**
+   The user provides a brief description of a static website element or page
+   (e.g., “homepage hero section,” “pricing section,” “one-page marketing site”).
 
-## Clarifying Questions (Examples)
+2. **Ask Clarifying Questions**
+   Before writing the PRD, the AI **must** ask clarifying questions to understand:
+   - Purpose of the element
+   - Target audience
+   - Content requirements
+   - Expected behavior or interaction
+   - Language nuances (e.g., tone differences between EN and DE)
 
-The AI should adapt its questions based on the prompt, but here are some common areas to explore:
+   Questions must focus on **what the element should communicate and do**, not on implementation details (e.g., frameworks), unless strictly relevant.
 
-*   **Problem/Goal:** "What problem does this feature solve for the user?" or "What is the main goal we want to achieve with this feature?"
-*   **Target User:** "Who is the primary user of this feature?"
-*   **Core Functionality:** "Can you describe the key actions a user should be able to perform with this feature?"
-*   **User Stories:** "Could you provide a few user stories? (e.g., As a [type of user], I want to [perform an action] so that [benefit].)"
-*   **Acceptance Criteria:** "How will we know when this feature is successfully implemented? What are the key success criteria?"
-*   **Scope/Boundaries:** "Are there any specific things this feature *should not* do (non-goals)?"
-*   **Data Requirements:** "What kind of data does this feature need to display or manipulate?"
-*   **Design/UI:** "Are there any existing design mockups or UI guidelines to follow?" or "Can you describe the desired look and feel?"
-*   **Edge Cases:** "Are there any potential edge cases or error conditions we should consider?"
+   Questions must be presented using **numbered or lettered options** to enable concise user replies.
 
-## PRD Structure
+3. **Generate PRD**
+   Using the user’s answers, generate a PRD scoped **only to the requested element or page**, including explicit bilingual requirements.
 
-The generated PRD should include the following sections:
+4. **Save PRD**
+   Save the generated document as: ‘/tasks/[n]-prd-[element-or-page-name].md’
 
-1.  **Introduction/Overview:** Briefly describe the feature and the problem it solves. State the goal.
-2.  **Goals:** List the specific, measurable objectives for this feature.
-3.  **User Stories:** Detail the user narratives describing feature usage and benefits.
-4.  **Functional Requirements:** List the specific functionalities the feature must have. Use clear, concise language (e.g., "The system must allow users to upload a profile picture."). Number these requirements.
-5.  **Non-Goals (Out of Scope):** Clearly state what this feature will *not* include to manage scope.
-6.  **Design Considerations (Optional):** Link to mockups, describe UI/UX requirements, or mention relevant components/styles if applicable.
-7.  **Technical Considerations (Optional):** Mention any known technical constraints, dependencies, or suggestions (e.g., "Should integrate with the existing Auth module").
-8.  **Success Metrics:** How will the success of this feature be measured? (e.g., "Increase user engagement by 10%", "Reduce support tickets related to X").
-9.  **Open Questions:** List any remaining questions or areas needing further clarification.
 
-## Target Audience
+Where `n` is a zero-padded, four-digit sequence starting at `0001`.
 
-Assume the primary reader of the PRD is a **junior developer**. Therefore, requirements should be explicit, unambiguous, and avoid jargon where possible. Provide enough detail for them to understand the feature's purpose and core logic.
+---
 
-## Output
+## Clarifying Questions (Element-Focused, Multilingual)
 
-*   **Format:** Markdown (`.md`)
-*   **Location:** `/tasks/`
-*   **Filename:** `[n]-prd-[feature-name].md`
+The AI should adapt its questions to the prompt, but should typically cover the following areas:
 
-## Final instructions
+### Purpose & Audience
+- What is the primary goal of this element or page? (e.g., explain, convert, guide)
+- Who is the intended audience?
+- Should tone or wording differ between English and German audiences?
 
-1. Do NOT start implementing the PRD
-2. Make sure to ask the user clarifying questions
-3. Take the user's answers to the clarifying questions and improve the PRD
+### Content
+- What content must be included? (text, images, CTAs, links)
+- Will English and German content be:
+- Provided by the user
+- Created later
+- Translated from a single source language?
+
+### Context & Placement
+- Where does this element live?
+- Standalone page
+- Section within an existing page
+- Reusable component across pages
+
+### User Interaction
+- Are there interactive behaviors?
+- Buttons or links
+- Forms
+- Client-side animations or toggles
+- Do any interactions include language-specific messaging?
+
+### Visual & Brand Direction
+- Is there an existing brand or style guide?
+- Are there typography or layout considerations for German text length?
+- Any accessibility or responsiveness requirements?
+
+### Constraints & Non-Goals
+- What should this element explicitly *not* do?
+- Are there technical or content constraints (e.g., no JavaScript, no language switcher UI)?
+
+---
+
+## PRD Structure (Static Website Element)
+
+The generated PRD must include the following sections:
+
+### 1. Overview
+- Brief description of the element or page
+- Its purpose and intended value
+- Where it fits within the broader site (if applicable)
+- Explicit statement that the element is bilingual (EN / DE)
+
+### 2. Goals
+- Clear, measurable objectives specific to this element
+(e.g., “Encourage newsletter signups,” “Explain pricing tiers clearly”)
+
+### 3. Target Audience
+- Description of the primary audience
+- Any language-specific considerations (tone, formality, terminology)
+
+### 4. User Stories
+- Concise, element-level user stories
+Example:
+> As a visitor, I want to understand the value proposition in my language so that I can quickly decide whether the product is relevant to me.
+
+### 5. Element Scope & Structure
+- What is included in this PRD
+- High-level structure of the element (subsections, content blocks)
+- Identification of all text elements requiring EN and DE versions
+- Explicit boundaries (what surrounding layout or elements are excluded)
+
+### 6. Functional Requirements
+Numbered, explicit requirements appropriate for static implementations, such as:
+1. The element must render correctly on mobile, tablet, and desktop screens.
+2. All visible text must be available in English and German.
+3. Language-specific content must be switchable or selectable based on site language context.
+4. CTA buttons must link to the specified destination URLs.
+5. Any forms must submit data via a third-party service.
+
+### 7. Non-Goals (Out of Scope)
+Clearly state exclusions, such as:
+- No backend logic
+- No user authentication
+- No dynamic server-rendered content
+- No responsibility for translation quality or copywriting
+- No requirement to design a global language switcher unless specified
+
+### 8. Design & UX Considerations
+- Layout and hierarchy expectations
+- Accessibility requirements (e.g., semantic HTML, alt text in both languages)
+- Handling of text expansion for German translations
+- Performance expectations (e.g., minimal JavaScript)
+
+### 9. Technical Considerations
+- Static-only constraints (build-time rendering, client-side JS only)
+- Assumptions about how language selection is determined (e.g., build-time, URL-based, config-based)
+- Integration boundaries with the rest of the site
+
+### 10. Success Metrics
+- How success will be measured for this specific element
+(e.g., click-through rate by language, form submissions, engagement)
+
+### 11. Open Questions
+- Any unresolved decisions or dependencies requiring clarification, especially related to language handling
+
+---
+
+## Target Audience for the PRD
+
+The PRD is written for a **junior web developer** implementing a static website element.
+
+Requirements must therefore be:
+
+- Explicit and unambiguous
+- Appropriately scoped
+- Multilingual by default (English and German)
+- Free of backend-specific jargon
+- Focused on structure, content, and client-side behavior
+
+---
+
+## Final Instructions
+
+1. Do **not** begin implementation.
+2. Always ask clarifying questions before generating the PRD.
+3. Scope the PRD strictly to the requested element, section, or page.
+4. Ensure English and German language support is explicitly defined.
+5. Incorporate the user’s answers into a refined, static-focused PRD.
+6. Explicitly flag any requested functionality that violates static-site constraints.

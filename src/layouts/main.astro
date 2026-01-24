@@ -1,27 +1,51 @@
 ---
 import '../styles/global.css';
+import { defaultLocale, locales, type Locale } from '../i18n';
+import { getAbsoluteLocaleUrl, getPathByLocale } from 'astro:i18n';
 
 interface Props {
   content: {
     title: string;
     description?: string;
   };
+  currentLocale?: Locale;
 }
 
-const { content } = Astro.props;
+const { content, currentLocale: currentLocaleProp } = Astro.props;
+
+const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
+const localePath = getPathByLocale(currentLocale);
+const pathWithoutLocale =
+  Astro.url.pathname.replace(new RegExp(`^/${localePath}(?=/|$)`), '') || '/';
+const pathParam =
+  pathWithoutLocale === '/' ? undefined : pathWithoutLocale.replace(/^\/+/, '');
+const canonicalUrl = getAbsoluteLocaleUrl(currentLocale, pathParam);
+const xDefaultUrl = getAbsoluteLocaleUrl(defaultLocale, pathParam);
+const alternateUrls = locales.map((locale) => ({
+  locale,
+  href: getAbsoluteLocaleUrl(locale, pathParam),
+}));
 ---
 
 <!DOCTYPE html>
-<html lang={Astro.currentLocale || 'de'}>
+<html lang={currentLocale}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={content.description || 'Vibeperform'} />
+    <meta name="description" content={content.description || 'Hoesch@Home'} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
+    {alternateUrls.map((item) => (
+      <link rel="alternate" hreflang={item.locale} href={item.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
     <title>{content.title}</title>
   </head>
   <body>
     <slot />
+    <script type="module">
+      import 'flowbite';
+    </script>
   </body>
 </html>

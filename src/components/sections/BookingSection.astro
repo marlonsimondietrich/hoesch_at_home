@@ -1,0 +1,23 @@
+---
+import BookingWidget from '../../features/bookings/ui/BookingWidget';
+import type { HomeContent } from '../../i18n';
+
+interface Props {
+  id: string;
+  content: HomeContent;
+}
+
+const { id, content } = Astro.props;
+const headingId = `${id}-heading`;
+---
+
+<section id={id} class="section-spacing" aria-labelledby={headingId}>
+  <div class="container-responsive space-y-6">
+    <div class="max-w-2xl space-y-3">
+      <p class="section-eyebrow">{content.sectionBookingLabel}</p>
+      <h2 id={headingId} class="section-title">{content.bookingHeading}</h2>
+      <p class="section-body">{content.bookingDescription}</p>
+    </div>
+    <BookingWidget client:load content={content} />
+  </div>
+</section>

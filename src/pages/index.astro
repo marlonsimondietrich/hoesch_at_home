@@ -1,9 +1,8 @@
 ---
-import Layout from '../layouts/main.astro';
-import HomePage from '../components/HomePage.astro';
-import { homeContent } from '../data/homeContent';
+import { defaultLocale, type Locale } from '../i18n';
+import HomeTemplate from '../pages-templates/Home.astro';
+
+const currentLocale = (Astro.currentLocale ?? defaultLocale) as Locale;
 ---
 
-<Layout content={{ title: 'Vibeperform' }}>
-  <HomePage content={homeContent.de} currentLocale="de" alternateLocaleHref="/en/" />
-</Layout>
+<HomeTemplate currentLocale={currentLocale} />

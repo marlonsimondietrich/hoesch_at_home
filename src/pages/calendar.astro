@@ -1,0 +1,8 @@
+---
+import { defaultLocale, type Locale } from "../i18n";
+import CalendarTemplate from "../pages-templates/Calendar.astro";
+
+const currentLocale = (Astro.currentLocale ?? defaultLocale) as Locale;
+---
+
+<CalendarTemplate currentLocale={currentLocale} />

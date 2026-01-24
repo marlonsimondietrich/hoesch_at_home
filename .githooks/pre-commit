@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+
+npm run lint
+
+set +e
+npm run format:check
+format_exit=$?
+set -e
+if [ $format_exit -gt 1 ]; then
+  exit $format_exit
+fi

@@ -1,17 +1,46 @@
 ---
+import logo from '../assets/logo.png';
+
 interface Props {
   links: { label: string; href: string }[];
   homeHref: string;
+  calendarHref: string;
+  alternateLocaleHref: string;
+  bookNowLabel: string;
+  languageToggleLabel: string;
+  languageToggleAria: string;
 }
 
-const { links, homeHref } = Astro.props;
+const {
+  links,
+  homeHref,
+  calendarHref,
+  alternateLocaleHref,
+  bookNowLabel,
+  languageToggleLabel,
+  languageToggleAria,
+} = Astro.props;
 ---
 
-<nav class="flex items-center justify-between p-4 bg-white shadow-sm">
-  <a href={homeHref} class="text-xl font-bold">Vibeperform</a>
-  <ul class="flex gap-4">
-    {links.map((link) => (
-      <li><a href={link.href} class="text-slate-600 hover:text-slate-900">{link.label}</a></li>
-    ))}
-  </ul>
+<nav class="flex items-center justify-between p-4 bg-transparent shadow-none">
+  <a href={homeHref} class="inline-flex items-center gap-2">
+    <img src={logo.src} alt="Hoesch@Home logo" class="h-20 w-auto" loading="eager" />
+    <span class="sr-only">Hoesch@Home</span>
+  </a>
+  <div class="flex items-center gap-4">
+    <ul class="flex gap-4">
+      <li><a href={calendarHref} class="text-slate-600 hover:text-slate-900">{bookNowLabel}</a></li>
+      {links.map((link) => (
+        <li><a href={link.href} class="text-slate-600 hover:text-slate-900">{link.label}</a></li>
+      ))}
+    </ul>
+    <a
+      href={alternateLocaleHref}
+      class="inline-flex items-center justify-center rounded-full border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-800 transition-colors hover:border-slate-300 hover:text-slate-900 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
+      aria-label={languageToggleAria}
+      data-lang-toggle
+    >
+      {languageToggleLabel}
+    </a>
+  </div>
 </nav>
