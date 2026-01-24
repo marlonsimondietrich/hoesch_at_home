@@ -10,18 +10,20 @@
   "sectionGalleryCaptionTwo": "Outdoor dining shaded by old fruit trees.",
   "sectionGalleryCaptionThree": "A quiet corner for reading and tea.",
   "sectionAmenitiesLabel": "Amenities",
-  "sectionAmenitiesHeading": "Everything you need to settle in",
-  "sectionAmenitiesBody": "Thoughtful details for long weekends, family gatherings, or a calm base between city trips and lakeside walks.",
+  "sectionAmenitiesHeading": "Everything here — for everyday life, time away & remote work",
+  "sectionAmenitiesBody": "Whether it is a workation or family time, you will find everything you need for a relaxed stay.",
   "sectionAmenitiesList": [
-    "Fully equipped kitchen",
-    "Garden and outdoor seating",
-    "Fast Wi-Fi and workspace",
-    "Private parking on site"
+    "High-speed Wi-Fi",
+    "Workspace for remote work",
+    "Smart TV",
+    "Washing machine & dryer",
+    "Children's books & toys",
+    "Baby crib and high chair"
   ],
   "sectionAmenitiesHighlight": "Fresh eggs and garden herbs at breakfast.",
   "sectionOutdoorLabel": "Outdoors",
-  "sectionOutdoorHeading": "Breathe easy outdoors",
-  "sectionOutdoorBody": "The private garden with open terrace, grill option, and summer trampoline invites you to unwind — from first coffee in the morning to long evenings under the open sky.",
+  "sectionOutdoorHeading": "Be outside & breathe easy",
+  "sectionOutdoorBody": "The private garden with terrace invites you to live outdoors, unwind, and let the day wind down.",
   "sectionOutdoorHighlights": [
     "Private garden for your exclusive use",
     "Open terrace",
@@ -30,7 +32,7 @@
   ],
   "sectionEnvironmentLabel": "Surroundings",
   "sectionEnvironmentHeading": "Nature. City. Balance.",
-  "sectionEnvironmentBody": "Set between Munich, mountains, and lakes, the Auszeithaus combines nature with easy connections.",
+  "sectionEnvironmentBody": "Set between Munich, mountains, and lakes, you will find nature experiences with excellent connections.",
   "sectionEnvironmentHighlights": [
     "About 30 minutes by S-Bahn to Marienplatz",
     "Public transport within walking distance (10 min)",
@@ -39,7 +41,7 @@
   ],
   "sectionOptionalLabel": "Optional",
   "sectionOptionalHeading": "Good to know",
-  "sectionOptionalBody": "Here are the key details at a glance.",
+  "sectionOptionalBody": "Here you will find the most important information at a glance.",
   "sectionOptionalHighlights": [
     "Free street parking",
     "Step-free interior (outdoor area has steps)",
@@ -48,43 +50,43 @@
     "Pet: €25 per night / pet"
   ],
   "sectionPhilosophyLabel": "Our philosophy",
-  "sectionPhilosophyHeading": "Sustainable & crafted with care",
-  "sectionPhilosophyBody": "The Auszeithaus stands for mindful travel, regional ties, and a thoughtful use of resources.",
+  "sectionPhilosophyHeading": "Sustainable & with attention to detail",
+  "sectionPhilosophyBody": "We stand for mindful travel, regional ties, and a thoughtful use of resources.",
   "sectionPhilosophyHighlights": [
     "Energy- and water-saving fixtures",
     "Support with waste sorting",
     "Homemade products like fresh eggs and jam",
     "Chickens on the property — real country life"
   ],
-  "sectionRetreatHeading": "Your green retreat — Auszeithaus Zell/Ebenhausen",
-  "sectionRetreatBody": "Welcome to the Auszeithaus — your place to switch off, recharge, and be together. Our spacious holiday home in Zell/Ebenhausen offers 120 m² of everything you need for a relaxing break.",
+  "sectionRetreatHeading": "Your green retreat",
+  "sectionRetreatBody": "Your spacious retreat in the countryside — ideal for switching off, being together, and breathing easy with up to 8 people.",
   "sectionRetreatHighlights": [
-    "120 m² holiday home in Zell/Ebenhausen",
-    "Sleeps up to 8 guests",
+    "120 m² holiday home",
+    "Space for up to 8 people",
     "3 bedrooms, 2 bathrooms",
     "Living area with sofa bed",
     "Fully equipped kitchen"
   ],
   "sectionBookingLabel": "Booking",
   "heroEyebrow": "Between city and Alps",
-  "heroHeadline": "Come stay awhile",
+  "heroHeadline": "Your home in Upper Bavaria",
   "heroBody": [
     "For everyone who loves city, countryside, river, mountain, and lake."
   ],
   "heroFeatures": [
-    "Sleeps 8",
-    "Daily fresh eggs",
-    "Spacious garden"
+    "8 guests",
+    "Fresh eggs",
+    "Large garden"
   ],
-  "heroPrimaryCtaLabel": "Start booking inquiry",
+  "heroPrimaryCtaLabel": "Send booking inquiry",
   "heroPrimaryCtaHref": "#",
   "heroSecondaryCtaLabel": "Learn more",
   "heroSecondaryCtaHref": "#",
   "heroAlt": "Illustration of a Bavarian country home in a calm setting",
   "heroSubheadline": "For everyone who loves city, countryside, river, mountain, and lake.",
-  "heroCta": "Start booking inquiry",
+  "heroCta": "Send booking inquiry",
   "bookingHeading": "Check availability",
-  "bookingDescription": "Select your dates and guests, then confirm availability before booking.",
+  "bookingDescription": "Please choose dates and number of guests, then confirm availability.",
   "bookingStartDateLabel": "Check-in date",
   "bookingEndDateLabel": "Check-out date",
   "bookingGuestsLabel": "Guests",
@@ -95,8 +97,8 @@
   "bookingAvailabilityAvailable": "Your dates are available.",
   "bookingAvailabilityUnavailable": "Those dates are not available. Please choose another range.",
   "bookingAvailabilityChecking": "Checking availability...",
-  "bookingAvailabilityError": "Something went wrong while checking availability.",
-  "bookingValidationError": "Please choose a valid date range and guest count.",
-  "bookingBookingError": "Something went wrong while submitting your booking.",
-  "bookingSuccessMessage": "Booking request submitted."
+  "bookingAvailabilityError": "An error occurred while checking availability.",
+  "bookingValidationError": "Please enter a valid date range and number of guests.",
+  "bookingBookingError": "An error occurred while sending the booking inquiry.",
+  "bookingSuccessMessage": "Booking inquiry sent."
 }
