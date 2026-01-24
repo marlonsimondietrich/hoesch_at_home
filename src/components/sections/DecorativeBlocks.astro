@@ -13,13 +13,18 @@ const headingId = 'amenities-heading';
 const photoEntries = Object.entries(
   import.meta.glob('../../assets/slider/*.{avif,jpg,jpeg,png,webp}', { eager: true })
 );
+type ImageModule = { src: string; width: number; height: number };
 const photos = photoEntries
   .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
-  .map(([path, module], index) => ({
-    path,
-    image: (module as { default?: { src: string; width: number; height: number } }).default ?? module,
-    alt: `Hoesch@Home Foto ${index + 1}`,
-  }));
+  .map(([path, module], index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const resolved = ((module as any)?.default ?? module) as ImageModule;
+    return {
+      path,
+      image: resolved,
+      alt: `Hoesch@Home Foto ${index + 1}`,
+    };
+  });
 ---
 
 <section

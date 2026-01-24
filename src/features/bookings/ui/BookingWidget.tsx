@@ -52,8 +52,6 @@ const mapBookingError = (
 
 export const BookingWidget = ({ content }: BookingWidgetProps) => {
   const {
-    bookingHeading,
-    bookingDescription,
     bookingStartDateLabel,
     bookingEndDateLabel,
     bookingGuestsLabel,
