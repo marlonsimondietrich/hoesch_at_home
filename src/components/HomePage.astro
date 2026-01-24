@@ -5,10 +5,12 @@ import { getHomeSections } from './sections/homeSections';
 import DecorativeBlocks from './sections/DecorativeBlocks.astro';
 
 export interface Props {
+export interface Props {
   content: HomeContent;
   currentLocale: Locale;
 }
 
+const { content, currentLocale } = Astro.props;
 const { content, currentLocale } = Astro.props;
 
 const sections = getHomeSections(content);
