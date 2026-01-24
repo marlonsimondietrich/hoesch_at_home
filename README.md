@@ -94,3 +94,9 @@ PUBLIC_BOOKING_API_TOKEN=832eba50634914380562b2f685ab3646572b4fb47db355c1a55e45e
 ICAL_SOURCE_URLS=https://calendar.google.com/calendar/ical/marlonsimondietrich%40gmail.com/private-5564cb236d2a5aba3b490175614186c2/basic.ics \
 npm run dev
 ```
+
+## Security note
+
+`npm audit` currently reports moderate vulnerabilities in the dev-only `@astrojs/check` dependency chain
+via the YAML language server and lodash. We accept this risk for local tooling and keep the current versions
+until an upstream fix lands.

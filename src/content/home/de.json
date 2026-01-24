@@ -10,25 +10,72 @@
   "sectionGalleryCaptionTwo": "Draußen essen unter alten Obstbäumen.",
   "sectionGalleryCaptionThree": "Eine ruhige Ecke für Lesen und Tee.",
   "sectionAmenitiesLabel": "Ausstattung",
-  "sectionAmenitiesHeading": "Alles für einen entspannten Aufenthalt",
-  "sectionAmenitiesBody": "Liebevolle Details für lange Wochenenden, Familienzeit oder als ruhige Basis zwischen Stadt und See.",
+  "sectionAmenitiesHeading": "Alles da – für Alltag, Auszeit & Homeoffice",
+  "sectionAmenitiesBody": "Egal ob Workation oder Familienzeit – hier findest du alles, was du für einen entspannten Aufenthalt brauchst.",
   "sectionAmenitiesList": [
-    "Voll ausgestattete Küche",
-    "Garten mit Sitzplätzen",
-    "Schnelles WLAN und Arbeitsplatz",
-    "Privater Parkplatz am Haus"
+    "Highspeed-WLAN",
+    "Arbeitsplatz fürs Homeoffice",
+    "Smart TV",
+    "Waschmaschine & Trockner",
+    "Kinderbücher & Spielsachen",
+    "Babybett und Hochstuhl"
   ],
   "sectionAmenitiesHighlight": "Frische Eier und Gartenkräuter zum Frühstück.",
+  "sectionOutdoorLabel": "Draußen",
+  "sectionOutdoorHeading": "Draußen sein & durchatmen",
+  "sectionOutdoorBody": "Der private Garten mit Terrasse lädt dich ein, draußen zu leben, zu entspannen und den Tag ausklingen zu lassen.",
+  "sectionOutdoorHighlights": [
+    "Privater Garten zur alleinigen Nutzung",
+    "Offene Terrasse",
+    "Grillmöglichkeiten",
+    "Trampolin im Sommer verfügbar"
+  ],
+  "sectionEnvironmentLabel": "Umgebung",
+  "sectionEnvironmentHeading": "Natur. Stadt. Balance.",
+  "sectionEnvironmentBody": "Zwischen München, Bergen und Seen gelegen, findest du hier Naturerlebnis mit perfekter Anbindung.",
+  "sectionEnvironmentHighlights": [
+    "Ca. 30 Minuten mit der S-Bahn zum Marienplatz",
+    "Öffentliche Verkehrsmittel fußläufig erreichbar (10min)",
+    "Langlaufloipen im Winter in der Nähe",
+    "Idealer Ausgangspunkt für Natur- und Stadtausflüge"
+  ],
+  "sectionOptionalLabel": "Optionales",
+  "sectionOptionalHeading": "Gut zu wissen",
+  "sectionOptionalBody": "",
+  "sectionOptionalHighlights": [
+    "Kostenlose Parkplätze an der Straße",
+    "Stufenloser Innenbereich (Außenbereich mit Stufen)",
+    "Nichtraucherunterkunft",
+    "Fahrradverleih: 10 € pro Tag",
+    "Haustier: 25 € pro Nacht / Haustier"
+  ],
+  "sectionPhilosophyLabel": "Unsere Philosophie",
+  "sectionPhilosophyHeading": "Nachhaltig & mit Liebe zum Detail",
+  "sectionPhilosophyBody": "Wir stehen für bewusstes Reisen, Regionalität und einen achtsamen Umgang mit Ressourcen.",
+  "sectionPhilosophyHighlights": [
+    "Licht- und wassersparende Ausstattung",
+    "Unterstützung bei der Mülltrennung",
+    "Hausgemachte Produkte wie frische Eier und Marmelade",
+    "Hühner auf dem Grundstück – echtes Landleben"
+  ],
+  "sectionRetreatHeading": "Zuhause im Grünen",
+  "sectionRetreatBody": "Ideal zum Abschalten, Zusammensein und Durchatmen.",
+  "sectionRetreatHighlights": [
+    "Bis zu 8 Gäste",
+    "3 Schlafzimmer, 2 Bäder",
+    "Wohnbereich mit Schlafcouch",
+    "Voll ausgestattete Küche"
+  ],
   "sectionBookingLabel": "Buchung",
   "heroEyebrow": "Zwischen Stadt und Alpen",
   "heroHeadline": "Dein Zuhause in Oberbayern",
   "heroBody": [
-    "Für alle die Stadt, Land, Fluss, Berg und See mögen."
+    "Für alle, die Stadt, Land, Fluss, Berg und See mögen."
   ],
   "heroFeatures": [
-    "8 Personen",
-    "tägl. frische Eier",
-    "Großer Garten"
+    "Bis zu 8 Gäste",
+    "3 Schlafzimmer, 2 Bäder",
+    "Wohnbereich mit Schlafcouch"
   ],
   "heroPrimaryCtaLabel": "Buchungsanfrage senden",
   "heroPrimaryCtaHref": "#",

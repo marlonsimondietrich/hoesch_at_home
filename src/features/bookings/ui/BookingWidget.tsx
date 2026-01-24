@@ -52,8 +52,6 @@ const mapBookingError = (
 
 export const BookingWidget = ({ content }: BookingWidgetProps) => {
   const {
-    bookingHeading,
-    bookingDescription,
     bookingStartDateLabel,
     bookingEndDateLabel,
     bookingGuestsLabel,
@@ -139,13 +137,11 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
   };
 
   return (
-    <section className="mx-auto w-full max-w-3xl px-6 py-10">
-      <div className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm">
-        <header className="mb-6">
-          <h2 className="text-2xl font-semibold text-slate-900">{bookingHeading}</h2>
-          <p className="mt-2 text-sm text-slate-600">{bookingDescription}</p>
-        </header>
-
+    <section
+      className="mx-auto w-full max-w-3xl px-6 py-10"
+      style={{ fontFamily: '"Inter", sans-serif' }}
+    >
+      <div className="rounded-3xl border border-[#ead8cd] bg-[#FFFDF0] p-6 shadow-[0_20px_60px_-45px_rgba(88,42,24,0.6)]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
             <label className="flex flex-col gap-1 text-sm text-slate-700">
@@ -154,7 +150,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
                 type="date"
                 value={startDate}
                 onChange={(event) => setStartDate(event.target.value)}
-                className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900"
+                className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
                 required
               />
             </label>
@@ -165,7 +161,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
                 value={endDate}
                 onChange={(event) => setEndDate(event.target.value)}
                 min={startDate || undefined}
-                className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900"
+                className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
                 required
               />
             </label>
@@ -179,7 +175,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
                 min={1}
                 value={guestCount}
                 onChange={(event) => setGuestCount(event.target.value)}
-                className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900"
+                className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
                 required
               />
             </label>
@@ -190,7 +186,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
                 onChange={(event) => setNotes(event.target.value)}
                 rows={3}
                 placeholder={bookingNotesPlaceholder}
-                className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-slate-900"
+                className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
               />
             </label>
           </div>
@@ -200,7 +196,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
               type="button"
               onClick={handleCheckAvailability}
               disabled={!canCheckAvailability || availability.status === "loading"}
-              className="rounded-full border border-slate-900 px-5 py-2 text-sm font-semibold text-slate-900 transition disabled:cursor-not-allowed disabled:border-slate-300 disabled:text-slate-400"
+              className="rounded-full border border-slate-300 bg-white/70 px-5 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:text-slate-900 disabled:cursor-not-allowed disabled:border-slate-200 disabled:text-slate-400"
             >
               {availability.status === "loading"
                 ? bookingAvailabilityChecking
@@ -209,7 +205,7 @@ export const BookingWidget = ({ content }: BookingWidgetProps) => {
             <button
               type="submit"
               disabled={!availabilityConfirmed || booking.status === "submitting"}
-              className="rounded-full bg-slate-900 px-5 py-2 text-sm font-semibold text-white transition disabled:cursor-not-allowed disabled:bg-slate-400"
+              className="rounded-full bg-[#B85E3C] px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#a34f32] disabled:cursor-not-allowed disabled:bg-[#d4a18d]"
             >
               {bookingBookNowLabel}
             </button>

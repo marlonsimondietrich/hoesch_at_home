@@ -1,11 +1,248 @@
 ---
-import photo7 from '../../assets/photos/7.avif';
-import photo10 from '../../assets/photos/10.avif';
+import type { HomeContent } from '../../i18n';
+import chicken from '../../assets/photos/chicken.png';
+import piano from '../../assets/photos/piano.png';
+import vorderseite from '../../assets/photos/vorderseite.avif';
+
+interface Props {
+  content: HomeContent;
+}
+
+const { content } = Astro.props;
+const headingId = 'amenities-heading';
+const photoEntries = Object.entries(
+  import.meta.glob('../../assets/slider/*.{avif,jpg,jpeg,png,webp}', { eager: true })
+);
+type ImageModule = { src: string; width: number; height: number };
+const photos = photoEntries
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+  .map(([path, module], index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const resolved = ((module as any)?.default ?? module) as ImageModule;
+    return {
+      path,
+      image: resolved,
+      alt: `Hoesch@Home Foto ${index + 1}`,
+    };
+  });
 ---
 
-<div aria-hidden="true" class="decorative-blocks">
-  <figure class="decorative-block decorative-block--photo decorative-block--tall" style={`--decor-image: url(${photo7.src});`}></figure>
-  <div class="decorative-block decorative-block--solid decorative-block--short" style="--decor-color: #c77a5b;"></div>
-  <figure class="decorative-block decorative-block--photo decorative-block--medium" style={`--decor-image: url(${photo10.src});`}></figure>
-  <div class="decorative-block decorative-block--solid decorative-block--short" style="--decor-color: #ad5432;"></div>
-</div>
+<section
+  id="amenities"
+  class="decorative-blocks relative z-0 -mt-24 sm:-mt-28 lg:-mt-32"
+  aria-labelledby={headingId}
+>
+  <figure id="section-slider" class="decorative-block decorative-block--tall relative">
+    <div id="home-photos-carousel" class="relative h-full w-full" data-carousel="slide">
+      <div class="relative h-full overflow-hidden">
+        {photos.map((photo, index) => (
+          <div
+            class="hidden h-full duration-700 ease-in-out"
+            data-carousel-item={index === 0 ? 'active' : undefined}
+          >
+            <img
+              src={photo.image.src}
+              width={photo.image.width}
+              height={photo.image.height}
+              alt={photo.alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              class="h-full w-full object-cover"
+            />
+          </div>
+        ))}
+      </div>
+      <div class="absolute bottom-5 left-1/2 z-30 flex -translate-x-1/2 space-x-3">
+        {photos.map((_, index) => (
+          <button
+            type="button"
+            class="h-3 w-3 rounded-full bg-white/70"
+            aria-label={`Slide ${index + 1}`}
+            data-carousel-slide-to={index}
+          ></button>
+        ))}
+      </div>
+      <button
+        type="button"
+        class="group absolute left-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+        data-carousel-prev
+        aria-label="Previous slide"
+      >
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/40 text-slate-900 shadow-lg transition group-hover:bg-white/70">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 6 10"
+          >
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+          </svg>
+          <span class="sr-only">Previous</span>
+        </span>
+      </button>
+      <button
+        type="button"
+        class="group absolute right-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+        data-carousel-next
+        aria-label="Next slide"
+      >
+        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/40 text-slate-900 shadow-lg transition group-hover:bg-white/70">
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 6 10"
+          >
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+          </svg>
+          <span class="sr-only">Next</span>
+        </span>
+      </button>
+    </div>
+  </figure>
+  <div
+    id="section-amenities"
+    class="decorative-block decorative-block--solid decorative-block--short relative"
+    style="--decor-color: #c77a5b;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div class="space-y-5">
+            <p class="section-eyebrow text-[#fff9ec]">{content.sectionAmenitiesLabel}</p>
+            <h2 id={headingId} class="section-title text-[#fff9ec]">{content.sectionAmenitiesHeading}</h2>
+            <p class="section-body text-[#fff9ec]">{content.sectionAmenitiesBody}</p>
+            <ul class="grid gap-3 text-base text-[#fff9ec] sm:grid-cols-2">
+              {content.sectionAmenitiesList.map((item) => (
+                <li class="inline-flex items-center gap-2">
+                  <span class="amenities-dot bg-current" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div class="lg:justify-self-end lg:max-w-xl">
+            <figure class="image-overlay ml-auto w-[80%] min-w-[440px] overflow-hidden rounded-3xl bg-white/10 p-3 shadow-xl">
+              <img
+                src={piano.src}
+                width={piano.width}
+                height={piano.height}
+                alt="Piano in der Ausstattung"
+                loading="lazy"
+                class="h-full w-full rounded-2xl object-cover"
+              />
+            </figure>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-outdoor"
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #ad5432;"
+    aria-hidden="true"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div class="flex justify-start">
+            <figure class="image-overlay w-[80%] min-w-[440px] overflow-hidden rounded-3xl bg-white/10 p-3 shadow-xl">
+              <img
+                src={chicken.src}
+                width={chicken.width}
+                height={chicken.height}
+                alt=""
+                loading="lazy"
+                class="h-full w-full rounded-2xl object-cover"
+              />
+            </figure>
+          </div>
+          <div class="space-y-5">
+            <p class="section-eyebrow text-[#fff9ec]">{content.sectionOutdoorLabel}</p>
+            <h2 class="section-title text-[#fff9ec]">{content.sectionOutdoorHeading}</h2>
+            <p class="section-body text-[#fff9ec]">{content.sectionOutdoorBody}</p>
+            <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+              {content.sectionOutdoorHighlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-environment"
+    class="decorative-block decorative-block--solid decorative-block--short decorative-block--light"
+    style="--decor-color: #fffcf0;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow">{content.sectionEnvironmentLabel}</p>
+          <h2 class="section-title">{content.sectionEnvironmentHeading}</h2>
+          <p class="section-body">{content.sectionEnvironmentBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionEnvironmentHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-optional"
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #556E56;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow text-[#fff9ec]">{content.sectionOptionalLabel}</p>
+          <h2 class="section-title text-[#fff9ec]">{content.sectionOptionalHeading}</h2>
+          <p class="section-body text-[#fff9ec]">{content.sectionOptionalBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionOptionalHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    id="section-philosophy"
+    class="decorative-block decorative-block--photo decorative-block--short"
+    style={`--decor-image: url(${vorderseite.src}); --decor-overlay: rgba(173, 84, 50, 0.80);`}
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow text-[#fff9ec]">{content.sectionPhilosophyLabel}</p>
+          <h2 class="section-title text-[#fff9ec]">{content.sectionPhilosophyHeading}</h2>
+          <p class="section-body text-[#fff9ec]">{content.sectionPhilosophyBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionPhilosophyHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

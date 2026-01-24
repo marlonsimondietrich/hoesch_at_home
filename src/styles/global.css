@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "flowbite/plugin";
+@source "../node_modules/flowbite";
 
 :root {
   --space-section: clamp(3.5rem, 6vw, 6rem);
@@ -22,6 +24,23 @@
 }
 
 @layer components {
+  .image-overlay {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-overlay::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(173, 84, 50, 0.2);
+    pointer-events: none;
+  }
+
+  .image-overlay > img {
+    display: block;
+  }
+
   .section-eyebrow {
     letter-spacing: 0.2em;
     text-transform: uppercase;
@@ -79,8 +98,8 @@
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 999px;
-    background: #b45309;
-    box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.15);
+    background: #556e56;
+    box-shadow: 0 0 0 4px rgba(85, 110, 86, 0.15);
   }
 
   .decorative-blocks {
@@ -94,7 +113,9 @@
   }
 
   .decorative-block--tall {
-    min-height: 90vh;
+    height: 50vh;
+    min-height: 50vh;
+    max-height: 50vh;
   }
 
   .decorative-block--medium {
@@ -106,13 +127,45 @@
   }
 
   .decorative-block--photo {
-    background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), var(--decor-image);
+    background-image: linear-gradient(var(--decor-overlay, rgba(173, 84, 50, 0.2)), var(--decor-overlay, rgba(173, 84, 50, 0.2))), var(--decor-image);
     background-size: cover;
-    background-position: center bottom;
+    background-position: center 80%;
     background-repeat: no-repeat;
   }
 
   .decorative-block--solid {
     background-color: var(--decor-color);
+  }
+
+  .decorative-block--photo,
+  .decorative-block--solid {
+    color: #fffffc;
+  }
+
+  .decorative-block--photo .section-title,
+  .decorative-block--photo .section-body,
+  .decorative-block--photo .section-eyebrow,
+  .decorative-block--solid .section-title,
+  .decorative-block--solid .section-body,
+  .decorative-block--solid .section-eyebrow {
+    color: #fffffc;
+  }
+
+  .decorative-block--light {
+    color: #433713;
+  }
+
+  .decorative-block--light .section-title,
+  .decorative-block--light .section-body,
+  .decorative-block--light .section-eyebrow {
+    color: #433713;
+  }
+
+  @media (min-width: 1024px) {
+    .decorative-block--tall {
+      height: 70vh;
+      min-height: 70vh;
+      max-height: 70vh;
+    }
   }
 }

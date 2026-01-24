@@ -1,5 +1,5 @@
 ---
-import photo5 from '../../assets/photos/5.avif';
+import BookingWidget from '../../features/bookings/ui/BookingWidget';
 import type { HomeContent } from '../../i18n';
 
 interface Props {
@@ -14,20 +14,20 @@ const headingId = `${id}-heading`;
 <section id={id} class="section-spacing" aria-labelledby={headingId}>
   <div class="container-responsive grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
     <div class="space-y-5">
-      <p class="section-eyebrow">{content.sectionAmenitiesLabel}</p>
-      <h2 id={headingId} class="section-title">{content.sectionAmenitiesHeading}</h2>
-      <p class="section-body">{content.sectionAmenitiesBody}</p>
-      <ul class="grid gap-3 text-base text-slate-700 sm:grid-cols-2">
+      <p class="section-eyebrow text-[#556E56]">{content.sectionAmenitiesLabel}</p>
+      <h2 id={headingId} class="section-title text-[#fff9ec]">{content.sectionAmenitiesHeading}</h2>
+      <p class="section-body text-[#fff9ec]">{content.sectionAmenitiesBody}</p>
+      <ul class="grid gap-3 text-base text-[#fff9ec] sm:grid-cols-2">
         {content.sectionAmenitiesList.map((item) => (
           <li class="inline-flex items-center gap-2">
-            <span class="amenities-dot" aria-hidden="true"></span>
+            <span class="amenities-dot bg-current" aria-hidden="true"></span>
             <span>{item}</span>
           </li>
         ))}
       </ul>
     </div>
-    <figure class="media-tile media-tile--panel" style={`--media-image: url(${photo5.src});`}>
-      <figcaption class="media-caption">{content.sectionAmenitiesHighlight}</figcaption>
-    </figure>
+    <div class="lg:justify-self-end lg:max-w-xl">
+      <BookingWidget client:load content={content} />
+    </div>
   </div>
 </section>

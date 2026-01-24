@@ -1,6 +1,7 @@
 ---
 import heroBg from '../assets/hero-bg.png';
 import heroIllustration from '../assets/hoeschathome-illustration.png';
+import BookingWidget from '../features/bookings/ui/BookingWidget';
 import type { HomeContent } from '../i18n';
 
 interface Props {
@@ -13,61 +14,53 @@ const {
   heroHeadline,
   heroBody,
   heroFeatures,
-  heroPrimaryCtaLabel,
-  heroPrimaryCtaHref,
-  heroSecondaryCtaLabel,
-  heroSecondaryCtaHref,
   heroAlt,
 } = content;
 ---
 
 <section
-  class="relative overflow-hidden text-slate-900 px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24"
+  id="section-hero"
+  class="relative overflow-visible text-slate-900 px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 pb-32 sm:pb-40 lg:pb-48"
   style={`background-image: url(${heroBg.src}); background-size: 100% auto; background-position: center top; background-repeat: no-repeat; background-color: #f8f5f2; min-height: 70vh;`}
 >
-  <div class="flex flex-col items-center text-center gap-8">
-    {heroEyebrow && (
-      <p class="text-sm uppercase tracking-[0.2em] text-amber-700/80">
-        {heroEyebrow}
-      </p>
-    )}
-    <h1 class="text-4xl sm:text-5xl font-semibold leading-tight tracking-tight text-balance">
-      {heroHeadline}
-    </h1>
-    <div class="space-y-3 text-lg text-slate-700 text-pretty max-w-3xl">
-      {heroBody.map((line) => (
-        <p>{line}</p>
-      ))}
+  <div class="mx-auto w-full max-w-6xl">
+    <div class="flex flex-col items-start text-left gap-5 max-w-3xl">
+      {heroEyebrow && (
+        <p class="text-sm uppercase tracking-[0.2em] text-amber-700/80">
+          {heroEyebrow}
+        </p>
+      )}
+      <h1 class="text-4xl sm:text-5xl font-semibold leading-tight tracking-tight">
+        {heroHeadline}
+      </h1>
+      <div class="space-y-3 text-lg text-slate-700">
+        {heroBody.map((line) => (
+          <p>{line}</p>
+        ))}
+      </div>
     </div>
-    <img
-      src={heroIllustration.src}
-      alt={heroAlt}
-      class="relative max-h-[360px] w-full max-w-2xl object-contain"
-      loading="eager"
-      data-hero-illustration
-    />
-    <div class="flex flex-wrap justify-center gap-3 pt-2 max-w-3xl">
-      {heroFeatures.map((item) => (
-        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
-          {item}
-        </span>
-      ))}
-    </div>
-    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
-      <a
-        href={heroPrimaryCtaHref}
-        class="inline-flex items-center justify-center rounded-full bg-[#B85E3C] px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#a34f32] focus:outline-none focus-visible:ring focus-visible:ring-[#B85E3C] focus-visible:ring-offset-2"
-        data-hero-primary
-      >
-        {heroPrimaryCtaLabel}
-      </a>
-      <a
-        href={heroSecondaryCtaHref}
-        class="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-base font-semibold text-slate-800 transition-colors hover:border-slate-400 hover:text-slate-900 focus:outline-none focus-visible:ring focus-visible:ring-amber-500 focus-visible:ring-offset-2"
-        data-hero-secondary
-      >
-        {heroSecondaryCtaLabel}
-      </a>
+    <div class="mt-12 flex w-full flex-col gap-12 lg:flex-row lg:items-start lg:justify-between">
+      <div class="flex flex-col items-start gap-8 max-w-3xl">
+        <div class="relative max-h-[360px] w-full max-w-2xl self-start">
+          <img
+            src={heroIllustration.src}
+            alt={heroAlt}
+            class="hero-illustration relative h-full w-full object-contain"
+            loading="eager"
+            data-hero-illustration
+          />
+        </div>
+        <div class="flex flex-wrap justify-start gap-3">
+          {heroFeatures.map((item) => (
+            <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-semibold text-slate-800 shadow-sm">
+              {item}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div class="relative z-20 w-full max-w-lg lg:ml-auto translate-y-16 sm:translate-y-24 lg:translate-y-32">
+        <BookingWidget client:load content={content} />
+      </div>
     </div>
   </div>
 </section>
