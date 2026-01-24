@@ -4,13 +4,22 @@ import logo from '../assets/logo.png';
 interface Props {
   links: { label: string; href: string }[];
   homeHref: string;
+  calendarHref: string;
   alternateLocaleHref: string;
+  bookNowLabel: string;
   languageToggleLabel: string;
   languageToggleAria: string;
 }
 
-const { links, homeHref, alternateLocaleHref, languageToggleLabel, languageToggleAria } =
-  Astro.props;
+const {
+  links,
+  homeHref,
+  calendarHref,
+  alternateLocaleHref,
+  bookNowLabel,
+  languageToggleLabel,
+  languageToggleAria,
+} = Astro.props;
 ---
 
 <nav class="flex items-center justify-between p-4 bg-transparent shadow-none">
@@ -20,6 +29,7 @@ const { links, homeHref, alternateLocaleHref, languageToggleLabel, languageToggl
   </a>
   <div class="flex items-center gap-4">
     <ul class="flex gap-4">
+      <li><a href={calendarHref} class="text-slate-600 hover:text-slate-900">{bookNowLabel}</a></li>
       {links.map((link) => (
         <li><a href={link.href} class="text-slate-600 hover:text-slate-900">{link.label}</a></li>
       ))}
