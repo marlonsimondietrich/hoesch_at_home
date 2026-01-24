@@ -169,6 +169,44 @@
     color: #fffffc;
   }
 
+  .slider-chicken-button {
+    position: absolute;
+    right: clamp(1rem, 4vw, 2.5rem);
+    bottom: clamp(1rem, 4vw, 2.5rem);
+    z-index: 5;
+    width: clamp(8.5rem, 16vw, 12rem);
+    height: clamp(6rem, 12vw, 8.5rem);
+    display: grid;
+    place-items: center;
+    padding: 0.75rem 1rem;
+    border: 0;
+    background: #f4b33c;
+    color: #4a2e0a;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    box-shadow: 0 18px 32px rgba(74, 46, 10, 0.25);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    clip-path: path("M23 64 C12 58 10 44 20 38 C14 32 16 22 26 22 C26 16 32 12 36 18 C40 10 52 10 56 18 C60 12 68 14 68 22 C78 22 80 32 74 38 C86 44 88 58 76 64 C92 68 96 82 86 88 C78 94 66 90 62 80 C58 92 44 98 34 90 C30 94 22 92 20 84 C10 80 10 68 23 64 Z");
+    -webkit-clip-path: path("M23 64 C12 58 10 44 20 38 C14 32 16 22 26 22 C26 16 32 12 36 18 C40 10 52 10 56 18 C60 12 68 14 68 22 C78 22 80 32 74 38 C86 44 88 58 76 64 C92 68 96 82 86 88 C78 94 66 90 62 80 C58 92 44 98 34 90 C30 94 22 92 20 84 C10 80 10 68 23 64 Z");
+  }
+
+  .slider-chicken-button span {
+    transform: translateY(4%);
+  }
+
+  .slider-chicken-button:hover {
+    background: #f8c86b;
+    transform: translateY(-2px);
+    box-shadow: 0 20px 36px rgba(74, 46, 10, 0.3);
+  }
+
+  .slider-chicken-button:focus-visible {
+    outline: 3px solid rgba(74, 46, 10, 0.6);
+    outline-offset: 4px;
+  }
+
   .decorative-block--light {
     color: #433713;
   }
