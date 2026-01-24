@@ -43,6 +43,15 @@ export function BigCalendar() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedRange, setSelectedRange] = useState<DateRange | undefined>();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [street, setStreet] = useState("");
+  const [houseNumber, setHouseNumber] = useState("");
+  const [postalCode, setPostalCode] = useState("");
+  const [land, setLand] = useState("");
+  const [guestCount, setGuestCount] = useState(1);
+  const [notes, setNotes] = useState("");
   const booking = useBooking();
 
   useEffect(() => {
@@ -97,7 +106,26 @@ export function BigCalendar() {
 
   const canBook = Boolean(selectedRange?.from && selectedRange?.to);
 
-  const handleSubmit = async () => {
+  const resetForm = () => {
+    setFirstName("");
+    setLastName("");
+    setStreet("");
+    setHouseNumber("");
+    setPostalCode("");
+    setLand("");
+    setGuestCount(1);
+    setNotes("");
+  };
+
+  const handleOpenModal = () => {
+    if (!selectedRange?.from || !selectedRange?.to) {
+      return;
+    }
+    setIsModalOpen(true);
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (!selectedRange?.from || !selectedRange?.to) {
       return;
     }
@@ -107,7 +135,14 @@ export function BigCalendar() {
     const result = await booking.submitBooking({
       startDate,
       endDate,
-      guestCount: 1,
+      guestCount,
+      firstName,
+      lastName,
+      street,
+      houseNumber,
+      postalCode,
+      land,
+      notes,
     });
 
     if (result.ok) {
@@ -116,6 +151,8 @@ export function BigCalendar() {
         { startDate, endDate, source: "website", id: `local-${Date.now()}` },
       ]);
       setSelectedRange(undefined);
+      setIsModalOpen(false);
+      resetForm();
     }
   };
 
@@ -161,7 +198,7 @@ export function BigCalendar() {
             <button
               type="button"
               className="w-full rounded-full bg-amber-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-slate-300"
-              onClick={handleSubmit}
+              onClick={handleOpenModal}
               disabled={!canBook || booking.status === "submitting"}
             >
               {booking.status === "submitting" ? "Booking..." : "Book the house"}
@@ -179,6 +216,169 @@ export function BigCalendar() {
           </div>
         </aside>
       </div>
+      {isModalOpen ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4">
+          <div className="w-full max-w-2xl rounded-3xl bg-white p-6 shadow-2xl">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.2em] text-amber-700/80">
+                  Kontaktdaten
+                </p>
+                <h2 className="mt-2 text-xl font-semibold text-slate-900">
+                  Buchung abschliessen
+                </h2>
+                <p className="mt-1 text-sm text-slate-600">
+                  Bitte ergänzen Sie Ihre Kontaktdaten, bevor wir die Buchung senden.
+                </p>
+              </div>
+              <button
+                type="button"
+                className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-slate-300 hover:text-slate-700"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Close
+              </button>
+            </div>
+
+            <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  First name
+                  <input
+                    type="text"
+                    value={firstName}
+                    onChange={(event) => setFirstName(event.target.value)}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                    required
+                  />
+                </label>
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  Last name
+                  <input
+                    type="text"
+                    value={lastName}
+                    onChange={(event) => setLastName(event.target.value)}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                    required
+                  />
+                </label>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  Street
+                  <input
+                    type="text"
+                    value={street}
+                    onChange={(event) => setStreet(event.target.value)}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                    required
+                  />
+                </label>
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  House nr.
+                  <input
+                    type="text"
+                    value={houseNumber}
+                    onChange={(event) => setHouseNumber(event.target.value)}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                    required
+                  />
+                </label>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  Postal code
+                  <input
+                    type="text"
+                    value={postalCode}
+                    onChange={(event) => setPostalCode(event.target.value)}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                    required
+                  />
+                </label>
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  Land
+                  <input
+                    type="text"
+                    value={land}
+                    onChange={(event) => setLand(event.target.value)}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                    required
+                  />
+                </label>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="flex flex-col gap-1 text-sm text-slate-700">
+                  Number of guests
+                  <div className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white/80 px-2 py-2">
+                    <button
+                      type="button"
+                      className="rounded-full border border-slate-200 px-3 py-1 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+                      onClick={() => setGuestCount((value) => Math.max(1, value - 1))}
+                    >
+                      -
+                    </button>
+                    <input
+                      type="number"
+                      min={1}
+                      value={guestCount}
+                      onChange={(event) => {
+                        const nextValue = Number(event.target.value);
+                        if (!Number.isNaN(nextValue)) {
+                          setGuestCount(Math.max(1, Math.floor(nextValue)));
+                        }
+                      }}
+                      className="w-full bg-transparent text-center text-sm font-semibold text-slate-900 focus:outline-none"
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="rounded-full border border-slate-200 px-3 py-1 text-sm font-semibold text-slate-600 transition hover:border-slate-300 hover:text-slate-900"
+                      onClick={() => setGuestCount((value) => value + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+                <label className="flex flex-col gap-1 text-sm text-slate-700">
+                  Notes
+                  <textarea
+                    value={notes}
+                    onChange={(event) => setNotes(event.target.value)}
+                    rows={3}
+                    className="rounded-xl border border-slate-300 bg-white/80 px-3 py-2 text-slate-900"
+                  />
+                </label>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(false)}
+                  className="rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:text-slate-900"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={booking.status === "submitting"}
+                  className="rounded-full bg-amber-600 px-6 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+                >
+                  {booking.status === "submitting" ? "Sending..." : "Confirm booking"}
+                </button>
+              </div>
+              {booking.status === "error" ? (
+                <p className="text-sm text-rose-600">
+                  Booking failed. Please try again or select new dates.
+                </p>
+              ) : null}
+            </form>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

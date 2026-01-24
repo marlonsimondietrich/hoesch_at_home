@@ -1,0 +1,36 @@
+---
+import SliderCarousel from '../SliderCarousel';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'section-slider' } = Astro.props;
+const photoEntries = Object.entries(
+  import.meta.glob('../../assets/slider/*.{avif,jpg,jpeg,png,webp}', { eager: true })
+);
+type ImageModule = { src: string; width: number; height: number };
+const photos = photoEntries
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+  .map(([path, module], index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const resolved = ((module as any)?.default ?? module) as ImageModule;
+    return {
+      image: resolved,
+      alt: `Hoesch@Home Foto ${index + 1}`,
+    };
+  });
+---
+
+<figure id={id} class="decorative-block decorative-block--tall relative">
+  <SliderCarousel
+    client:load
+    className="h-full"
+    slides={photos.map((photo) => ({
+      src: photo.image.src,
+      width: photo.image.width,
+      height: photo.image.height,
+      alt: photo.alt,
+    }))}
+  />
+</figure>

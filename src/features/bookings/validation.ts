@@ -24,6 +24,12 @@ export const validateBookingInput = (payload: unknown): ValidationResult => {
   const startDate = data.startDate;
   const endDate = data.endDate;
   const source = data.source;
+  const firstName = data.firstName;
+  const lastName = data.lastName;
+  const street = data.street;
+  const houseNumber = data.houseNumber;
+  const postalCode = data.postalCode;
+  const land = data.land;
   const guestName = data.guestName;
   const guestCount = data.guestCount;
   const notes = data.notes;
@@ -38,6 +44,30 @@ export const validateBookingInput = (payload: unknown): ValidationResult => {
   }
 
   if (!isValidSource(source)) {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (firstName !== undefined && typeof firstName !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (lastName !== undefined && typeof lastName !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (street !== undefined && typeof street !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (houseNumber !== undefined && typeof houseNumber !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (postalCode !== undefined && typeof postalCode !== "string") {
+    return { ok: false, code: "ERR_BAD_REQUEST" };
+  }
+
+  if (land !== undefined && typeof land !== "string") {
     return { ok: false, code: "ERR_BAD_REQUEST" };
   }
 
@@ -66,6 +96,12 @@ export const validateBookingInput = (payload: unknown): ValidationResult => {
       startDate,
       endDate,
       source,
+      firstName,
+      lastName,
+      street,
+      houseNumber,
+      postalCode,
+      land,
       guestName,
       guestCount,
       notes,
