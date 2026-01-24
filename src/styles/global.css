@@ -135,6 +135,30 @@
     background-color: var(--decor-color);
   }
 
+  .decorative-block--photo,
+  .decorative-block--solid {
+    color: #fffffc;
+  }
+
+  .decorative-block--photo .section-title,
+  .decorative-block--photo .section-body,
+  .decorative-block--photo .section-eyebrow,
+  .decorative-block--solid .section-title,
+  .decorative-block--solid .section-body,
+  .decorative-block--solid .section-eyebrow {
+    color: #fffffc;
+  }
+
+  .decorative-block--light {
+    color: #433713;
+  }
+
+  .decorative-block--light .section-title,
+  .decorative-block--light .section-body,
+  .decorative-block--light .section-eyebrow {
+    color: #433713;
+  }
+
   @media (min-width: 1024px) {
     .decorative-block--tall {
       height: 70vh;

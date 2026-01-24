@@ -22,7 +22,22 @@ const headingId = 'amenities-heading';
     style={`--decor-image: url(${photo7.src});`}
   >
     <div class="relative z-10">
-      <div class="container-responsive py-16 lg:py-24"></div>
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="max-w-2xl rounded-3xl border border-[#cfe0d3]/50 bg-[#556E56]/92 p-6 text-[#fffffc] shadow-[0_18px_50px_rgba(40,60,44,0.45)] backdrop-blur-sm sm:p-8">
+          <div class="space-y-4">
+            <h2 class="section-title">{content.sectionRetreatHeading}</h2>
+            <p class="section-body">{content.sectionRetreatBody}</p>
+            <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+              {content.sectionRetreatHighlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </figure>
   <div
@@ -39,7 +54,7 @@ const headingId = 'amenities-heading';
             <ul class="grid gap-3 text-base text-[#fff9ec] sm:grid-cols-2">
               {content.sectionAmenitiesList.map((item) => (
                 <li class="inline-flex items-center gap-2">
-                  <span class="amenities-dot" aria-hidden="true"></span>
+                  <span class="amenities-dot bg-current" aria-hidden="true"></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -82,10 +97,84 @@ const headingId = 'amenities-heading';
             </figure>
           </div>
           <div class="space-y-5">
-            <p class="section-eyebrow text-[#fff9ec]">{content.sectionAmenitiesLabel}</p>
-            <h2 class="section-title text-[#fff9ec]">{content.sectionAmenitiesHeading}</h2>
-            <p class="section-body text-[#fff9ec]">{content.sectionAmenitiesBody}</p>
+            <p class="section-eyebrow text-[#fff9ec]">{content.sectionOutdoorLabel}</p>
+            <h2 class="section-title text-[#fff9ec]">{content.sectionOutdoorHeading}</h2>
+            <p class="section-body text-[#fff9ec]">{content.sectionOutdoorBody}</p>
+            <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+              {content.sectionOutdoorHighlights.map((item) => (
+                <li class="flex items-start gap-2">
+                  <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="decorative-block decorative-block--solid decorative-block--short decorative-block--light"
+    style="--decor-color: #fffcf0;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow">{content.sectionEnvironmentLabel}</p>
+          <h2 class="section-title">{content.sectionEnvironmentHeading}</h2>
+          <p class="section-body">{content.sectionEnvironmentBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionEnvironmentHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #556E56;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow text-[#fff9ec]">{content.sectionOptionalLabel}</p>
+          <h2 class="section-title text-[#fff9ec]">{content.sectionOptionalHeading}</h2>
+          <p class="section-body text-[#fff9ec]">{content.sectionOptionalBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionOptionalHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="decorative-block decorative-block--solid decorative-block--short"
+    style="--decor-color: #556E56;"
+  >
+    <div class="relative z-10">
+      <div class="container-responsive py-16 lg:py-24">
+        <div class="space-y-5">
+          <p class="section-eyebrow text-[#fff9ec]">{content.sectionPhilosophyLabel}</p>
+          <h2 class="section-title text-[#fff9ec]">{content.sectionPhilosophyHeading}</h2>
+          <p class="section-body text-[#fff9ec]">{content.sectionPhilosophyBody}</p>
+          <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+            {content.sectionPhilosophyHighlights.map((item) => (
+              <li class="flex items-start gap-2">
+                <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

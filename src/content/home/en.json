@@ -19,6 +19,52 @@
     "Private parking on site"
   ],
   "sectionAmenitiesHighlight": "Fresh eggs and garden herbs at breakfast.",
+  "sectionOutdoorLabel": "Outdoors",
+  "sectionOutdoorHeading": "Breathe easy outdoors",
+  "sectionOutdoorBody": "The private garden with open terrace, grill option, and summer trampoline invites you to unwind — from first coffee in the morning to long evenings under the open sky.",
+  "sectionOutdoorHighlights": [
+    "Private garden for your exclusive use",
+    "Open terrace",
+    "Grill option",
+    "Summer trampoline available"
+  ],
+  "sectionEnvironmentLabel": "Surroundings",
+  "sectionEnvironmentHeading": "Nature. City. Balance.",
+  "sectionEnvironmentBody": "Set between Munich, mountains, and lakes, the Auszeithaus combines nature with easy connections.",
+  "sectionEnvironmentHighlights": [
+    "About 30 minutes by S-Bahn to Marienplatz",
+    "Public transport within walking distance (10 min)",
+    "Cross-country ski trails nearby in winter",
+    "Ideal base for nature and city trips"
+  ],
+  "sectionOptionalLabel": "Optional",
+  "sectionOptionalHeading": "Good to know",
+  "sectionOptionalBody": "Here are the key details at a glance.",
+  "sectionOptionalHighlights": [
+    "Free street parking",
+    "Step-free interior (outdoor area has steps)",
+    "Non-smoking accommodation",
+    "Bicycle rental: €10 per day",
+    "Pet: €25 per night / pet"
+  ],
+  "sectionPhilosophyLabel": "Our philosophy",
+  "sectionPhilosophyHeading": "Sustainable & crafted with care",
+  "sectionPhilosophyBody": "The Auszeithaus stands for mindful travel, regional ties, and a thoughtful use of resources.",
+  "sectionPhilosophyHighlights": [
+    "Energy- and water-saving fixtures",
+    "Support with waste sorting",
+    "Homemade products like fresh eggs and jam",
+    "Chickens on the property — real country life"
+  ],
+  "sectionRetreatHeading": "Your green retreat — Auszeithaus Zell/Ebenhausen",
+  "sectionRetreatBody": "Welcome to the Auszeithaus — your place to switch off, recharge, and be together. Our spacious holiday home in Zell/Ebenhausen offers 120 m² of everything you need for a relaxing break.",
+  "sectionRetreatHighlights": [
+    "120 m² holiday home in Zell/Ebenhausen",
+    "Sleeps up to 8 guests",
+    "3 bedrooms, 2 bathrooms",
+    "Living area with sofa bed",
+    "Fully equipped kitchen"
+  ],
   "sectionBookingLabel": "Booking",
   "heroEyebrow": "Between city and Alps",
   "heroHeadline": "Come stay awhile",
