@@ -20,7 +20,7 @@ const headingId = 'amenities-heading';
   class="decorative-blocks relative z-0 -mt-24 sm:-mt-28 lg:-mt-32"
   aria-labelledby={headingId}
 >
-  <SliderSection currentLocale={currentLocale} />
+  <SliderSection currentLocale={currentLocale} content={content} />
   <div
     id="section-amenities"
     class="decorative-block decorative-block--solid decorative-block--short relative"
@@ -48,7 +48,7 @@ const headingId = 'amenities-heading';
                 src={piano.src}
                 width={piano.width}
                 height={piano.height}
-                alt="Piano in der Ausstattung"
+                alt={content.sectionAmenitiesPianoAlt}
                 loading="lazy"
                 class="h-full w-full rounded-2xl object-cover"
               />

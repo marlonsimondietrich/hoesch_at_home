@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { DateRange } from "react-day-picker";
 import { DatePicker } from "./DatePicker";
 import { useBooking } from "../hooks/useBooking";
+import type { CalendarContent } from "../../../i18n";
 
 type CalendarBooking = {
   startDate: string;
@@ -38,7 +39,11 @@ const toDateRange = (booking: CalendarBooking): BlockedRange | null => {
   return { from: start, to: end };
 };
 
-export function BigCalendar() {
+type BigCalendarProps = {
+  strings: CalendarContent;
+};
+
+export function BigCalendar({ strings }: BigCalendarProps) {
   const [bookings, setBookings] = useState<CalendarBooking[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -70,7 +75,7 @@ export function BigCalendar() {
       } catch (loadError) {
         console.error(loadError);
         if (isActive) {
-          setError("Calendar data could not be loaded.");
+          setError(strings.loadErrorMessage);
         }
       } finally {
         if (isActive) {
@@ -159,7 +164,7 @@ export function BigCalendar() {
   return (
     <div className="space-y-6">
       {isLoading ? (
-        <p className="text-sm text-slate-500">Loading calendar...</p>
+        <p className="text-sm text-slate-500">{strings.loadingLabel}</p>
       ) : null}
       {error ? <p className="text-sm text-rose-600">{error}</p> : null}
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
@@ -174,12 +179,12 @@ export function BigCalendar() {
           <div className="space-y-4">
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-amber-700/80">
-                Auswahl
+                {strings.selectionLabel}
               </p>
               <div className="mt-3 grid grid-cols-2 gap-3 text-sm text-slate-700">
                 <div className="rounded-2xl border border-slate-200 bg-white p-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                    From
+                    {strings.fromLabel}
                   </p>
                   <p className="mt-2 text-base font-semibold text-slate-900">
                     {formatDate(selectedRange?.from)}
@@ -187,7 +192,7 @@ export function BigCalendar() {
                 </div>
                 <div className="rounded-2xl border border-slate-200 bg-white p-3">
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
-                    To
+                    {strings.toLabel}
                   </p>
                   <p className="mt-2 text-base font-semibold text-slate-900">
                     {formatDate(selectedRange?.to)}
@@ -201,16 +206,18 @@ export function BigCalendar() {
               onClick={handleOpenModal}
               disabled={!canBook || booking.status === "submitting"}
             >
-              {booking.status === "submitting" ? "Booking..." : "Book the house"}
+              {booking.status === "submitting"
+                ? strings.bookButtonLoadingLabel
+                : strings.bookButtonLabel}
             </button>
             {booking.status === "success" ? (
               <p className="text-sm text-emerald-600">
-                Booking saved. We will be in touch soon.
+                {strings.bookingSuccessMessage}
               </p>
             ) : null}
             {booking.status === "error" ? (
               <p className="text-sm text-rose-600">
-                Booking failed. Please try again or select new dates.
+                {strings.bookingErrorMessage}
               </p>
             ) : null}
           </div>
@@ -222,13 +229,13 @@ export function BigCalendar() {
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-amber-700/80">
-                  Kontaktdaten
+                  {strings.modalEyebrow}
                 </p>
                 <h2 className="mt-2 text-xl font-semibold text-slate-900">
-                  Buchung abschliessen
+                  {strings.modalHeading}
                 </h2>
                 <p className="mt-1 text-sm text-slate-600">
-                  Bitte ergänzen Sie Ihre Kontaktdaten, bevor wir die Buchung senden.
+                  {strings.modalDescription}
                 </p>
               </div>
               <button
@@ -236,14 +243,14 @@ export function BigCalendar() {
                 className="rounded-full border border-slate-200 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 transition hover:border-slate-300 hover:text-slate-700"
                 onClick={() => setIsModalOpen(false)}
               >
-                Close
+                {strings.modalCloseLabel}
               </button>
             </div>
 
             <form className="mt-6 space-y-6" onSubmit={handleSubmit}>
               <div className="grid gap-4 md:grid-cols-2">
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  First name
+                  {strings.firstNameLabel}
                   <input
                     type="text"
                     value={firstName}
@@ -253,7 +260,7 @@ export function BigCalendar() {
                   />
                 </label>
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  Last name
+                  {strings.lastNameLabel}
                   <input
                     type="text"
                     value={lastName}
@@ -266,7 +273,7 @@ export function BigCalendar() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  Street
+                  {strings.streetLabel}
                   <input
                     type="text"
                     value={street}
@@ -276,7 +283,7 @@ export function BigCalendar() {
                   />
                 </label>
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  House nr.
+                  {strings.houseNumberLabel}
                   <input
                     type="text"
                     value={houseNumber}
@@ -289,7 +296,7 @@ export function BigCalendar() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  Postal code
+                  {strings.postalCodeLabel}
                   <input
                     type="text"
                     value={postalCode}
@@ -299,7 +306,7 @@ export function BigCalendar() {
                   />
                 </label>
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  Land
+                  {strings.countryLabel}
                   <input
                     type="text"
                     value={land}
@@ -312,7 +319,7 @@ export function BigCalendar() {
 
               <div className="grid gap-4 md:grid-cols-2">
                 <div className="flex flex-col gap-1 text-sm text-slate-700">
-                  Number of guests
+                  {strings.guestCountLabel}
                   <div className="flex items-center gap-2 rounded-xl border border-slate-300 bg-white/80 px-2 py-2">
                     <button
                       type="button"
@@ -344,7 +351,7 @@ export function BigCalendar() {
                   </div>
                 </div>
                 <label className="flex flex-col gap-1 text-sm text-slate-700">
-                  Notes
+                  {strings.notesLabel}
                   <textarea
                     value={notes}
                     onChange={(event) => setNotes(event.target.value)}
@@ -360,19 +367,21 @@ export function BigCalendar() {
                   onClick={() => setIsModalOpen(false)}
                   className="rounded-full border border-slate-300 bg-white px-5 py-2 text-sm font-semibold text-slate-800 transition hover:border-slate-400 hover:text-slate-900"
                 >
-                  Cancel
+                  {strings.cancelLabel}
                 </button>
                 <button
                   type="submit"
                   disabled={booking.status === "submitting"}
                   className="rounded-full bg-amber-600 px-6 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-slate-300"
                 >
-                  {booking.status === "submitting" ? "Sending..." : "Confirm booking"}
+                  {booking.status === "submitting"
+                    ? strings.confirmBookingLoadingLabel
+                    : strings.confirmBookingLabel}
                 </button>
               </div>
               {booking.status === "error" ? (
                 <p className="text-sm text-rose-600">
-                  Booking failed. Please try again or select new dates.
+                  {strings.bookingErrorMessage}
                 </p>
               ) : null}
             </form>

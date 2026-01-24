@@ -48,7 +48,7 @@ const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ..
         languageToggleAria={homeContent.navLanguageToggleAria}
       />
       <p class="section-eyebrow">{calendarContent.eyebrow}</p>
-      <BigCalendar client:load />
+      <BigCalendar client:load strings={calendarContent} />
     </div>
   </section>
 </Layout>

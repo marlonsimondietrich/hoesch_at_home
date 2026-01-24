@@ -1,15 +1,16 @@
 ---
 import SliderCarousel from '../SliderCarousel';
 import chickButton from '../../assets/decorative-elements/chick-button.png';
-import type { Locale } from '../../i18n';
+import type { HomeContent, Locale } from '../../i18n';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props {
   id?: string;
   currentLocale: Locale;
+  content: HomeContent;
 }
 
-const { id = 'section-slider', currentLocale } = Astro.props;
+const { id = 'section-slider', currentLocale, content } = Astro.props;
 const galleryHref = getRelativeLocaleUrl(currentLocale, 'galerie');
 const photoEntries = Object.entries(
   import.meta.glob('../../assets/slider/*.{avif,jpg,jpeg,png,webp}', { eager: true })
@@ -23,7 +24,7 @@ const photos = photoEntries
     const resolved = ((module as any)?.default ?? module) as ImageModule;
     return {
       image: resolved,
-      alt: `Hoesch@Home Foto ${index + 1}`,
+      alt: `${content.galleryImageAltPrefix} ${index + 1}`,
     };
   });
 ---
@@ -39,8 +40,8 @@ const photos = photoEntries
       alt: photo.alt,
     }))}
   />
-  <a class="slider-chick-button" href={galleryHref} aria-label="Mehr Bilder">
+  <a class="slider-chick-button" href={galleryHref} aria-label={content.sliderGalleryAriaLabel}>
     <img src={chickButton.src} alt="" loading="lazy" />
-    <span>Mehr sehen</span>
+    <span>{content.sliderGalleryLabel}</span>
   </a>
 </figure>

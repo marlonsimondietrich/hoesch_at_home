@@ -38,7 +38,7 @@ const photos = photoEntries
     const resolved = ((module as any)?.default ?? module) as ImageModule;
     return {
       image: resolved,
-      alt: `Hoesch@Home Foto ${index + 1}`,
+      alt: `${homeContent.galleryImageAltPrefix} ${index + 1}`,
     };
   });
 ---
