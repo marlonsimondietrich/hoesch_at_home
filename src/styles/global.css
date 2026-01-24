@@ -111,7 +111,9 @@
   }
 
   .decorative-block--tall {
-    min-height: 90vh;
+    height: 50vh;
+    min-height: 50vh;
+    max-height: 50vh;
   }
 
   .decorative-block--medium {
@@ -125,11 +127,19 @@
   .decorative-block--photo {
     background-image: linear-gradient(rgba(173, 84, 50, 0.2), rgba(173, 84, 50, 0.2)), var(--decor-image);
     background-size: cover;
-    background-position: center bottom;
+    background-position: center 80%;
     background-repeat: no-repeat;
   }
 
   .decorative-block--solid {
     background-color: var(--decor-color);
+  }
+
+  @media (min-width: 1024px) {
+    .decorative-block--tall {
+      height: 70vh;
+      min-height: 70vh;
+      max-height: 70vh;
+    }
   }
 }
