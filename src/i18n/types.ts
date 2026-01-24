@@ -7,6 +7,13 @@ export const defaultLocale: Locale = 'de';
 
 export type HomeContent = CollectionEntry<'home'>['data'];
 
+export type CalendarContent = {
+  metaTitle: string;
+  metaDescription?: string;
+  eyebrow: string;
+};
+
 export type LocaleStrings = {
   home: HomeContent;
+  calendar: CalendarContent;
 };

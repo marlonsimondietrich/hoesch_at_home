@@ -8,6 +8,12 @@ type BookingPayload = {
   endDate: DateString;
   guestCount: number;
   notes?: string;
+  firstName?: string;
+  lastName?: string;
+  street?: string;
+  houseNumber?: string;
+  postalCode?: string;
+  land?: string;
 };
 
 const readErrorCode = async (response: Response): Promise<BookingErrorCode | null> => {
@@ -38,6 +44,12 @@ export const useBooking = () => {
         startDate: payload.startDate,
         endDate: payload.endDate,
         source: "website",
+        firstName: payload.firstName?.trim() || undefined,
+        lastName: payload.lastName?.trim() || undefined,
+        street: payload.street?.trim() || undefined,
+        houseNumber: payload.houseNumber?.trim() || undefined,
+        postalCode: payload.postalCode?.trim() || undefined,
+        land: payload.land?.trim() || undefined,
         guestCount: payload.guestCount,
         notes: payload.notes?.trim() || undefined,
         price: 0,

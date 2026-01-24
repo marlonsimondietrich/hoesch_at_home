@@ -7,6 +7,7 @@ const home = defineCollection({
     metaDescription: z.string().optional(),
     navLanguageToggleLabel: z.string(),
     navLanguageToggleAria: z.string(),
+    navBookNowLabel: z.string(),
     sectionGalleryLabel: z.string(),
     sectionGalleryHeading: z.string(),
     sectionGalleryBody: z.string(),
