@@ -1,11 +1,11 @@
 ---
-import Layout from "../layouts/main.astro";
-import NavBar from "../components/NavBar.astro";
-import { BigCalendar } from "../features/bookings/ui/BigCalendar";
-import { defaultLocale, getStrings, locales, type Locale } from "../i18n";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { getHomeSections } from "../components/sections/homeSections";
-import { getNavLinks } from "../lib/navigation";
+import Layout from '../layouts/main.astro';
+import NavBar from '../components/NavBar.astro';
+//import { BigCalendar } from "../features/bookings/ui/BigCalendar";
+import { defaultLocale, getStrings, locales, type Locale } from '../i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getHomeSections } from '../components/sections/homeSections';
+import { getNavLinks } from '../lib/navigation';
 
 interface Props {
   currentLocale?: Locale;
@@ -13,17 +13,18 @@ interface Props {
 
 const { currentLocale: currentLocaleProp } = Astro.props;
 const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
-const localePattern = new RegExp(`^/(${locales.join("|")})(?=/|$)`);
-const pathWithoutLocale = Astro.url.pathname.replace(localePattern, "") || "/";
-const pathParam =
-  pathWithoutLocale === "/" ? undefined : pathWithoutLocale.replace(/^\/+/, "");
-const alternateLocale: Locale = currentLocale === "de" ? "en" : "de";
+const localePattern = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
+const pathWithoutLocale = Astro.url.pathname.replace(localePattern, '') || '/';
+// const pathName = Astro.url.pathname;
+const pathParam = pathWithoutLocale === '/' ? undefined : pathWithoutLocale.replace(/^\/+/, '');
+const alternateLocale: Locale = currentLocale === 'de' ? 'en' : 'de';
 const alternateLocaleHref = getRelativeLocaleUrl(alternateLocale, pathParam);
 const homeContent = getStrings(currentLocale).home;
 const calendarContent = getStrings(currentLocale).calendar;
 const homeHref = getRelativeLocaleUrl(currentLocale);
-const calendarHref = getRelativeLocaleUrl(currentLocale, "calendar");
-const galleryHref = getRelativeLocaleUrl(currentLocale, "galerie");
+const calendarHref = getRelativeLocaleUrl(currentLocale, 'calendar');
+const galleryHref = getRelativeLocaleUrl(currentLocale, 'galerie');
+// const smoobuLocalePath = /^\/de(\/|$)/.test(pathName) ? "" : "/en";
 const sections = getHomeSections(homeContent);
 const sectionLinks = getNavLinks(sections, homeHref, calendarHref);
 const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ...sectionLinks];
@@ -48,7 +49,27 @@ const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ..
         languageToggleAria={homeContent.navLanguageToggleAria}
       />
       <p class="section-eyebrow">{calendarContent.eyebrow}</p>
-      <BigCalendar client:load strings={calendarContent} />
+      <!-- <BigCalendar client:load strings={calendarContent} /> -->
+      <!-- <div id="smoobuApartment3133596de" class="calendarWidget"> <div class="calendarContent" data-load-calendar-url="https://login.smoobu.com/de/cockpit/widget/single-calendar/3133596" data-verification="02284b7d626e014608cd5a3a645799fc79b9961136eb01a8b72c4b68ffe2ef5f" data-baseUrl="https://login.smoobu.com" data-disable-css="false" ></div> <script type="text/javascript" src="https://login.smoobu.com/js/Apartment/CalendarWidget.js"></script></div> -->
+
+      <div id="apartmentIframe3133596">
+        <script
+          is:inline
+          type="text/javascript"
+          src="https://login.smoobu.com/js/Settings/BookingToolIframe.js"></script>
+        <script is:inline>
+          window.addEventListener('load', () => {
+            if (typeof BookingToolIframe !== 'undefined') {
+              // eslint-disable-next-line no-undef
+              BookingToolIframe.initialize({
+                url: `https://login.smoobu.com/de/booking-tool/iframe/1615356/3133596`,
+                baseUrl: 'https://login.smoobu.com',
+                target: '#apartmentIframe3133596',
+              });
+            }
+          });
+        </script>
+      </div>
     </div>
   </section>
 </Layout>
