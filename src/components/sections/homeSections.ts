@@ -1,26 +1,17 @@
 import type { HomeContent } from '../../i18n';
-import GallerySection from './GallerySection.astro';
 type SectionLabelKey = 'sectionGalleryLabel';
-
-type SectionComponent = typeof GallerySection;
 
 type SectionDefinition = {
   id: string;
   contentKey: SectionLabelKey;
-  Component: SectionComponent;
+  Component: typeof import('./GallerySection.astro').default;
 };
 
 export type HomeSection = SectionDefinition & {
   label: string;
 };
 
-const baseSections: SectionDefinition[] = [
-  {
-    id: 'section-gallery',
-    contentKey: 'sectionGalleryLabel',
-    Component: GallerySection,
-  },
-];
+const baseSections: SectionDefinition[] = [];
 
 export const getHomeSections = (content: HomeContent): HomeSection[] =>
   baseSections.map((section) => ({

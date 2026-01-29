@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/main.astro';
 import NavBar from '../components/NavBar.astro';
-//import { BigCalendar } from "../features/bookings/ui/BigCalendar";
 import { defaultLocale, getStrings, locales, type Locale } from '../i18n';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import { getHomeSections } from '../components/sections/homeSections';
@@ -15,25 +14,39 @@ const { currentLocale: currentLocaleProp } = Astro.props;
 const currentLocale = (currentLocaleProp ?? Astro.currentLocale ?? defaultLocale) as Locale;
 const localePattern = new RegExp(`^/(${locales.join('|')})(?=/|$)`);
 const pathWithoutLocale = Astro.url.pathname.replace(localePattern, '') || '/';
-// const pathName = Astro.url.pathname;
-const pathParam = pathWithoutLocale === '/' ? undefined : pathWithoutLocale.replace(/^\/+/, '');
+const pathParam =
+  pathWithoutLocale === '/' ? undefined : pathWithoutLocale.replace(/^\/+/, '');
 const alternateLocale: Locale = currentLocale === 'de' ? 'en' : 'de';
 const alternateLocaleHref = getRelativeLocaleUrl(alternateLocale, pathParam);
 const homeContent = getStrings(currentLocale).home;
-const calendarContent = getStrings(currentLocale).calendar;
 const homeHref = getRelativeLocaleUrl(currentLocale);
 const calendarHref = getRelativeLocaleUrl(currentLocale, 'calendar');
 const galleryHref = getRelativeLocaleUrl(currentLocale, 'galerie');
-// const smoobuLocalePath = /^\/de(\/|$)/.test(pathName) ? "" : "/en";
 const sections = getHomeSections(homeContent);
 const sectionLinks = getNavLinks(sections, homeHref, calendarHref);
 const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ...sectionLinks];
+
+const photoEntries = Object.entries(
+  import.meta.glob('../assets/photos/*.{avif,jpg,jpeg,png,webp}', { eager: true })
+);
+type ImageModule = { src: string; width: number; height: number };
+const photos = photoEntries
+  .sort(([pathA], [pathB]) => pathA.localeCompare(pathB))
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  .map(([path, module], index) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const resolved = ((module as any)?.default ?? module) as ImageModule;
+    return {
+      image: resolved,
+      alt: `${homeContent.galleryImageAltPrefix} ${index + 1}`,
+    };
+  });
 ---
 
 <Layout
   content={{
-    title: calendarContent.metaTitle,
-    description: calendarContent.metaDescription,
+    title: `${homeContent.sectionGalleryLabel} | ${homeContent.metaTitle}`,
+    description: homeContent.metaDescription,
   }}
   currentLocale={currentLocale}
 >
@@ -46,30 +59,23 @@ const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ..
         languageToggleLabel={homeContent.navLanguageToggleLabel}
         languageToggleAria={homeContent.navLanguageToggleAria}
       />
-  <section class="min-h-screen bg-[#fff9ee]">
+  <section class="min-h-screen bg-[#fff9ee] text-slate-900">
     <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
 
-      <p class="section-eyebrow">{calendarContent.eyebrow}</p>
-      <!-- <BigCalendar client:load strings={calendarContent} /> -->
-      <!-- <div id="smoobuApartment3133596de" class="calendarWidget"> <div class="calendarContent" data-load-calendar-url="https://login.smoobu.com/de/cockpit/widget/single-calendar/3133596" data-verification="02284b7d626e014608cd5a3a645799fc79b9961136eb01a8b72c4b68ffe2ef5f" data-baseUrl="https://login.smoobu.com" data-disable-css="false" ></div> <script type="text/javascript" src="https://login.smoobu.com/js/Apartment/CalendarWidget.js"></script></div> -->
-
-      <div id="apartmentIframe3133596">
-        <script
-          is:inline
-          type="text/javascript"
-          src="https://login.smoobu.com/js/Settings/BookingToolIframe.js"></script>
-        <script is:inline>
-          window.addEventListener('load', () => {
-            if (typeof BookingToolIframe !== 'undefined') {
-              // eslint-disable-next-line no-undef
-              BookingToolIframe.initialize({
-                url: `https://login.smoobu.com/de/booking-tool/iframe/1615356/3133596`,
-                baseUrl: 'https://login.smoobu.com',
-                target: '#apartmentIframe3133596',
-              });
-            }
-          });
-        </script>
+      <p class="section-eyebrow">{homeContent.sectionGalleryLabel}</p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {photos.map((photo) => (
+          <figure class="overflow-hidden rounded-3xl bg-white shadow-lg">
+            <img
+              src={photo.image.src}
+              width={photo.image.width}
+              height={photo.image.height}
+              alt={photo.alt}
+              loading="lazy"
+              class="h-full w-full object-cover"
+            />
+          </figure>
+        ))}
       </div>
     </div>
   </section>

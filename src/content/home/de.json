@@ -1,7 +1,7 @@
 {
   "metaTitle": "Hoesch@Home",
   "metaDescription": "Hoesch@Home",
-  "navLanguageToggleLabel": "DE",
+  "navLanguageToggleLabel": "EN",
   "navLanguageToggleAria": "Switch to English",
   "navBookNowLabel": "Jetzt Buchen",
   "sectionGalleryLabel": "Galerie",
@@ -10,6 +10,9 @@
   "sectionGalleryCaptionOne": "Sonnenlicht im großzügigen Wohnbereich.",
   "sectionGalleryCaptionTwo": "Draußen essen unter alten Obstbäumen.",
   "sectionGalleryCaptionThree": "Eine ruhige Ecke für Lesen und Tee.",
+  "galleryImageAltPrefix": "Hoesch@Home Foto",
+  "sliderGalleryAriaLabel": "Mehr Bilder",
+  "sliderGalleryLabel": "Mehr sehen",
   "sectionAmenitiesLabel": "Ausstattung",
   "sectionAmenitiesHeading": "Alles da – für Alltag, Auszeit & Homeoffice",
   "sectionAmenitiesBody": "Egal ob Workation oder Familienzeit – hier findest du alles, was du für einen entspannten Aufenthalt brauchst.",
@@ -22,11 +25,12 @@
     "Babybett und Hochstuhl"
   ],
   "sectionAmenitiesHighlight": "Frische Eier und Gartenkräuter zum Frühstück.",
+  "sectionAmenitiesPianoAlt": "Piano in der Ausstattung",
   "sectionOutdoorLabel": "Draußen",
   "sectionOutdoorHeading": "Draußen sein & durchatmen",
   "sectionOutdoorBody": "Der private Garten mit Terrasse lädt dich ein, draußen zu leben, zu entspannen und den Tag ausklingen zu lassen.",
   "sectionOutdoorHighlights": [
-    "Privater Garten zur alleinigen Nutzung",
+    "Großer Garten",
     "Offene Terrasse",
     "Grillmöglichkeiten",
     "Trampolin im Sommer verfügbar"
@@ -35,7 +39,7 @@
   "sectionEnvironmentHeading": "Natur. Stadt. Balance.",
   "sectionEnvironmentBody": "Zwischen München, Bergen und Seen gelegen, findest du hier Naturerlebnis mit perfekter Anbindung.",
   "sectionEnvironmentHighlights": [
-    "Ca. 30 Minuten mit der S-Bahn zum Marienplatz",
+    "35 Minuten mit der S-Bahn zum Marienplatz",
     "Öffentliche Verkehrsmittel fußläufig erreichbar (10min)",
     "Langlaufloipen im Winter in der Nähe",
     "Idealer Ausgangspunkt für Natur- und Stadtausflüge"
@@ -57,7 +61,7 @@
     "Licht- und wassersparende Ausstattung",
     "Unterstützung bei der Mülltrennung",
     "Hausgemachte Produkte wie frische Eier und Marmelade",
-    "Hühner auf dem Grundstück – echtes Landleben"
+    "Hühner auf dem Grundstück"
   ],
   "sectionRetreatHeading": "Zuhause im Grünen",
   "sectionRetreatBody": "Ideal zum Abschalten, Zusammensein und Durchatmen.",
@@ -100,5 +104,11 @@
   "bookingAvailabilityError": "Beim Prüfen der Verfügbarkeit ist ein Fehler aufgetreten.",
   "bookingValidationError": "Bitte einen gültigen Zeitraum und eine Gästeanzahl angeben.",
   "bookingBookingError": "Beim Senden der Buchungsanfrage ist ein Fehler aufgetreten.",
-  "bookingSuccessMessage": "Buchungsanfrage gesendet."
+  "bookingSuccessMessage": "Buchungsanfrage gesendet.",
+  "footerTagline": "Wo Stadt, Natur und Ruhe sich treffen.",
+  "footerContactLabel": "Kontakt:",
+  "footerAirbnbRatingLabel": "Airbnb-Rating: ★★★★★ (5 Sterne)",
+  "footerImprintLabel": "Impressum",
+  "footerPrivacyLabel": "Datenschutz",
+  "footerRightsLabel": "Alle Rechte vorbehalten."
 }

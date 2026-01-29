@@ -137,6 +137,24 @@
     background-color: var(--decor-color);
   }
 
+  .decorative-block--line {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .decorative-block--line::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--decor-line);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 120% auto;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+  }
+
   .decorative-block--photo,
   .decorative-block--solid {
     color: #fffffc;
@@ -149,6 +167,78 @@
   .decorative-block--solid .section-body,
   .decorative-block--solid .section-eyebrow {
     color: #fffffc;
+  }
+
+  .chick-button-image {
+    display: grid;
+  }
+
+  .chick-button-image > img {
+    grid-area: 1 / 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .chick-button-hover {
+    opacity: 0;
+  }
+
+  .chick-button:hover .chick-button-hover {
+    opacity: 1;
+  }
+
+  .chick-button:hover .chick-button-default {
+    opacity: 0;
+  }
+
+  .slider-chick-button {
+    position: absolute;
+    left: clamp(1rem, 4vw, 2.5rem);
+    bottom: clamp(1rem, 4vw, 2.5rem);
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    gap: 0.4rem;
+    width: clamp(4.75rem, 9vw, 6.25rem);
+    height: clamp(5.75rem, 12vw, 8rem);
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .slider-chick-button img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transform: scaleX(-1);
+  }
+
+  .slider-chick-button .chick-button-image {
+    width: 100%;
+  }
+
+  .chick-button-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-shadow: 0 0px 2px rgba(180, 83, 9, 0.8);
+    width: 100%;
+    text-align: center;
+  }
+
+  .slider-chick-button span {
+    color: #546f56;
+  }
+
+  .slider-chick-button:hover {
+    transform: translateY(-2px) scale(1.02);
+  }
+
+  .slider-chick-button:focus-visible {
+    outline: 3px solid rgba(255, 246, 204, 0.7);
+    outline-offset: 4px;
   }
 
   .decorative-block--light {

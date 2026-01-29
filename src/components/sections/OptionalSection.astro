@@ -1,0 +1,32 @@
+---
+import type { HomeContent } from '../../i18n';
+
+interface Props {
+  content: HomeContent;
+}
+
+const { content } = Astro.props;
+const headingId = 'optional-heading';
+---
+
+<section
+  id="section-optional"
+  class="section-spacing bg-[#fffcf0] text-slate-900"
+  aria-labelledby={headingId}
+>
+  <div class="container-responsive space-y-5">
+    <p class="section-eyebrow">{content.sectionOptionalLabel}</p>
+    <h2 id={headingId} class="section-title">{content.sectionOptionalHeading}</h2>
+    {content.sectionOptionalBody && (
+      <p class="section-body">{content.sectionOptionalBody}</p>
+    )}
+    <ul class="grid gap-2 text-sm sm:grid-cols-2 sm:text-base">
+      {content.sectionOptionalHighlights.map((item) => (
+        <li class="flex items-start gap-2">
+          <span class="amenities-dot mt-2 shrink-0 bg-current" aria-hidden="true"></span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

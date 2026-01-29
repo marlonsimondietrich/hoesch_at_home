@@ -1,14 +1,17 @@
 ---
 import heroBg from '../assets/hero-bg.png';
 import heroIllustration from '../assets/hoeschathome-illustration.png';
+import chickButton from '../assets/decorative-elements/chick-button.png';
+import chickButtonHovered from '../assets/decorative-elements/chick-button-hovered.png';
 import type { HomeContent, Locale } from '../i18n';
+import { getRelativeLocaleUrl } from 'astro:i18n';
 
 interface Props {
   content: HomeContent;
   currentLocale: Locale;
 }
 
-const { content } = Astro.props;
+const { content, currentLocale } = Astro.props;
 const {
   heroEyebrow,
   heroHeadline,
@@ -16,6 +19,8 @@ const {
   heroFeatures,
   heroAlt,
 } = content;
+
+const calendarHref = getRelativeLocaleUrl(currentLocale, 'calendar');
 ---
 
 <section
@@ -57,8 +62,31 @@ const {
             </span>
           ))}
         </div>
+      </div>
     </div>
   </div>
+  <a
+    href={calendarHref}
+    class="absolute right-6 flex flex-col items-center gap-2 text-center sm:right-8 chick-button"
+    style="bottom: 30%;"
+    aria-label="Jetzt buchen"
+  >
+    <span class="chick-button-image h-20 w-20 sm:h-24 sm:w-24">
+      <img
+        src={chickButton.src}
+        alt="Jetzt buchen"
+        class="chick-button-default h-full w-full"
+        loading="eager"
+      />
+      <img
+        src={chickButtonHovered.src}
+        alt=""
+        class="chick-button-hover h-full w-full"
+        loading="eager"
+      />
+    </span>
+    <span class="chick-button-label text-[#FFFCF0]">Jetzt buchen</span>
+  </a>
   <!-- <section class="hero">
 
     <svg

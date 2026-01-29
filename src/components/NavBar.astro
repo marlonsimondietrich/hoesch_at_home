@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<nav class="flex items-center justify-between p-4 bg-transparent shadow-none">
+<nav class="sticky top-0 z-50 flex items-center justify-between p-4 shadow-none" style="background-color: #fffcf0;">
   <a href={homeHref} class="inline-flex items-center gap-2">
     <img src={logo.src} alt="Hoesch@Home logo" class="h-20 w-auto" loading="eager" />
     <span class="sr-only">Hoesch@Home</span>
