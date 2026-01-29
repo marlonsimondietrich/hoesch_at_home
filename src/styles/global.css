@@ -218,13 +218,16 @@
     width: 100%;
   }
 
-  .slider-chick-button span {
+  .chick-button-label {
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #fff6cc;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  }
+
+  .slider-chick-button span {
+    color: #546f56;
   }
 
   .slider-chick-button:hover {
