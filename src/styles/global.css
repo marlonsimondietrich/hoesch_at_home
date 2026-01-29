@@ -169,6 +169,27 @@
     color: #fffffc;
   }
 
+  .chick-button-image {
+    display: grid;
+  }
+
+  .chick-button-image > img {
+    grid-area: 1 / 1;
+    transition: opacity 0.2s ease;
+  }
+
+  .chick-button-hover {
+    opacity: 0;
+  }
+
+  .chick-button:hover .chick-button-hover {
+    opacity: 1;
+  }
+
+  .chick-button:hover .chick-button-default {
+    opacity: 0;
+  }
+
   .slider-chick-button {
     position: absolute;
     left: clamp(1rem, 4vw, 2.5rem);
@@ -191,6 +212,10 @@
     height: auto;
     object-fit: contain;
     transform: scaleX(-1);
+  }
+
+  .slider-chick-button .chick-button-image {
+    width: 100%;
   }
 
   .slider-chick-button span {

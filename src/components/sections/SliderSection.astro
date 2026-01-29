@@ -1,6 +1,7 @@
 ---
 import SliderCarousel from '../SliderCarousel';
 import chickButton from '../../assets/decorative-elements/chick-button.png';
+import chickButtonHovered from '../../assets/decorative-elements/chick-button-hovered.png';
 import type { HomeContent, Locale } from '../../i18n';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
@@ -40,8 +41,15 @@ const photos = photoEntries
       alt: photo.alt,
     }))}
   />
-  <a class="slider-chick-button" href={galleryHref} aria-label={content.sliderGalleryAriaLabel}>
-    <img src={chickButton.src} alt="" loading="lazy" />
+  <a
+    class="slider-chick-button chick-button"
+    href={galleryHref}
+    aria-label={content.sliderGalleryAriaLabel}
+  >
+    <span class="chick-button-image">
+      <img class="chick-button-default" src={chickButton.src} alt="" loading="lazy" />
+      <img class="chick-button-hover" src={chickButtonHovered.src} alt="" loading="lazy" />
+    </span>
     <span>{content.sliderGalleryLabel}</span>
   </a>
 </figure>

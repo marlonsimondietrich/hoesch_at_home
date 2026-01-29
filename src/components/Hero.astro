@@ -2,6 +2,7 @@
 import heroBg from '../assets/hero-bg.png';
 import heroIllustration from '../assets/hoeschathome-illustration.png';
 import chickButton from '../assets/decorative-elements/chick-button.png';
+import chickButtonHovered from '../assets/decorative-elements/chick-button-hovered.png';
 import type { HomeContent, Locale } from '../i18n';
 import { getRelativeLocaleUrl } from 'astro:i18n';
 
@@ -66,16 +67,24 @@ const calendarHref = getRelativeLocaleUrl(currentLocale, 'calendar');
   </div>
   <a
     href={calendarHref}
-    class="absolute right-6 flex flex-col items-center gap-2 text-center sm:right-8"
+    class="absolute right-6 flex flex-col items-center gap-2 text-center sm:right-8 chick-button"
     style="bottom: 20%;"
     aria-label="Jetzt buchen"
   >
-    <img
-      src={chickButton.src}
-      alt="Jetzt buchen"
-      class="h-20 w-20 sm:h-24 sm:w-24"
-      loading="eager"
-    />
+    <span class="chick-button-image h-20 w-20 sm:h-24 sm:w-24">
+      <img
+        src={chickButton.src}
+        alt="Jetzt buchen"
+        class="chick-button-default h-full w-full"
+        loading="eager"
+      />
+      <img
+        src={chickButtonHovered.src}
+        alt=""
+        class="chick-button-hover h-full w-full"
+        loading="eager"
+      />
+    </span>
     <span class="text-sm font-semibold text-slate-800">Jetzt buchen</span>
   </a>
   <!-- <section class="hero">
