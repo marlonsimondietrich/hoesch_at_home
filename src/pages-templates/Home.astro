@@ -35,8 +35,7 @@ const links = [{ label: content.sectionGalleryLabel, href: galleryHref }, ...sec
   }}
   currentLocale={currentLocale}
 >
-  <section class="bg-gradient-to-br from-orange-50 via-amber-50/70 to-slate-50 text-slate-900">
-    <NavBar
+<NavBar
       links={links}
       homeHref={homeHref}
       calendarHref={calendarHref}
@@ -45,6 +44,7 @@ const links = [{ label: content.sectionGalleryLabel, href: galleryHref }, ...sec
       languageToggleLabel={content.navLanguageToggleLabel}
       languageToggleAria={content.navLanguageToggleAria}
     />
+  <section class="bg-gradient-to-br from-orange-50 via-amber-50/70 to-slate-50 text-slate-900">
     <main>
       <HomePage content={content} currentLocale={currentLocale} />
     </main>

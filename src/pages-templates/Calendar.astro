@@ -37,9 +37,7 @@ const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ..
   }}
   currentLocale={currentLocale}
 >
-  <section class="min-h-screen bg-[#fff9ee]">
-    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
-      <NavBar
+<NavBar
         links={links}
         homeHref={homeHref}
         calendarHref={calendarHref}
@@ -48,6 +46,9 @@ const links = [{ label: homeContent.sectionGalleryLabel, href: galleryHref }, ..
         languageToggleLabel={homeContent.navLanguageToggleLabel}
         languageToggleAria={homeContent.navLanguageToggleAria}
       />
+  <section class="min-h-screen bg-[#fff9ee]">
+    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
+
       <p class="section-eyebrow">{calendarContent.eyebrow}</p>
       <!-- <BigCalendar client:load strings={calendarContent} /> -->
       <!-- <div id="smoobuApartment3133596de" class="calendarWidget"> <div class="calendarContent" data-load-calendar-url="https://login.smoobu.com/de/cockpit/widget/single-calendar/3133596" data-verification="02284b7d626e014608cd5a3a645799fc79b9961136eb01a8b72c4b68ffe2ef5f" data-baseUrl="https://login.smoobu.com" data-disable-css="false" ></div> <script type="text/javascript" src="https://login.smoobu.com/js/Apartment/CalendarWidget.js"></script></div> -->

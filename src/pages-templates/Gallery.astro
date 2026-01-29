@@ -50,9 +50,7 @@ const photos = photoEntries
   }}
   currentLocale={currentLocale}
 >
-  <section class="min-h-screen bg-[#fff9ee] text-slate-900">
-    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
-      <NavBar
+<NavBar
         links={links}
         homeHref={homeHref}
         calendarHref={calendarHref}
@@ -61,6 +59,9 @@ const photos = photoEntries
         languageToggleLabel={homeContent.navLanguageToggleLabel}
         languageToggleAria={homeContent.navLanguageToggleAria}
       />
+  <section class="min-h-screen bg-[#fff9ee] text-slate-900">
+    <div class="mx-auto w-full max-w-none space-y-10 px-6 lg:px-12">
+
       <p class="section-eyebrow">{homeContent.sectionGalleryLabel}</p>
       <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((photo) => (
