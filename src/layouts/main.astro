@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { defaultLocale, locales, type Locale } from '../i18n';
 import { getAbsoluteLocaleUrl, getPathByLocale } from 'astro:i18n';
+import Footer from '../components/Footer.astro';
 
 interface Props {
   content: {
@@ -42,8 +43,11 @@ const alternateUrls = locales.map((locale) => ({
     <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
     <title>{content.title}</title>
   </head>
-  <body>
-    <slot />
+  <body class="min-h-screen bg-[#fffcf0]">
+    <div class="flex min-h-screen flex-col">
+      <slot />
+      <Footer currentLocale={currentLocale} />
+    </div>
     <script type="module">
       import 'flowbite';
     </script>

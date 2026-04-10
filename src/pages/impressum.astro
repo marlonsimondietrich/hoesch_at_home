@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/main.astro';
+---
+
+<Layout
+  content={{
+    title: 'Impressum | Hoesch@Home',
+    description: 'Impressum von Hoesch@Home.',
+  }}
+  currentLocale="de"
+>
+  <main class="min-h-[60vh] bg-[#fff9ee]">
+    <section class="container-responsive py-20">
+      <p class="section-eyebrow">Rechtliches</p>
+      <h1 class="section-title mt-4">Impressum</h1>
+      <div class="section-body mt-6 max-w-2xl space-y-8">
+        <section>
+          <h2 class="text-xl font-semibold">Angaben gemäß § 5 DDG</h2>
+          <p class="mt-3">
+            Hoesch Beteiligungsverwaltung GmbH<br />
+            Zellerstrasse 29<br />
+            82067 Ebenhausen<br />
+            Deutschland
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold">Vertreten durch</h2>
+          <p class="mt-3">Geschäftsführer: Michael Hoesch</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold">Kontakt</h2>
+          <p class="mt-3">
+            +49 172 8370525<br />
+            E-Mail:
+            <a class="underline decoration-current underline-offset-2" href="mailto:michael.hoesch@lifebond.de">
+              michael.hoesch@lifebond.de
+            </a>
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold">Handelsregister</h2>
+          <p class="mt-3">
+            Registergericht: Amtsgericht München<br />
+            Registernummer: HRB 139800
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold">Umsatzsteuer-ID</h2>
+          <p class="mt-3">Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: DE259911362</p>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+          <p class="mt-3">
+            Michael Hoesch<br />
+            Zellerstrasse 29<br />
+            82067 Ebenhausen<br />
+            Deutschland
+          </p>
+        </section>
+      </div>
+    </section>
+  </main>
+</Layout>

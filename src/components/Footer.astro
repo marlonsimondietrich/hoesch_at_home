@@ -1,5 +1,38 @@
-<footer class="py-8 bg-slate-50 border-t border-slate-200 mt-auto">
-  <div class="container-responsive text-center text-slate-500 text-sm">
-    &copy; {new Date().getFullYear()} Hoesch@Home. All rights reserved.
+---
+import type { Locale } from '../i18n';
+
+interface Props {
+  currentLocale: Locale;
+}
+
+const { currentLocale } = Astro.props;
+
+const links =
+  currentLocale === 'de'
+    ? [
+        { label: 'Impressum', href: '/impressum' },
+        { label: 'Datenschutzerklärung', href: '/datenschutzerklaerung' },
+      ]
+    : [
+        { label: 'Legal Notice', href: '/en/legal-notice' },
+        { label: 'Privacy Policy', href: '/en/privacy-policy' },
+      ];
+---
+
+<footer class="mt-auto bg-[#556E56] text-[#fffcf0]">
+  <div class="container-responsive flex flex-col gap-5 py-8 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-sm tracking-[0.18em] uppercase text-[#fffcf0]/75">
+      Hoesch@Home
+    </p>
+    <nav aria-label="Legal" class="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+      {links.map((link) => (
+        <a
+          href={link.href}
+          class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:text-white"
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
   </div>
 </footer>
